@@ -8,6 +8,10 @@
   --color-sand: #FDF6EC;
   --color-navy: #1A1A2E;
 
+  /* Matcha/sunset accents */
+  --color-matcha: #A8B98F;
+  --color-matcha-light: #C5D5A6;
+
   /* Font families */
   --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
@@ -28,5 +32,44 @@ body {
   background: rgba(26, 26, 46, 0.4);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(253, 246, 236, 0.1);
+  border: 1px solid rgba(253, 246, 236, 0.08);
+}
+
+/* Selection colors */
+::selection {
+  background: rgba(232, 115, 90, 0.3);
+  color: #FDF6EC;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(232, 115, 90, 0.2);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(232, 115, 90, 0.4);
+}
+
+/* Reduced motion: disable 3D animations */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  canvas {
+    display: none !important;
+  }
+
+  body {
+    background: linear-gradient(135deg, #1A1A2E 0%, #2D3A1E 100%);
+  }
 }

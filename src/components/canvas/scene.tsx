@@ -12,6 +12,8 @@ import { SunsetSky } from "./sunset-sky";
 import { Ocean } from "./ocean";
 import { ScenePostProcessing } from "./post-processing";
 import { Particles } from "./particles";
+import { CameraRig } from "./camera-rig";
+import { Island } from "./island";
 
 export function Scene() {
   return (
@@ -20,20 +22,24 @@ export function Scene() {
       camera={{ position: [0, 3, 10], fov: 55, near: 0.1, far: 1000 }}
       gl={{ antialias: true, alpha: false }}
       dpr={[1, 2]}
+      shadows
     >
       <PerformanceMonitor>
         <Suspense fallback={null}>
+          {/* Scroll-driven camera animation */}
+          <CameraRig />
+
+          {/* Environment */}
           <SunsetSky />
           <Ocean />
+          <Island />
           <Particles />
+
+          {/* Post-processing pipeline */}
           <ScenePostProcessing />
+
+          {/* Fill light */}
           <ambientLight intensity={0.4} color="#FFDAB9" />
-          <directionalLight
-            position={[10, 5, -15]}
-            intensity={1.5}
-            color="#FF8C42"
-            castShadow
-          />
         </Suspense>
         <AdaptiveDpr pixelated />
         <AdaptiveEvents />

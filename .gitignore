@@ -69,3 +69,5 @@ secrets/
 # CLAUDE.md is fine (it's project instructions, no secrets)
 # But .claude/ local session data should not be committed
 .claude/
+
+.vercel

@@ -7,6 +7,7 @@ export interface Project {
   liveUrl?: string;
   devpost?: string;
   image?: string;
+  award?: string;
   featured: boolean;
 }
 

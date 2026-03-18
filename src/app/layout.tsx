@@ -15,16 +15,40 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Marco Anthony Ayuste | Portfolio",
+  title: "Marco Anthony Ayuste | Full-Stack Developer & AI/ML Engineer",
   description:
-    "Full-stack developer, AI/ML engineer, and hackathon competitor. Explore my work and get in touch.",
+    "Full-stack developer, AI/ML engineer, and hackathon champion based in Toronto. Explore my portfolio of award-winning projects.",
+  keywords: [
+    "Marco Ayuste",
+    "software engineer",
+    "AI/ML",
+    "full-stack developer",
+    "University of Toronto",
+    "portfolio",
+    "React",
+    "Next.js",
+    "Three.js",
+  ],
+  authors: [{ name: "Marco Anthony Ayuste" }],
   openGraph: {
     title: "Marco Anthony Ayuste | Portfolio",
     description:
-      "Full-stack developer, AI/ML engineer, and hackathon competitor.",
+      "Full-stack developer, AI/ML engineer, and hackathon champion. Explore my work.",
     url: "https://marcoayuste.com",
     siteName: "Marco Ayuste",
     type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Marco Anthony Ayuste | Portfolio",
+    description:
+      "Full-stack developer, AI/ML engineer, and hackathon champion.",
+  },
+  metadataBase: new URL("https://marcoayuste.com"),
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
