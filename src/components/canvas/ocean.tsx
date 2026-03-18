@@ -28,9 +28,11 @@ export function Ocean() {
       textureWidth: 512,
       textureHeight: 512,
       waterNormals,
-      sunDirection: new Vector3(100, 5, -100).normalize(),
-      sunColor: 0xff8c42,
-      waterColor: 0x1a6b6b,
+      // Match Three.js ocean example: sun direction pointing toward our sun
+      sunDirection: new Vector3(20, 3, -200).normalize(),
+      sunColor: 0xffffff,
+      // Deep dark blue-green water like the Three.js example (0x001e0f)
+      waterColor: 0x001e0f,
       distortionScale: 3.7,
       fog: scene.fog !== undefined,
     });
