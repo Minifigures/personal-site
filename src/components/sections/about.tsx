@@ -111,7 +111,7 @@ export function About() {
             <div className="mt-6 grid grid-cols-2 gap-4">
               {[
                 { label: "Hackathon Wins", value: "1" },
-                { label: "Hackathons", value: "5+" },
+                { label: "Hackathons", value: "2" },
                 { label: "Languages", value: "3" },
                 { label: "Coffees", value: "Infinite" },
               ].map((stat, i) => (
