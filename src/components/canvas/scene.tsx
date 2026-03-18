@@ -8,6 +8,7 @@ import {
   Preload,
   PerformanceMonitor,
 } from "@react-three/drei";
+import { ACESFilmicToneMapping } from "three";
 import { SunsetSky } from "./sunset-sky";
 import { Ocean } from "./ocean";
 import { ScenePostProcessing } from "./post-processing";
@@ -20,13 +21,17 @@ export function Scene() {
     <Canvas
       className="!fixed inset-0 !h-screen !w-screen"
       camera={{ position: [0, 3, 10], fov: 55, near: 0.1, far: 1000 }}
-      gl={{ antialias: true, alpha: false }}
+      gl={{
+        antialias: true,
+        alpha: false,
+        toneMapping: ACESFilmicToneMapping,
+      }}
       dpr={[1, 2]}
       shadows
     >
       <PerformanceMonitor>
         <Suspense fallback={null}>
-          {/* Scroll-driven camera animation */}
+          {/* Scroll-driven camera */}
           <CameraRig />
 
           {/* Environment */}
@@ -36,11 +41,8 @@ export function Scene() {
           <Boat />
           <Particles />
 
-          {/* Post-processing pipeline */}
+          {/* Post-processing */}
           <ScenePostProcessing />
-
-          {/* Fill light */}
-          <ambientLight intensity={0.4} color="#FFDAB9" />
         </Suspense>
         <AdaptiveDpr pixelated />
         <AdaptiveEvents />
