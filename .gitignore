@@ -1,0 +1,71 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/install-state.gz
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (NEVER commit these)
+.env
+.env*.local
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# === SECURITY: Never commit these ===
+# Prompt files / AI instructions that contain personal strategy
+**/ultimate-portfolio-prompt*
+**/prompt*.md
+**/PROMPT*.md
+
+# API keys, secrets, credentials
+*.key
+*.pem
+*.cert
+credentials.json
+service-account.json
+secrets/
+
+# Claude Code local config (may contain project-specific secrets)
+# CLAUDE.md is fine (it's project instructions, no secrets)
+# But .claude/ local session data should not be committed
+.claude/
