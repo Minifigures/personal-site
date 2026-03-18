@@ -25,16 +25,23 @@ function PalmTreeModel({
   const groupRef = useRef<Group>(null);
   const { scene } = useGLTF("/models/palm-trees.glb");
 
-  // Extract a single tree by child index (children 0..4 map to 5 trees)
+  // Extract a single tree from the pack.
+  // In this GLB, scene IS the RootNode, and scene.children are the 5 trees directly.
+  // Each tree has position [102-121, 0, 0] and scale [100, 100, 100].
   const treeClone = useMemo(() => {
-    const rootNode = scene.children[0]; // RootNode
-    if (!rootNode || !rootNode.children[treeIndex]) {
+    // Try scene.children directly (RootNode IS the scene)
+    const children = scene.children;
+    const idx = treeIndex % Math.max(children.length, 1);
+    const sourceTree = children[idx] ?? children[0];
+
+    if (!sourceTree) {
       return scene.clone(true);
     }
-    const singleTree = rootNode.children[treeIndex].clone(true);
-    // Reset position (original has huge X offsets like 102-121)
-    singleTree.position.set(0, 0, 0);
-    return singleTree;
+
+    const clone = sourceTree.clone(true);
+    // Reset the huge internal position offset
+    clone.position.set(0, 0, 0);
+    return clone;
   }, [scene, treeIndex]);
 
   useFrame(({ clock }) => {
