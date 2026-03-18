@@ -1,0 +1,26 @@
+export interface Project {
+  id: string;
+  title: string;
+  description: string;
+  techStack: string[];
+  github?: string;
+  liveUrl?: string;
+  devpost?: string;
+  image?: string;
+  featured: boolean;
+}
+
+export interface Experience {
+  id: string;
+  company: string;
+  role: string;
+  startDate: string;
+  endDate: string;
+  bullets: string[];
+}
+
+export interface Skill {
+  name: string;
+  category: "language" | "framework" | "tool" | "platform";
+  icon?: string;
+}
