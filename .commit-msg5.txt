@@ -1,7 +1,0 @@
-fix: extract individual palm trees from GLB pack, fix positioning and scale
-
-- GLB contains 5 trees at scale=100 with 100+ unit X offsets
-- Now extracts individual tree by child index, resets position to origin
-- Each tree instance uses a different variant (treeIndex 0-4) for variety
-- Scale reduced from 100 to ~0.015 for scene-appropriate sizing
-- Island moved slightly more center-left for better initial visibility

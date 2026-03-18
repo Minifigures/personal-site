@@ -1,0 +1,10 @@
+feat: add clouds, seagulls, fix palm tree loading, improve UI contrast
+
+- Fix palm tree GLB loading using drei nodes pattern with traverse fallback
+- Add procedural cloud clusters that drift across the sky
+- Add animated seagulls with flapping wings flying in circular paths
+- Fix UI contrast: dark text with white glow shadows on hero for readability
+- Glass cards opacity increased from 0.4 to 0.75 with stronger box shadow
+- Buttons now use solid fills (coral/navy) instead of transparent
+- Scroll indicator and nav use dark colors against bright sunset background
+- Fix hackathon count to 2 (not 5+)

@@ -15,6 +15,8 @@ import { ScenePostProcessing } from "./post-processing";
 import { Particles } from "./particles";
 import { CameraRig } from "./camera-rig";
 import { Island, Boat } from "./island";
+import { Clouds } from "./clouds";
+import { Seagulls } from "./seagulls";
 
 export function Scene() {
   return (
@@ -31,17 +33,14 @@ export function Scene() {
     >
       <PerformanceMonitor>
         <Suspense fallback={null}>
-          {/* Scroll-driven camera */}
           <CameraRig />
-
-          {/* Environment */}
           <SunsetSky />
           <Ocean />
           <Island />
           <Boat />
+          <Clouds />
+          <Seagulls />
           <Particles />
-
-          {/* Post-processing */}
           <ScenePostProcessing />
         </Suspense>
         <AdaptiveDpr pixelated />

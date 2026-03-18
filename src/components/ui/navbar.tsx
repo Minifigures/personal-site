@@ -50,7 +50,8 @@ export function NavBar() {
             <li key={item.href}>
               <a
                 href={item.href}
-                className="interactive font-mono text-xs uppercase tracking-widest text-sand/60 transition-colors hover:text-coral"
+                className="interactive font-mono text-xs uppercase tracking-widest text-navy/70 transition-colors hover:text-coral"
+                style={{ textShadow: "0 0 10px rgba(255,255,255,0.4)" }}
               >
                 {item.label}
               </a>

@@ -27,12 +27,13 @@ body {
   overflow-x: hidden;
 }
 
-/* Glass-morphism utility */
+/* Glass-morphism utility - high contrast for readability */
 .glass {
-  background: rgba(26, 26, 46, 0.4);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(253, 246, 236, 0.08);
+  background: rgba(26, 26, 46, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(253, 246, 236, 0.12);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 /* Selection colors */
