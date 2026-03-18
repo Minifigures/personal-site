@@ -5,26 +5,41 @@ import { useFrame } from "@react-three/fiber";
 import { useGLTF } from "@react-three/drei";
 import type { Group, Mesh } from "three";
 
-/* ─── GLB Palm Tree (loaded from downloaded model) ─── */
+/**
+ * GLB Palm Tree: extracts a single tree from the "Palm Trees" pack.
+ * The GLB contains 5 trees (PalmTree_1..5) at scale=100 and
+ * positions spread 100+ units apart. We grab one, reset its
+ * position to origin, and scale it down to scene-appropriate size.
+ */
 function PalmTreeModel({
   position,
-  scale = 1,
+  scale = 0.015,
   rotation = 0,
+  treeIndex = 0,
 }: {
   position: [number, number, number];
   scale?: number;
   rotation?: number;
+  treeIndex?: number;
 }) {
   const groupRef = useRef<Group>(null);
   const { scene } = useGLTF("/models/palm-trees.glb");
 
-  // Clone so each instance is independent
-  const clonedScene = useMemo(() => scene.clone(true), [scene]);
+  // Extract a single tree by child index (children 0..4 map to 5 trees)
+  const treeClone = useMemo(() => {
+    const rootNode = scene.children[0]; // RootNode
+    if (!rootNode || !rootNode.children[treeIndex]) {
+      return scene.clone(true);
+    }
+    const singleTree = rootNode.children[treeIndex].clone(true);
+    // Reset position (original has huge X offsets like 102-121)
+    singleTree.position.set(0, 0, 0);
+    return singleTree;
+  }, [scene, treeIndex]);
 
   useFrame(({ clock }) => {
     if (groupRef.current) {
       const t = clock.getElapsedTime();
-      // Gentle sway
       groupRef.current.rotation.z =
         Math.sin(t * 0.6 + position[0] * 2) * 0.02;
       groupRef.current.rotation.x =
@@ -33,13 +48,8 @@ function PalmTreeModel({
   });
 
   return (
-    <group ref={groupRef} position={position} rotation={[0, rotation, 0]}>
-      <primitive
-        object={clonedScene}
-        scale={scale}
-        castShadow
-        receiveShadow
-      />
+    <group ref={groupRef} position={position} rotation={[0, rotation, 0]} scale={scale}>
+      <primitive object={treeClone} castShadow receiveShadow />
     </group>
   );
 }
@@ -53,9 +63,9 @@ function BenchPress({ position }: { position: [number, number, number] }) {
         <boxGeometry args={[0.5, 0.1, 1.4]} />
         <meshStandardMaterial color="#1A1A1A" roughness={0.4} />
       </mesh>
-      {/* Bench legs */}
-      {[[-0.18, -0.5], [0.18, -0.5], [-0.18, 0.5], [0.18, 0.5]].map((pos, i) => (
-        <mesh key={i} position={[pos[0], 0.15, pos[1]]} castShadow>
+      {/* Legs */}
+      {[[-0.18, -0.5], [0.18, -0.5], [-0.18, 0.5], [0.18, 0.5]].map((p, i) => (
+        <mesh key={i} position={[p[0], 0.15, p[1]]} castShadow>
           <cylinderGeometry args={[0.025, 0.025, 0.35, 6]} />
           <meshStandardMaterial color="#555" metalness={0.8} roughness={0.3} />
         </mesh>
@@ -72,7 +82,7 @@ function BenchPress({ position }: { position: [number, number, number] }) {
         <cylinderGeometry args={[0.018, 0.018, 1.2, 8]} />
         <meshStandardMaterial color="#C0C0C0" metalness={1} roughness={0.1} />
       </mesh>
-      {/* Weight plates */}
+      {/* Plates */}
       {[-0.5, -0.56, 0.5, 0.56].map((x, i) => (
         <mesh key={i} position={[x, 1.0, -0.55]} rotation={[0, 0, Math.PI / 2]} castShadow>
           <cylinderGeometry args={[0.1 - (i % 2) * 0.015, 0.1 - (i % 2) * 0.015, 0.035, 16]} />
@@ -82,13 +92,11 @@ function BenchPress({ position }: { position: [number, number, number] }) {
       {/* Dumbbell on the side */}
       <group position={[0.7, 0.1, 0.3]} rotation={[0, 0.8, 0]}>
         <mesh><cylinderGeometry args={[0.015, 0.015, 0.3, 6]} />
-          <meshStandardMaterial color="#C0C0C0" metalness={1} roughness={0.1} />
-        </mesh>
+          <meshStandardMaterial color="#C0C0C0" metalness={1} roughness={0.1} /></mesh>
         {[-0.14, 0.14].map((y, i) => (
           <mesh key={i} position={[0, y, 0]}>
             <cylinderGeometry args={[0.05, 0.05, 0.025, 8]} />
-            <meshStandardMaterial color="#333" metalness={0.7} roughness={0.3} />
-          </mesh>
+            <meshStandardMaterial color="#333" metalness={0.7} roughness={0.3} /></mesh>
         ))}
       </group>
     </group>
@@ -120,7 +128,7 @@ function SpeedBoat({ position }: { position: [number, number, number] }) {
         <boxGeometry args={[0.85, 0.1, 2.8]} />
         <meshStandardMaterial color="#1A2A4A" roughness={0.4} />
       </mesh>
-      {/* Bow (pointed front) */}
+      {/* Bow */}
       <mesh position={[0, 0.02, 1.5]} rotation={[0.35, 0, 0]} castShadow>
         <boxGeometry args={[0.75, 0.2, 0.7]} />
         <meshStandardMaterial color="#F8F8F8" roughness={0.3} metalness={0.1} />
@@ -189,7 +197,8 @@ function Rock({ position, scale = 1 }: { position: [number, number, number]; sca
 /* ─── Main Island ─── */
 export function Island() {
   const islandRef = useRef<Mesh>(null);
-  const islandPosition: [number, number, number] = [15, -0.5, -18];
+  // Moved island more center-left so it's clearly visible from start
+  const islandPosition: [number, number, number] = [12, -0.5, -18];
 
   const grassTufts = useMemo(
     () => Array.from({ length: 15 }).map((_, i) => {
@@ -202,7 +211,7 @@ export function Island() {
 
   return (
     <group position={islandPosition}>
-      {/* Main island: bigger, more organic */}
+      {/* Main island terrain */}
       <mesh ref={islandRef} scale={[7, 1.8, 6]} receiveShadow>
         <sphereGeometry args={[1, 32, 20, 0, Math.PI * 2, 0, Math.PI / 2]} />
         <meshStandardMaterial color="#D4B06A" roughness={1} metalness={0} />
@@ -212,18 +221,18 @@ export function Island() {
         <sphereGeometry args={[1, 24, 14, 0, Math.PI * 2, 0, Math.PI / 2]} />
         <meshStandardMaterial color="#B8944A" roughness={0.5} metalness={0.05} />
       </mesh>
-      {/* Shallow water / foam rim */}
+      {/* Foam rim */}
       <mesh position={[0, -0.2, 0]} scale={[8.5, 0.2, 7.2]}>
         <sphereGeometry args={[1, 20, 10, 0, Math.PI * 2, 0, Math.PI / 2]} />
         <meshStandardMaterial color="#3A9B8F" transparent opacity={0.25} roughness={0.2} />
       </mesh>
 
-      {/* GLB Palm trees at various positions */}
-      <PalmTreeModel position={[0.5, 1.6, 0]} scale={0.8} rotation={0} />
-      <PalmTreeModel position={[-2.5, 1.4, 1.2]} scale={0.6} rotation={1.2} />
-      <PalmTreeModel position={[2.8, 1.35, -1.0]} scale={0.7} rotation={2.5} />
-      <PalmTreeModel position={[-0.8, 1.5, -1.8]} scale={0.5} rotation={4.0} />
-      <PalmTreeModel position={[1.5, 1.45, 2.0]} scale={0.55} rotation={5.5} />
+      {/* GLB Palm trees - each uses a different tree variant (index 0-4) */}
+      <PalmTreeModel position={[0, 1.6, 0]} scale={0.018} rotation={0} treeIndex={0} />
+      <PalmTreeModel position={[-2.5, 1.45, 1.2]} scale={0.014} rotation={1.2} treeIndex={1} />
+      <PalmTreeModel position={[2.8, 1.4, -1.0]} scale={0.016} rotation={2.5} treeIndex={2} />
+      <PalmTreeModel position={[-1.0, 1.5, -1.8]} scale={0.012} rotation={4.0} treeIndex={3} />
+      <PalmTreeModel position={[1.5, 1.5, 2.0]} scale={0.013} rotation={5.5} treeIndex={4} />
 
       {/* Bench press */}
       <BenchPress position={[-1.2, 1.55, -0.5]} />
@@ -234,7 +243,7 @@ export function Island() {
       <Rock position={[3.5, 0.2, -2.8]} scale={0.8} />
       <Rock position={[-3.0, 0.35, 2.8]} scale={0.6} />
 
-      {/* Grass tufts */}
+      {/* Grass */}
       {grassTufts.map((t, i) => (
         <mesh key={i} position={[t.x, t.y, t.z]} rotation={[0, t.rot, 0]}>
           <coneGeometry args={[0.05, 0.4, 4]} />
@@ -242,13 +251,13 @@ export function Island() {
         </mesh>
       ))}
 
-      {/* Beach towel near bench */}
+      {/* Beach towel */}
       <mesh position={[-0.5, 1.5, 0.5]} rotation={[-0.1, 0.5, 0]} receiveShadow>
         <boxGeometry args={[0.6, 0.01, 0.35]} />
         <meshStandardMaterial color="#FF6B8A" roughness={0.9} />
       </mesh>
 
-      {/* Tropical flowers */}
+      {/* Flowers */}
       {[[2.0, 1.4, 1.5], [-1.2, 1.3, 2.0], [3.0, 1.1, -0.5]].map((pos, i) => (
         <group key={i} position={pos as [number, number, number]}>
           <mesh position={[0, 0.12, 0]}>
@@ -270,10 +279,9 @@ export function Island() {
   );
 }
 
-/* ─── Speed Boat (floating near island) ─── */
+/* ─── Speed Boat near island ─── */
 export function Boat() {
-  return <SpeedBoat position={[8, -0.35, -12]} />;
+  return <SpeedBoat position={[6, -0.35, -12]} />;
 }
 
-// Preload the palm tree model
 useGLTF.preload("/models/palm-trees.glb");
