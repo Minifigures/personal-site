@@ -36,26 +36,54 @@ export function About() {
         <div className="grid gap-8 md:grid-cols-2">
           <GlassCard>
             <p className="text-base leading-relaxed text-sand/70">
-              I am a Computer Science and Communication, Culture, Information
-              and Technology (CCIT) student at the{" "}
-              <span className="text-sand">University of Toronto Mississauga</span>.
-              I am passionate about building intelligent systems that bridge the
-              gap between complex AI/ML models and real-world user experiences.
+              I am a{" "}
+              Honours Bachelor of Arts in{" "}
+              <span className="text-sand">
+                Communication, Culture, Information and Technology (CCIT) and
+                Sociology
+              </span>{" "}
+              student at the University of Toronto Mississauga. I build modern
+              web experiences, ship fast, and learn new tools obsessively.
             </p>
             <p className="mt-4 text-base leading-relaxed text-sand/70">
-              From winning{" "}
-              <span className="text-coral">DeerHacks V</span> to placing
-              in the top 2 at{" "}
-              <span className="text-coral">GenAI Genesis</span>, I love
-              pushing boundaries at hackathons and turning ambitious ideas into
-              working products under pressure.
+              I am the type of builder who takes an idea from rough concept to
+              live and working, then keeps iterating until it feels clean, fast,
+              and polished. From winning{" "}
+              <span className="text-coral">DeerHacks V</span> to competing at
+              GenAI Genesis and Hack the Globe, I love pushing boundaries at
+              hackathons and turning ambitious ideas into working products under
+              pressure.
             </p>
             <p className="mt-4 text-base leading-relaxed text-sand/70">
-              Currently an AI/ML Engineer Intern at{" "}
-              <span className="text-teal">Paideia Mundi</span>, where I
-              develop intelligent systems and full-stack applications with modern
-              frameworks.
+              Currently an AI/ML Systems Engineer Intern at{" "}
+              <span className="text-teal">
+                Paideia Mundi NeuroSystems Institute
+              </span>
+              , Lead Full-Stack Developer for the{" "}
+              <span className="text-teal">UTM Billiards Club</span>, and
+              Webmaster Intern at <span className="text-teal">MINOA</span>.
             </p>
+            <p className="mt-4 text-base leading-relaxed text-sand/70">
+              When I am not building, I am usually at the gym, playing
+              billiards, catching sunsets, or listening to music while I work.
+            </p>
+
+            {/* Languages */}
+            <div className="mt-6 border-t border-sand/5 pt-4">
+              <h4 className="mb-2 font-mono text-xs uppercase tracking-wider text-sand/40">
+                Languages Spoken
+              </h4>
+              <div className="flex gap-3">
+                {["English", "Tagalog", "French"].map((lang) => (
+                  <span
+                    key={lang}
+                    className="rounded-md bg-sand/5 px-2.5 py-1 font-mono text-xs text-sand/50"
+                  >
+                    {lang}
+                  </span>
+                ))}
+              </div>
+            </div>
           </GlassCard>
 
           <GlassCard delay={0.15}>
@@ -67,7 +95,8 @@ export function About() {
                 <motion.span
                   key={skill.name}
                   className={`rounded-full border px-3 py-1 font-mono text-xs ${
-                    SKILL_COLORS[skill.category] ?? "border-sand/20 text-sand/50"
+                    SKILL_COLORS[skill.category] ??
+                    "border-sand/20 text-sand/50"
                   }`}
                   initial={{ opacity: 0, scale: 0.8 }}
                   whileInView={{ opacity: 1, scale: 1 }}
@@ -81,9 +110,9 @@ export function About() {
 
             <div className="mt-6 grid grid-cols-2 gap-4">
               {[
-                { label: "Hackathons Won", value: "3+" },
-                { label: "Projects Shipped", value: "10+" },
-                { label: "Languages", value: "5" },
+                { label: "Hackathon Wins", value: "1" },
+                { label: "Hackathons", value: "5+" },
+                { label: "Languages", value: "3" },
                 { label: "Coffees", value: "Infinite" },
               ].map((stat, i) => (
                 <motion.div

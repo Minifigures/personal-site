@@ -1,33 +1,23 @@
 "use client";
 
 import { Sky } from "@react-three/drei";
-import { useRef, useMemo } from "react";
+import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import {
   AdditiveBlending,
   Color,
-  type Mesh,
   type SpriteMaterial as SpriteMaterialType,
 } from "three";
 
-const SUN_POSITION: [number, number, number] = [100, 12, -100];
+const SUN_POSITION: [number, number, number] = [100, 10, -100];
 
 export function SunsetSky() {
-  const glowRef = useRef<Mesh>(null);
   const spriteRef = useRef<SpriteMaterialType>(null);
-
-  const sunColor = useMemo(() => new Color("#FFF4E0").multiplyScalar(3), []);
-  const glowColor = useMemo(() => new Color("#FF8C42").multiplyScalar(2), []);
 
   useFrame(({ clock }) => {
     const t = clock.getElapsedTime();
-    // Subtle sun pulse for life
     if (spriteRef.current) {
-      spriteRef.current.opacity = 0.35 + Math.sin(t * 0.3) * 0.05;
-    }
-    if (glowRef.current) {
-      const scale = 18 + Math.sin(t * 0.2) * 0.5;
-      glowRef.current.scale.set(scale, scale, 1);
+      spriteRef.current.opacity = 0.2 + Math.sin(t * 0.3) * 0.03;
     }
   });
 
@@ -43,33 +33,33 @@ export function SunsetSky() {
         mieDirectionalG={0.95}
       />
 
-      {/* Sun core: small, extremely bright for bloom to pick up */}
+      {/* Sun core: warm, not blinding. Color multiplied to ~1.5x for gentle bloom */}
       <mesh position={SUN_POSITION}>
-        <sphereGeometry args={[4, 32, 32]} />
+        <sphereGeometry args={[3.5, 32, 32]} />
         <meshBasicMaterial
-          color={sunColor}
+          color={new Color("#FFECD2").multiplyScalar(1.5)}
           toneMapped={false}
         />
       </mesh>
 
-      {/* Outer glow sprite: additive blending creates natural halo */}
-      <sprite ref={glowRef} position={SUN_POSITION} scale={[18, 18, 1]}>
+      {/* Soft outer glow halo */}
+      <sprite position={SUN_POSITION} scale={[14, 14, 1]}>
         <spriteMaterial
           ref={spriteRef}
-          color={glowColor}
+          color={new Color("#FF9F5A")}
           transparent
-          opacity={0.35}
+          opacity={0.2}
           blending={AdditiveBlending}
           depthWrite={false}
           toneMapped={false}
         />
       </sprite>
 
-      {/* Directional light from sun for scene illumination */}
+      {/* Directional light from sun */}
       <directionalLight
         position={SUN_POSITION}
-        intensity={2}
-        color="#FF9F5A"
+        intensity={1.5}
+        color="#FFDAB9"
         castShadow
         shadow-mapSize-width={1024}
         shadow-mapSize-height={1024}
