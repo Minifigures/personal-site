@@ -8,8 +8,22 @@ export const experiences: Experience[] = [
     startDate: "2025",
     endDate: "Present",
     bullets: [
-      "Developing AI/ML solutions and models",
-      "Building full-stack applications with modern frameworks",
+      "Developing and deploying machine learning models for intelligent content analysis and recommendation systems",
+      "Building full-stack applications using Next.js, FastAPI, and modern cloud infrastructure",
+      "Implementing RAG pipelines with LangChain for context-aware document processing",
+      "Collaborating with cross-functional teams to integrate AI capabilities into production workflows",
+    ],
+  },
+  {
+    id: "utm-aiml",
+    company: "UofT AI/ML Institute",
+    role: "Research Contributor",
+    startDate: "2025",
+    endDate: "Present",
+    bullets: [
+      "Contributing to multimodal AI research exploring cognitive issues in vision-language models",
+      "Working with open and research-oriented databases for ML experimentation",
+      "Participating in structured research programs focused on responsible AI development",
     ],
   },
 ];
