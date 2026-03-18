@@ -46,7 +46,10 @@ function PalmTreeModel({
     if (!source) return null;
 
     const clone = source.clone(true);
+    // Reset transforms baked in from the FBX export
     clone.position.set(0, 0, 0);
+    clone.rotation.set(0, 0, 0);
+    clone.scale.set(1, 1, 1);
     return clone;
   }, [gltf, treeIndex]);
 
