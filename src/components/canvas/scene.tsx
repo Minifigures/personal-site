@@ -13,7 +13,7 @@ import { Ocean } from "./ocean";
 import { ScenePostProcessing } from "./post-processing";
 import { Particles } from "./particles";
 import { CameraRig } from "./camera-rig";
-import { Island } from "./island";
+import { Island, Boat } from "./island";
 
 export function Scene() {
   return (
@@ -33,6 +33,7 @@ export function Scene() {
           <SunsetSky />
           <Ocean />
           <Island />
+          <Boat />
           <Particles />
 
           {/* Post-processing pipeline */}

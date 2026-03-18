@@ -15,9 +15,9 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Marco Anthony Ayuste | Full-Stack Developer & AI/ML Engineer",
+  title: "Marco Anthony Ayuste | Full-Stack Developer & Builder",
   description:
-    "Full-stack developer, AI/ML engineer, and hackathon champion based in Toronto. Explore my portfolio of award-winning projects.",
+    "Full-stack developer, CCIT + Sociology student at UofT, hackathon winner. Explore my portfolio of projects.",
   keywords: [
     "Marco Ayuste",
     "software engineer",

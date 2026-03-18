@@ -45,8 +45,8 @@ export function Hero() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.2, delay: 1.8, ease: "easeOut" }}
       >
-        Full-stack developer, AI/ML engineer, building things that matter
-        at the University of Toronto.
+        Full-stack developer and builder. CCIT + Sociology
+        at the University of Toronto Mississauga.
       </motion.p>
 
       <motion.div

@@ -6,7 +6,7 @@ export const projects: Project[] = [
     title: "LOCATR",
     description:
       "AI-powered real-time location intelligence platform that aggregates and analyzes geospatial data to provide actionable insights for urban planning and emergency response.",
-    techStack: ["Next.js", "Python", "TensorFlow", "FastAPI", "PostgreSQL", "TypeScript"],
+    techStack: ["LangGraph", "FastAPI", "Next.js", "Snowflake", "Gemini 2.5", "Auth0", "Docker"],
     award: "DeerHacks V Winner",
     featured: true,
     github: "https://github.com/Minifigures",
@@ -16,8 +16,8 @@ export const projects: Project[] = [
     title: "VIGIL",
     description:
       "Intelligent monitoring and alerting system powered by generative AI that detects anomalies in real-time data streams and provides natural language explanations of incidents.",
-    techStack: ["React", "Node.js", "LangChain", "GenAI", "WebSocket", "TypeScript"],
-    award: "GenAI Genesis Top 2",
+    techStack: ["LangGraph", "IBM watsonx Granite", "Gemini 2.0 Flash", "Supabase", "Moorcheh SDK"],
+    award: "GenAI Genesis 2026",
     featured: true,
     github: "https://github.com/Minifigures",
   },
@@ -25,18 +25,28 @@ export const projects: Project[] = [
     id: "compass",
     title: "COMPASS",
     description:
-      "Accessible navigation platform that leverages computer vision and NLP to provide context-aware guidance for users in unfamiliar environments, with real-time translation support.",
+      "Accessible navigation platform leveraging computer vision and NLP to provide context-aware guidance for users in unfamiliar environments, with real-time translation support.",
     techStack: ["Next.js", "Python", "OpenCV", "FastAPI", "AI/ML"],
-    award: "Hack the Globe Submission",
+    award: "Hack the Globe 2026",
     featured: true,
+    github: "https://github.com/Minifigures",
+  },
+  {
+    id: "utm-billiards-site",
+    title: "UTM Billiards Platform",
+    description:
+      "Full-stack club platform with Elo rankings, tournament bracket generators, AI chatbot, and automated data pipelines serving 310+ members.",
+    techStack: ["React", "TypeScript", "Tailwind", "Node.js", "Python", "Google Sheets API"],
+    featured: true,
+    liveUrl: "https://utm-billiards.netlify.app/",
     github: "https://github.com/Minifigures",
   },
   {
     id: "personal-site",
     title: "This Portfolio",
     description:
-      "An immersive Three.js beach/sunset portfolio built with React Three Fiber, featuring scroll-driven camera animation, procedural ocean, and a 3D island with palm trees.",
-    techStack: ["Next.js", "R3F", "Three.js", "GSAP", "Tailwind", "TypeScript"],
+      "Immersive Three.js beach/sunset portfolio with scroll-driven camera, procedural ocean, 3D island with benchpress, speed boat, and cinematic post-processing.",
+    techStack: ["Next.js 15", "R3F", "Three.js", "Tailwind", "TypeScript"],
     featured: false,
     github: "https://github.com/Minifigures/personal-site",
     liveUrl: "https://marcoayuste.com",
