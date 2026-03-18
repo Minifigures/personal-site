@@ -246,7 +246,7 @@ export function Contact() {
 
             <GlassCard delay={0.3}>
               <h3 className="mb-2 font-display text-lg font-semibold text-sand">
-                Currently Seeking
+                Interested In
               </h3>
               <p className="text-sm text-sand/50">
                 2026/2027 internship roles in research, front-end, full-stack,
