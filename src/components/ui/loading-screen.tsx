@@ -79,7 +79,7 @@ export function LoadingScreen() {
           className="fixed inset-0 z-[100] flex overflow-hidden"
           style={{
             background:
-              "linear-gradient(160deg, #1A1A2E 0%, #2D1B3D 40%, #4A1942 70%, #E8735A 100%)",
+              "linear-gradient(160deg, #1A1A2E 0%, #1B3A5C 30%, #4A8DBD 50%, #F4A942 80%, #E8735A 100%)",
           }}
           exit={{ opacity: 0, scale: 1.02 }}
           transition={{ duration: 0.6, ease: "easeInOut" }}
@@ -90,7 +90,7 @@ export function LoadingScreen() {
             className="pointer-events-none absolute inset-0 opacity-[0.03]"
             style={{
               backgroundImage:
-                "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(232,115,90,0.03) 2px, rgba(232,115,90,0.03) 4px)",
+                "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(244,169,66,0.03) 2px, rgba(244,169,66,0.03) 4px)",
             }}
           />
 
