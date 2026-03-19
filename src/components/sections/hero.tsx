@@ -19,24 +19,27 @@ export function Hero() {
       </motion.div>
 
       <motion.h1
-        className="text-outlined-heavy mt-4 font-display text-5xl font-bold tracking-tight sm:text-7xl lg:text-8xl"
+        className="mt-4 font-display text-5xl font-bold tracking-tight sm:text-7xl lg:text-8xl"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.2, delay: 1.4, ease: "easeOut" }}
       >
-        Marco Anthony
+        <span className="text-bubble-wrap" data-text="Marco Anthony">
+          <span className="text-bubble">Marco Anthony</span>
+        </span>
         <br />
-        <span
-          style={{
-            background: "linear-gradient(135deg, #E8735A 0%, #FF6B35 50%, #F4A942 100%)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            WebkitTextStroke: "0",
-            backgroundClip: "text",
-            filter: "drop-shadow(0 2px 10px rgba(232,115,90,0.5))",
-          }}
-        >
-          Ayuste
+        <span className="text-bubble-wrap" data-text="Ayuste">
+          <span
+            className="text-bubble"
+            style={{
+              background: "linear-gradient(180deg, rgba(255,180,150,0.95) 0%, rgba(232,115,90,0.9) 30%, rgba(200,80,50,0.85) 50%, rgba(232,115,90,0.9) 70%, rgba(255,180,150,0.95) 100%)",
+              WebkitBackgroundClip: "text",
+              backgroundClip: "text",
+              filter: "drop-shadow(0 4px 12px rgba(232,115,90,0.5)) drop-shadow(0 2px 4px rgba(0,0,0,0.3))",
+            }}
+          >
+            Ayuste
+          </span>
         </span>
       </motion.h1>
 
