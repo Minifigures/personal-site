@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useCallback, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 
 export function UiToggle({ children }: { children: React.ReactNode }) {
   const [visible, setVisible] = useState(true);
@@ -28,32 +27,28 @@ export function UiToggle({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      {/* Toggle button: fixed bottom-right */}
+      {/* Toggle button: fixed right edge, always visible */}
       <button
         onClick={toggle}
-        className="interactive fixed right-4 bottom-4 z-50 flex h-9 w-9 items-center justify-center rounded-full border border-sand/10 bg-sand/5 backdrop-blur-md transition-all hover:border-coral/30 hover:bg-sand/10"
+        className="interactive fixed right-4 bottom-6 z-[60] flex items-center gap-2 rounded-full border border-sand/15 bg-navy/60 px-4 py-2 backdrop-blur-md transition-all hover:border-coral/40 hover:bg-navy/80"
         aria-label={visible ? "Hide UI" : "Show UI"}
-        title={`${visible ? "Hide" : "Show"} UI (H)`}
       >
-        <span className="font-mono text-[10px] font-bold text-sand/50">
-          {visible ? "H" : "S"}
+        <span className="font-mono text-[10px] uppercase tracking-widest text-sand/60">
+          {visible ? "Hide UI" : "Show UI"}
         </span>
+        <span className="font-mono text-[10px] text-sand/30">(H)</span>
       </button>
 
-      {/* UI content with fade animation */}
-      <AnimatePresence>
-        {visible && (
-          <motion.div
-            className="relative z-10"
-            initial={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.3 }}
-          >
-            {children}
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* UI content: hidden via opacity + pointer-events, stays in DOM */}
+      <div
+        className="relative z-10 transition-opacity duration-300"
+        style={{
+          opacity: visible ? 1 : 0,
+          pointerEvents: visible ? "auto" : "none",
+        }}
+      >
+        {children}
+      </div>
     </>
   );
 }
