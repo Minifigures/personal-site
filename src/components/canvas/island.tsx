@@ -2,78 +2,96 @@
 
 import { useRef, useMemo } from "react";
 import { useFrame } from "@react-three/fiber";
-import { useGLTF } from "@react-three/drei";
-import type { Group, Mesh, Object3D } from "three";
+import type { Group, Mesh } from "three";
 
-/**
- * GLB Palm Tree — nodes have scale=100 baked in from FBX export.
- * We keep that scale and use a small group scale to get the right size.
- * At group scale 0.03 the effective tree height ≈ 3 world units.
- */
-const TREE_NAMES = [
-  "PalmTree_1",
-  "PalmTree_2",
-  "PalmTree_3",
-  "PalmTree_4",
-  "PalmTree_5",
-];
-
-function PalmTreeModel({
+/** Procedural palm tree: curved trunk + leaf fronds */
+function PalmTree({
   position,
-  scale = 0.03,
+  height = 3,
   rotation = 0,
-  treeIndex = 0,
+  lean = 0.15,
 }: {
   position: [number, number, number];
-  scale?: number;
+  height?: number;
   rotation?: number;
-  treeIndex?: number;
+  lean?: number;
 }) {
   const groupRef = useRef<Group>(null);
-  const gltf = useGLTF("/models/palm-trees.glb");
 
-  const treeClone = useMemo(() => {
-    const nodes = gltf.nodes as Record<string, Object3D>;
-    const treeName = TREE_NAMES[treeIndex % TREE_NAMES.length];
-    let source: Object3D | undefined = nodes[treeName];
-
-    if (!source) {
-      const allChildren: Object3D[] = [];
-      gltf.scene.traverse((child: Object3D) => {
-        if ((child as Mesh).isMesh) allChildren.push(child);
-      });
-      source = allChildren[treeIndex % Math.max(allChildren.length, 1)];
-    }
-    if (!source) return null;
-
-    const clone = source.clone(true);
-    // Only reset position (remove baked translation offset).
-    // KEEP the baked scale of 100 so the tree geometry is visible.
-    clone.position.set(0, 0, 0);
-    clone.rotation.set(0, 0, 0);
-    return clone;
-  }, [gltf, treeIndex]);
+  const fronds = useMemo(() => {
+    const count = 7;
+    return Array.from({ length: count }).map((_, i) => {
+      const angle = (i / count) * Math.PI * 2;
+      const droop = 0.4 + Math.random() * 0.3;
+      const length = 1.2 + Math.random() * 0.6;
+      return { angle, droop, length };
+    });
+  }, []);
 
   useFrame(({ clock }) => {
     if (groupRef.current) {
       const t = clock.getElapsedTime();
       groupRef.current.rotation.z =
-        Math.sin(t * 0.6 + position[0] * 2) * 0.025;
+        lean + Math.sin(t * 0.5 + position[0] * 2) * 0.04;
       groupRef.current.rotation.x =
-        Math.sin(t * 0.4 + position[2]) * 0.018;
+        Math.sin(t * 0.3 + position[2]) * 0.03;
     }
   });
-
-  if (!treeClone) return null;
 
   return (
     <group
       ref={groupRef}
       position={position}
       rotation={[0, rotation, 0]}
-      scale={scale}
     >
-      <primitive object={treeClone} />
+      {/* Trunk: slightly curved using multiple segments */}
+      {Array.from({ length: 5 }).map((_, i) => {
+        const segY = (i / 5) * height;
+        const segLean = (i / 5) * lean * 0.5;
+        const radius = 0.08 - i * 0.01;
+        return (
+          <mesh
+            key={`trunk-${i}`}
+            position={[segLean, segY + height * 0.1, 0]}
+            castShadow
+          >
+            <cylinderGeometry args={[Math.max(0.03, radius - 0.01), radius, height / 5, 8]} />
+            <meshStandardMaterial color="#8B6E4E" roughness={0.9} />
+          </mesh>
+        );
+      })}
+
+      {/* Coconut cluster at top */}
+      <group position={[lean * 0.5, height, 0]}>
+        {[[-0.06, -0.05, 0], [0.05, -0.06, 0.04], [0, -0.04, -0.05]].map(
+          (p, i) => (
+            <mesh key={`coconut-${i}`} position={[p[0], p[1], p[2]]} castShadow>
+              <sphereGeometry args={[0.06, 8, 8]} />
+              <meshStandardMaterial color="#5C3A1E" roughness={0.8} />
+            </mesh>
+          ),
+        )}
+
+        {/* Leaf fronds */}
+        {fronds.map((frond, i) => (
+          <group key={`frond-${i}`} rotation={[frond.droop, frond.angle, 0]}>
+            {/* Stem */}
+            <mesh position={[0, 0, frond.length * 0.5]} rotation={[Math.PI / 2, 0, 0]} castShadow>
+              <cylinderGeometry args={[0.008, 0.02, frond.length, 4]} />
+              <meshStandardMaterial color="#3D6B1E" roughness={0.8} />
+            </mesh>
+            {/* Leaf blade */}
+            <mesh position={[0, 0, frond.length * 0.55]} rotation={[Math.PI / 2, 0, 0]}>
+              <boxGeometry args={[0.4, frond.length * 0.8, 0.01]} />
+              <meshStandardMaterial
+                color="#5A8E28"
+                roughness={0.7}
+                side={2}
+              />
+            </mesh>
+          </group>
+        ))}
+      </group>
     </group>
   );
 }
@@ -306,11 +324,21 @@ function Lighthouse({
       </mesh>
       {/* Light beacon */}
       <mesh ref={lightRef} position={[0, 4.15, 0]}>
-        <boxGeometry args={[0.12, 0.28, 0.12]} />
+        <boxGeometry args={[0.15, 0.32, 0.15]} />
         <meshStandardMaterial
           color="#FFDD44"
           emissive="#FFDD44"
-          emissiveIntensity={4}
+          emissiveIntensity={8}
+        />
+      </mesh>
+      {/* Beacon glow sphere */}
+      <mesh position={[0, 4.15, 0]}>
+        <sphereGeometry args={[0.5, 16, 16]} />
+        <meshBasicMaterial
+          color="#FFDD44"
+          transparent
+          opacity={0.15}
+          depthWrite={false}
         />
       </mesh>
       {/* Roof */}
@@ -323,12 +351,12 @@ function Lighthouse({
         <sphereGeometry args={[0.05, 8, 8]} />
         <meshStandardMaterial color="#C0C0C0" metalness={1} roughness={0.1} />
       </mesh>
-      {/* Point light for glow */}
+      {/* Point light for glow — brighter, wider range */}
       <pointLight
         position={[0, 4.15, 0]}
         color="#FFDD44"
-        intensity={2}
-        distance={20}
+        intensity={5}
+        distance={40}
       />
     </group>
   );
@@ -572,15 +600,15 @@ export function Island() {
     <group position={islandPosition}>
       <IslandBase scale={[9, 2.2, 8]} />
 
-      {/* Palm trees — scale ≈ 0.03 means 100*0.03 = 3 unit effective height */}
-      <PalmTreeModel position={[0, 2.0, 0]} scale={0.035} rotation={0} treeIndex={0} />
-      <PalmTreeModel position={[-3.0, 1.8, 1.5]} scale={0.03} rotation={1.2} treeIndex={1} />
-      <PalmTreeModel position={[3.5, 1.8, -1.2]} scale={0.032} rotation={2.5} treeIndex={2} />
-      <PalmTreeModel position={[-1.2, 1.9, -2.5]} scale={0.025} rotation={4.0} treeIndex={3} />
-      <PalmTreeModel position={[1.8, 1.9, 2.5]} scale={0.028} rotation={5.5} treeIndex={4} />
+      {/* Palm trees */}
+      <PalmTree position={[0, 2.0, 0]} height={3.5} rotation={0} />
+      <PalmTree position={[-3.0, 1.8, 1.5]} height={3} rotation={1.2} lean={0.2} />
+      <PalmTree position={[3.5, 1.8, -1.2]} height={3.2} rotation={2.5} />
+      <PalmTree position={[-1.2, 1.9, -2.5]} height={2.5} rotation={4.0} lean={0.1} />
+      <PalmTree position={[1.8, 1.9, 2.5]} height={2.8} rotation={5.5} lean={0.18} />
       {/* Smaller background trees */}
-      <PalmTreeModel position={[5.0, 1.2, 0.5]} scale={0.02} rotation={0.8} treeIndex={2} />
-      <PalmTreeModel position={[-4.5, 1.3, -1.0]} scale={0.022} rotation={3.5} treeIndex={0} />
+      <PalmTree position={[5.0, 1.2, 0.5]} height={2} rotation={0.8} />
+      <PalmTree position={[-4.5, 1.3, -1.0]} height={2.2} rotation={3.5} lean={0.12} />
 
       {/* Bench press */}
       <BenchPress position={[-1.2, 1.85, -0.5]} />
@@ -637,9 +665,9 @@ export function SmallIsland() {
       <IslandBase scale={[6, 1.8, 5]} />
 
       {/* Palm trees */}
-      <PalmTreeModel position={[-2.5, 1.5, 1.2]} scale={0.028} rotation={2.0} treeIndex={2} />
-      <PalmTreeModel position={[3.0, 1.3, 1.8]} scale={0.022} rotation={0.8} treeIndex={4} />
-      <PalmTreeModel position={[-1.5, 1.4, -2.0]} scale={0.02} rotation={4.5} treeIndex={1} />
+      <PalmTree position={[-2.5, 1.5, 1.2]} height={2.8} rotation={2.0} />
+      <PalmTree position={[3.0, 1.3, 1.8]} height={2.2} rotation={0.8} lean={0.2} />
+      <PalmTree position={[-1.5, 1.4, -2.0]} height={2} rotation={4.5} />
 
       {/* Lighthouse — centered and prominent */}
       <Lighthouse position={[0.5, 1.4, -0.3]} scale={1.8} />
@@ -680,8 +708,8 @@ export function TinyIsland() {
       <IslandBase scale={[4, 1.2, 3.5]} sandColor="#D9BD7A" />
 
       {/* Palm trees */}
-      <PalmTreeModel position={[0, 1.0, 0]} scale={0.025} rotation={1.0} treeIndex={4} />
-      <PalmTreeModel position={[-1.5, 0.9, -0.5]} scale={0.018} rotation={3.2} treeIndex={1} />
+      <PalmTree position={[0, 1.0, 0]} height={2.5} rotation={1.0} />
+      <PalmTree position={[-1.5, 0.9, -0.5]} height={1.8} rotation={3.2} lean={0.15} />
 
       {/* Beach ball */}
       <BeachBall position={[-1.2, 1.1, 0.8]} />
@@ -702,4 +730,3 @@ export function Boat() {
   return <SpeedBoat position={[6, -0.35, -12]} />;
 }
 
-useGLTF.preload("/models/palm-trees.glb");

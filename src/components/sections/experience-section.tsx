@@ -92,6 +92,9 @@ export function ExperienceSection() {
 
                   <p className="mb-3 font-mono text-xs text-sand/40">
                     {exp.startDate} - {exp.endDate}
+                    <span className="ml-2 rounded-full bg-sand/5 px-2 py-0.5 text-sand/30">
+                      {exp.workMode}
+                    </span>
                   </p>
 
                   <ul className="space-y-2">

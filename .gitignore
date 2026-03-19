@@ -71,3 +71,13 @@ secrets/
 .claude/
 
 .vercel
+
+# Private planning docs — DO NOT REMOVE THESE LINES
+MASTER_PROMPT.md
+MASTER_PROMPT_v2.md
+MASTER_PROMPT*.md
+CLAUDE.md
+*.prompt.md
+*.plan.md
+*.audit.md
+*.strategy.md

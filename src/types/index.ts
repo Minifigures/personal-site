@@ -17,6 +17,7 @@ export interface Experience {
   role: string;
   startDate: string;
   endDate: string;
+  workMode: "Remote" | "On-site" | "Hybrid";
   bullets: string[];
 }
 

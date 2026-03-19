@@ -7,6 +7,7 @@ export const experiences: Experience[] = [
     role: "AI/ML Systems Engineer Intern",
     startDate: "Mar 2026",
     endDate: "Present",
+    workMode: "Remote",
     bullets: [
       "Architecting core components of a multimodal AI research prototype within the NeuroSystems Intelligence and Research Unit",
       "Building ML data pipeline engineering, model training, data preprocessing and feature extraction",
@@ -19,6 +20,7 @@ export const experiences: Experience[] = [
     role: "Webmaster Intern",
     startDate: "Dec 2025",
     endDate: "Present",
+    workMode: "Remote",
     bullets: [
       "Managing storefront frontend and backend, handling website updates, theme changes, and SEO improvements",
       "Automated customer service by integrating an AI chatbot into the site",
@@ -31,6 +33,7 @@ export const experiences: Experience[] = [
     role: "Lead Full-Stack Software Developer",
     startDate: "May 2025",
     endDate: "Present",
+    workMode: "Remote",
     bullets: [
       "Architected platform using React, TypeScript, Tailwind, Node.js, and Python, serving 310+ members across 10+ pages",
       "Reduced manual admin work from 1-2 hours to under 3 minutes with AI/ML image-to-data extraction pipeline",
@@ -43,6 +46,7 @@ export const experiences: Experience[] = [
     role: "Indigenous Programming Assistant & Peer Mentor",
     startDate: "Aug 2025",
     endDate: "Present",
+    workMode: "Hybrid",
     bullets: [
       "Planning, budgeting, and delivering Indigenous programming including Access Days, transition events, and trips",
       "Building community through mentorship and supporting outreach and partnerships",
@@ -54,6 +58,7 @@ export const experiences: Experience[] = [
     role: "SEO Specialist",
     startDate: "Sep 2025",
     endDate: "Feb 2026",
+    workMode: "Remote",
     bullets: [
       "Collaborated with supervisor, social media lead, and 3D designer to generate sales",
       "Executed SEO duties individually and as part of a cross-functional team",
@@ -65,6 +70,7 @@ export const experiences: Experience[] = [
     role: "Job Shadowing",
     startDate: "Nov 2025",
     endDate: "Nov 2025",
+    workMode: "On-site",
     bullets: [
       "Gained industry exposure through on-site job shadowing at Google Toronto",
     ],
@@ -75,19 +81,10 @@ export const experiences: Experience[] = [
     role: "Inventory Control Clerk",
     startDate: "Nov 2023",
     endDate: "Dec 2025",
+    workMode: "On-site",
     bullets: [
       "Worked in multiple seasonal, part-time, and full-time roles across multiple periods",
       "Managed inbound/outbound shipments, scanning, packaging, and logistics",
-    ],
-  },
-  {
-    id: "acce",
-    company: "ACCE International",
-    role: "Tester",
-    startDate: "Feb 2025",
-    endDate: "Jan 2026",
-    bullets: [
-      "Conducted testing and quality assurance for the company",
     ],
   },
   {
@@ -96,6 +93,7 @@ export const experiences: Experience[] = [
     role: "Poll Clerk",
     startDate: "Mar 2023",
     endDate: "Mar 2025",
+    workMode: "On-site",
     bullets: [
       "Facilitated voting procedures during key election periods across 6 election cycles",
       "Verified student identification, ensured fair and impartial voting, and counted ballots",
@@ -107,6 +105,7 @@ export const experiences: Experience[] = [
     role: "Bilingual Customer Service Representative",
     startDate: "Jul 2024",
     endDate: "Aug 2024",
+    workMode: "Hybrid",
     bullets: [
       "Provided financial guidance to 200+ parents on RESP fund withdrawals",
       "Increased customer satisfaction to 90% and reduced average handling time by 25%",
@@ -118,6 +117,7 @@ export const experiences: Experience[] = [
     role: "Data Analyst",
     startDate: "May 2023",
     endDate: "Aug 2023",
+    workMode: "Remote",
     bullets: [
       "Reviewed and evaluated mapping data to improve accuracy of digital maps and navigation apps",
       "Validated navigation routes, verified business information through systematic online research",

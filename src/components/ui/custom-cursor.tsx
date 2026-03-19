@@ -87,8 +87,8 @@ export function CustomCursor() {
           translateX: "-50%",
           translateY: "-50%",
           background: isHovering
-            ? "linear-gradient(135deg, #C5D5A6, #F4A942)"
-            : "#FDF6EC",
+            ? "linear-gradient(135deg, #7B2FBE, #9B59B6)"
+            : "#4A1A7A",
           opacity: isVisible ? 1 : 0,
         }}
         transition={{ width: { duration: 0.2 }, height: { duration: 0.2 } }}
@@ -108,8 +108,8 @@ export function CustomCursor() {
           width: isHovering ? 48 : 32,
           height: isHovering ? 48 : 32,
           borderColor: isHovering
-            ? "rgba(164, 185, 143, 0.6)"
-            : "rgba(253, 246, 236, 0.3)",
+            ? "rgba(123, 47, 190, 0.6)"
+            : "rgba(74, 26, 122, 0.4)",
         }}
         transition={{ duration: 0.25 }}
       />

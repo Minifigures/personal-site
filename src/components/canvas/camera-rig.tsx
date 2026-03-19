@@ -3,6 +3,7 @@
 import { useFrame, useThree } from "@react-three/fiber";
 import { useRef, useEffect } from "react";
 import { Vector3 } from "three";
+import { useAppStore } from "@/stores/use-app-store";
 
 /**
  * Camera keyframes for each scroll section.
@@ -12,16 +13,18 @@ const KEYFRAMES: Array<{
   position: [number, number, number];
   lookAt: [number, number, number];
 }> = [
-  // Section 0: Hero - facing the sunset over the ocean
-  { position: [0, 3, 10], lookAt: [0, 2, -50] },
-  // Section 1: About - slight pan left, lower angle
-  { position: [-4, 2.5, 6], lookAt: [-8, 1.5, -30] },
-  // Section 2: Experience - higher vantage point
-  { position: [-6, 5, 0], lookAt: [0, 1, -40] },
-  // Section 3: Projects - pan right, revealing the island
-  { position: [6, 3.5, -2], lookAt: [15, 0.5, -25] },
-  // Section 4: Contact - serene final view, looking out to sea
-  { position: [0, 4, -5], lookAt: [0, 1.5, -100] },
+  // 0-15%: Hero, straight-on, slightly elevated, full island panorama
+  { position: [0, 4, 12], lookAt: [0, 2, -50] },
+  // 15-30%: About, pan left + drop to eye level, intimate with island
+  { position: [-5, 1.8, 6], lookAt: [-3, 1.5, -20] },
+  // 30-50%: Experience, pull way back, wide cinematic shot over vast ocean
+  { position: [-10, 7, -4], lookAt: [0, 1, -50] },
+  // 50-65%: Projects, sweep right, close to water surface, low-angle dramatic
+  { position: [8, 1.2, -2], lookAt: [5, 1, -30] },
+  // 65-80%: Contact, rise up high, bird's-eye looking down at island
+  { position: [2, 12, -3], lookAt: [0, 0, -15] },
+  // 80-100%: Footer, settle at horizon level, peaceful view facing sunset
+  { position: [0, 3, -6], lookAt: [0, 2, -100] },
 ];
 
 function lerp(a: number, b: number, t: number): number {
@@ -35,6 +38,7 @@ function smoothstep(t: number): number {
 export function CameraRig() {
   const { camera } = useThree();
   const scrollRef = useRef(0);
+  const setScrollProgress = useAppStore((s) => s.setScrollProgress);
   const targetPos = useRef(new Vector3(...KEYFRAMES[0].position));
   const targetLookAt = useRef(new Vector3(...KEYFRAMES[0].lookAt));
   const currentPos = useRef(new Vector3(...KEYFRAMES[0].position));
@@ -46,7 +50,9 @@ export function CameraRig() {
       const scrollTop = window.scrollY;
       const docHeight =
         document.documentElement.scrollHeight - window.innerHeight;
-      scrollRef.current = docHeight > 0 ? scrollTop / docHeight : 0;
+      const progress = docHeight > 0 ? scrollTop / docHeight : 0;
+      scrollRef.current = progress;
+      setScrollProgress(progress);
     }
 
     function handleMouse(e: MouseEvent) {

@@ -5,7 +5,7 @@ export const projects: Project[] = [
     id: "locatr",
     title: "LOCATR",
     description:
-      "AI-powered real-time location intelligence platform that aggregates and analyzes geospatial data to provide actionable insights for urban planning and emergency response.",
+      "DeerHacks V Winner. Multi-agent location intelligence system using LangGraph orchestration to aggregate and analyze geospatial data for urban planning and emergency response. Team of 4, top contributor, 40,000+ lines.",
     techStack: ["LangGraph", "FastAPI", "Next.js", "Snowflake", "Gemini 2.5", "Auth0", "Docker"],
     award: "DeerHacks V Winner",
     featured: true,
@@ -15,7 +15,7 @@ export const projects: Project[] = [
     id: "vigil",
     title: "VIGIL",
     description:
-      "Intelligent monitoring and alerting system powered by generative AI that detects anomalies in real-time data streams and provides natural language explanations of incidents.",
+      "Multi-agent dental billing fraud detection system built at GenAI Genesis 2026. Uses LangGraph orchestration with IBM watsonx Granite and Gemini 2.0 Flash to identify anomalous billing patterns across dental claims. Team of 4, #1 GitHub contributor, 21,000+ lines of code.",
     techStack: ["LangGraph", "IBM watsonx Granite", "Gemini 2.0 Flash", "Supabase", "Moorcheh SDK"],
     award: "GenAI Genesis 2026",
     featured: true,
@@ -25,8 +25,8 @@ export const projects: Project[] = [
     id: "compass",
     title: "COMPASS",
     description:
-      "Accessible navigation platform leveraging computer vision and NLP to provide context-aware guidance for users in unfamiliar environments, with real-time translation support.",
-    techStack: ["Next.js", "Python", "OpenCV", "FastAPI", "AI/ML"],
+      "Multi-agent AI platform helping seniors and caregivers discover and navigate government benefits. Built at Hack the Globe 2026 using LangGraph, Gemini, Snowflake, Mapbox, Auth0, FastAPI, and Next.js for intelligent benefit matching and accessibility.",
+    techStack: ["LangGraph", "Gemini", "Snowflake", "Mapbox", "Auth0", "FastAPI", "Next.js"],
     award: "Hack the Globe 2026",
     featured: true,
     github: "https://github.com/Minifigures",

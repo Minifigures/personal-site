@@ -57,6 +57,16 @@ export function NavBar() {
               </a>
             </li>
           ))}
+          <li>
+            <a
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="interactive rounded-full border border-coral/40 bg-coral/10 px-4 py-1.5 font-mono text-xs uppercase tracking-widest text-coral transition-all hover:bg-coral/20"
+            >
+              Resume
+            </a>
+          </li>
         </ul>
 
         {/* Mobile menu toggle */}
@@ -102,6 +112,17 @@ export function NavBar() {
                   </a>
                 </li>
               ))}
+              <li>
+                <a
+                  href="/resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="interactive font-mono text-sm uppercase tracking-widest text-coral transition-colors hover:text-coral/80"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  Resume
+                </a>
+              </li>
             </ul>
           </motion.div>
         )}
