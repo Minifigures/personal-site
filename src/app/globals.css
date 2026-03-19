@@ -113,56 +113,52 @@ body, body * {
   isolation: isolate;
   background: linear-gradient(
     145deg,
-    rgba(255, 255, 255, 0.12) 0%,
-    rgba(255, 255, 255, 0.05) 50%,
-    rgba(255, 255, 255, 0.08) 100%
+    rgba(15, 15, 35, 0.75) 0%,
+    rgba(20, 20, 45, 0.70) 50%,
+    rgba(15, 15, 35, 0.75) 100%
   );
-  backdrop-filter: blur(24px) saturate(180%) brightness(110%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%) brightness(110%);
-  border: 1.5px solid rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(30px) saturate(150%);
+  -webkit-backdrop-filter: blur(30px) saturate(150%);
+  border: 1.5px solid rgba(255, 255, 255, 0.18);
   border-radius: 20px;
   box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.35),
-    0 4px 16px rgba(0, 0, 0, 0.20),
+    0 20px 60px rgba(0, 0, 0, 0.45),
+    0 4px 16px rgba(0, 0, 0, 0.25),
     0 8px 40px rgba(31, 38, 135, 0.15),
-    inset 0 1.5px 0 rgba(255, 255, 255, 0.35),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.06),
-    inset 0 8px 24px rgba(255, 255, 255, 0.06),
-    inset 4px 0 16px rgba(255, 255, 255, 0.03),
-    inset -4px 0 16px rgba(255, 255, 255, 0.03);
+    inset 0 1.5px 0 rgba(255, 255, 255, 0.25),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.04),
+    inset 0 8px 24px rgba(255, 255, 255, 0.04),
+    inset 4px 0 16px rgba(255, 255, 255, 0.02),
+    inset -4px 0 16px rgba(255, 255, 255, 0.02);
   transition: box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .glass:hover {
-  border-color: rgba(255, 255, 255, 0.30);
+  border-color: rgba(255, 255, 255, 0.25);
   box-shadow:
-    0 24px 72px rgba(0, 0, 0, 0.40),
-    0 6px 20px rgba(0, 0, 0, 0.25),
+    0 24px 72px rgba(0, 0, 0, 0.50),
+    0 6px 20px rgba(0, 0, 0, 0.30),
     0 10px 48px rgba(31, 38, 135, 0.20),
-    inset 0 1.5px 0 rgba(255, 255, 255, 0.42),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.08),
-    inset 0 10px 32px rgba(255, 255, 255, 0.08),
-    inset 4px 0 20px rgba(255, 255, 255, 0.04),
-    inset -4px 0 20px rgba(255, 255, 255, 0.04);
+    inset 0 1.5px 0 rgba(255, 255, 255, 0.30),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.06),
+    inset 0 10px 32px rgba(255, 255, 255, 0.05),
+    inset 4px 0 20px rgba(255, 255, 255, 0.03),
+    inset -4px 0 20px rgba(255, 255, 255, 0.03);
 }
 
 /* ============================================
    Thin glass — Nav, pills, floating UI
    ============================================ */
 .glass-thin {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.10) 0%,
-    rgba(255, 255, 255, 0.04) 100%
-  );
-  backdrop-filter: blur(20px) saturate(170%) brightness(115%);
-  -webkit-backdrop-filter: blur(20px) saturate(170%) brightness(115%);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(15, 15, 35, 0.60);
+  backdrop-filter: blur(24px) saturate(150%);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.30),
-    0 2px 8px rgba(0, 0, 0, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.30),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.04);
+    0 8px 32px rgba(0, 0, 0, 0.35),
+    0 2px 8px rgba(0, 0, 0, 0.20),
+    inset 0 1px 0 rgba(255, 255, 255, 0.20),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.03);
 }
 
 /* Selection colors */
