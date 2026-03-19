@@ -20,6 +20,11 @@ Marco Ayuste's personal portfolio site. Beach/sunset themed Three.js experience.
 - HTML sections in `src/components/sections/`
 - Reusable UI in `src/components/ui/`
 
+## Git Authorship
+- **Always** set both author AND committer to: `Minifigures <110493842+Minifigures@users.noreply.github.com>`
+- Use `--author` flag AND set `GIT_COMMITTER_NAME="Minifigures"` and `GIT_COMMITTER_EMAIL="110493842+Minifigures@users.noreply.github.com"` env vars on every commit.
+- Never commit as Claude. No co-authored-by trailers.
+
 ## Conventions
 - TypeScript strict mode, no `any`
 - Named exports only (no default exports)
