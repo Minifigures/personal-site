@@ -30,7 +30,7 @@ export function UiToggle({ children }: { children: React.ReactNode }) {
       {/* Toggle button: fixed right edge, always visible */}
       <button
         onClick={toggle}
-        className="interactive fixed right-4 bottom-6 z-[60] flex items-center gap-2 rounded-full border border-sand/15 bg-navy/60 px-4 py-2 backdrop-blur-md transition-all hover:border-coral/40 hover:bg-navy/80"
+        className="interactive glass-thin fixed right-4 bottom-6 z-[60] flex items-center gap-2 rounded-full px-4 py-2 transition-all hover:border-white/25"
         aria-label={visible ? "Hide UI" : "Show UI"}
       >
         <span className="font-mono text-[10px] uppercase tracking-widest text-sand/60">
