@@ -14,7 +14,7 @@ import { Ocean } from "./ocean";
 import { ScenePostProcessing } from "./post-processing";
 import { Particles } from "./particles";
 import { CameraRig } from "./camera-rig";
-import { Island, Boat } from "./island";
+import { Island, Boat, SmallIsland, TinyIsland } from "./island";
 import { Clouds } from "./clouds";
 import { Seagulls } from "./seagulls";
 
@@ -37,6 +37,8 @@ export function Scene() {
           <SunsetSky />
           <Ocean />
           <Island />
+          <SmallIsland />
+          <TinyIsland />
           <Boat />
           <Clouds />
           <Seagulls />

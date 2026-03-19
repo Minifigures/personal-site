@@ -72,36 +72,194 @@ function PalmTreeModel({
   );
 }
 
-/* ─── Bench Press ─── */
+/* ─── Bench Press (315 lbs = 3 plates each side) ─── */
 function BenchPress({ position }: { position: [number, number, number] }) {
+  // 3 plates per side (45 lbs each) + 45 lb bar = 315 lbs
+  const platePositions = [
+    // Left side: 3 plates
+    -0.48, -0.54, -0.60,
+    // Right side: 3 plates
+    0.48, 0.54, 0.60,
+  ];
+
   return (
     <group position={position} rotation={[0, 0.4, 0]}>
+      {/* Bench seat */}
       <mesh position={[0, 0.35, 0]} castShadow>
         <boxGeometry args={[0.5, 0.1, 1.4]} />
         <meshStandardMaterial color="#1A1A1A" roughness={0.4} />
       </mesh>
+      {/* Support legs */}
       {[[-0.18, -0.5], [0.18, -0.5], [-0.18, 0.5], [0.18, 0.5]].map((p, i) => (
         <mesh key={i} position={[p[0], 0.15, p[1]]} castShadow>
           <cylinderGeometry args={[0.025, 0.025, 0.35, 6]} />
           <meshStandardMaterial color="#555" metalness={0.8} roughness={0.3} />
         </mesh>
       ))}
+      {/* Vertical uprights */}
       {[-0.35, 0.35].map((x, i) => (
         <mesh key={i} position={[x, 0.7, -0.55]} castShadow>
           <cylinderGeometry args={[0.03, 0.03, 0.8, 6]} />
           <meshStandardMaterial color="#666" metalness={0.9} roughness={0.2} />
         </mesh>
       ))}
+      {/* Barbell */}
       <mesh position={[0, 1.0, -0.55]} rotation={[0, 0, Math.PI / 2]} castShadow>
-        <cylinderGeometry args={[0.018, 0.018, 1.2, 8]} />
+        <cylinderGeometry args={[0.018, 0.018, 1.4, 8]} />
         <meshStandardMaterial color="#C0C0C0" metalness={1} roughness={0.1} />
       </mesh>
-      {[-0.5, -0.56, 0.5, 0.56].map((x, i) => (
+      {/* 3 plates each side (45 lb plates) */}
+      {platePositions.map((x, i) => (
         <mesh key={i} position={[x, 1.0, -0.55]} rotation={[0, 0, Math.PI / 2]} castShadow>
-          <cylinderGeometry args={[0.1 - (i % 2) * 0.015, 0.1 - (i % 2) * 0.015, 0.035, 16]} />
+          <cylinderGeometry args={[0.12, 0.12, 0.03, 16]} />
           <meshStandardMaterial color="#222" metalness={0.6} roughness={0.4} />
         </mesh>
       ))}
+      {/* Collar clips */}
+      {[-0.44, 0.44].map((x, i) => (
+        <mesh key={`clip-${i}`} position={[x, 1.0, -0.55]} rotation={[0, 0, Math.PI / 2]} castShadow>
+          <cylinderGeometry args={[0.025, 0.025, 0.02, 8]} />
+          <meshStandardMaterial color="#E8735A" metalness={0.5} roughness={0.3} />
+        </mesh>
+      ))}
+    </group>
+  );
+}
+
+/* ─── Matcha Cup ─── */
+function MatchaCup({ position }: { position: [number, number, number] }) {
+  return (
+    <group position={position}>
+      {/* Cup body */}
+      <mesh castShadow>
+        <cylinderGeometry args={[0.08, 0.06, 0.16, 12]} />
+        <meshStandardMaterial color="#F5F0E6" roughness={0.6} />
+      </mesh>
+      {/* Matcha liquid */}
+      <mesh position={[0, 0.06, 0]}>
+        <cylinderGeometry args={[0.072, 0.072, 0.02, 12]} />
+        <meshStandardMaterial color="#7AB648" roughness={0.3} />
+      </mesh>
+      {/* Lid */}
+      <mesh position={[0, 0.09, 0]} castShadow>
+        <cylinderGeometry args={[0.085, 0.082, 0.02, 12]} />
+        <meshStandardMaterial color="#F5F0E6" roughness={0.6} />
+      </mesh>
+    </group>
+  );
+}
+
+/* ─── Beach Ball ─── */
+function BeachBall({ position }: { position: [number, number, number] }) {
+  return (
+    <group position={position}>
+      <mesh castShadow>
+        <sphereGeometry args={[0.18, 16, 16]} />
+        <meshStandardMaterial color="#FFFFFF" roughness={0.5} />
+      </mesh>
+      {/* Colored stripes (overlapping spheres with slight offsets to create stripe effect) */}
+      <mesh rotation={[0, 0, 0]}>
+        <sphereGeometry args={[0.182, 16, 16, 0, Math.PI / 3]} />
+        <meshStandardMaterial color="#E8735A" roughness={0.5} />
+      </mesh>
+      <mesh rotation={[0, (Math.PI * 2) / 3, 0]}>
+        <sphereGeometry args={[0.182, 16, 16, 0, Math.PI / 3]} />
+        <meshStandardMaterial color="#2A9D8F" roughness={0.5} />
+      </mesh>
+      <mesh rotation={[0, (Math.PI * 4) / 3, 0]}>
+        <sphereGeometry args={[0.182, 16, 16, 0, Math.PI / 3]} />
+        <meshStandardMaterial color="#F4A942" roughness={0.5} />
+      </mesh>
+    </group>
+  );
+}
+
+/* ─── Basketball ─── */
+function Basketball({ position }: { position: [number, number, number] }) {
+  return (
+    <mesh position={position} castShadow>
+      <sphereGeometry args={[0.15, 16, 16]} />
+      <meshStandardMaterial color="#E87830" roughness={0.7} metalness={0.05} />
+    </mesh>
+  );
+}
+
+/* ─── Football ─── */
+function Football({ position }: { position: [number, number, number] }) {
+  return (
+    <group position={position} rotation={[0.3, 0.5, Math.PI / 4]}>
+      <mesh castShadow>
+        <sphereGeometry args={[0.12, 12, 12]} />
+        <meshStandardMaterial color="#8B4513" roughness={0.7} />
+      </mesh>
+      {/* Elongate with scale to make it football-shaped */}
+      <mesh scale={[0.6, 0.6, 1.4]} castShadow>
+        <sphereGeometry args={[0.12, 12, 12]} />
+        <meshStandardMaterial color="#8B4513" roughness={0.7} />
+      </mesh>
+      {/* Laces */}
+      <mesh position={[0, 0.09, 0]} scale={[0.3, 0.02, 0.8]}>
+        <boxGeometry args={[0.1, 0.1, 0.2]} />
+        <meshStandardMaterial color="#FFFFFF" roughness={0.5} />
+      </mesh>
+    </group>
+  );
+}
+
+/* ─── Lighthouse ─── */
+function Lighthouse({ position }: { position: [number, number, number] }) {
+  const lightRef = useRef<Mesh>(null);
+
+  useFrame(({ clock }) => {
+    if (lightRef.current) {
+      lightRef.current.rotation.y = clock.getElapsedTime() * 1.5;
+    }
+  });
+
+  return (
+    <group position={position}>
+      {/* Base */}
+      <mesh castShadow>
+        <cylinderGeometry args={[0.25, 0.35, 0.3, 12]} />
+        <meshStandardMaterial color="#8B8B8B" roughness={0.7} />
+      </mesh>
+      {/* Tower body - white with red stripe */}
+      <mesh position={[0, 0.8, 0]} castShadow>
+        <cylinderGeometry args={[0.18, 0.25, 1.3, 12]} />
+        <meshStandardMaterial color="#F5F0E6" roughness={0.5} />
+      </mesh>
+      {/* Red stripe */}
+      <mesh position={[0, 0.6, 0]} castShadow>
+        <cylinderGeometry args={[0.21, 0.22, 0.25, 12]} />
+        <meshStandardMaterial color="#E8735A" roughness={0.5} />
+      </mesh>
+      {/* Gallery/balcony */}
+      <mesh position={[0, 1.5, 0]} castShadow>
+        <cylinderGeometry args={[0.25, 0.2, 0.08, 12]} />
+        <meshStandardMaterial color="#333" metalness={0.6} roughness={0.3} />
+      </mesh>
+      {/* Railing */}
+      <mesh position={[0, 1.56, 0]}>
+        <cylinderGeometry args={[0.26, 0.26, 0.06, 12, 1, true]} />
+        <meshStandardMaterial color="#333" metalness={0.6} roughness={0.3} />
+      </mesh>
+      {/* Lantern room */}
+      <mesh position={[0, 1.7, 0]} castShadow>
+        <cylinderGeometry args={[0.14, 0.18, 0.3, 8]} />
+        <meshStandardMaterial color="#F5F0E6" roughness={0.4} transparent opacity={0.9} />
+      </mesh>
+      {/* Light beacon */}
+      <mesh ref={lightRef} position={[0, 1.7, 0]}>
+        <boxGeometry args={[0.06, 0.12, 0.06]} />
+        <meshStandardMaterial color="#FFDD44" emissive="#FFDD44" emissiveIntensity={2} />
+      </mesh>
+      {/* Roof */}
+      <mesh position={[0, 1.95, 0]} castShadow>
+        <coneGeometry args={[0.16, 0.2, 8]} />
+        <meshStandardMaterial color="#E8735A" roughness={0.5} />
+      </mesh>
+      {/* Point light for glow effect */}
+      <pointLight position={[0, 1.7, 0]} color="#FFDD44" intensity={0.5} distance={5} />
     </group>
   );
 }
@@ -164,9 +322,36 @@ function Rock({ position, scale = 1 }: { position: [number, number, number]; sca
   );
 }
 
+/* ─── Island Base (reusable) ─── */
+function IslandBase({
+  scale,
+  sandColor = "#D4B06A",
+}: {
+  scale: [number, number, number];
+  sandColor?: string;
+}) {
+  return (
+    <>
+      <mesh scale={scale} receiveShadow>
+        <sphereGeometry args={[1, 32, 20, 0, Math.PI * 2, 0, Math.PI / 2]} />
+        <meshStandardMaterial color={sandColor} roughness={1} metalness={0} />
+      </mesh>
+      {/* Wet sand */}
+      <mesh position={[0, -0.1, 0]} scale={[scale[0] * 1.1, scale[1] * 0.28, scale[2] * 1.1]} receiveShadow>
+        <sphereGeometry args={[1, 24, 14, 0, Math.PI * 2, 0, Math.PI / 2]} />
+        <meshStandardMaterial color="#B8944A" roughness={0.5} metalness={0.05} />
+      </mesh>
+      {/* Foam */}
+      <mesh position={[0, -0.2, 0]} scale={[scale[0] * 1.2, scale[1] * 0.11, scale[2] * 1.2]}>
+        <sphereGeometry args={[1, 20, 10, 0, Math.PI * 2, 0, Math.PI / 2]} />
+        <meshStandardMaterial color="#3A9B8F" transparent opacity={0.25} roughness={0.2} />
+      </mesh>
+    </>
+  );
+}
+
 /* ─── Main Island ─── */
 export function Island() {
-  const islandRef = useRef<Mesh>(null);
   const islandPosition: [number, number, number] = [12, -0.5, -18];
 
   const grassTufts = useMemo(
@@ -180,21 +365,7 @@ export function Island() {
 
   return (
     <group position={islandPosition}>
-      {/* Main island */}
-      <mesh ref={islandRef} scale={[7, 1.8, 6]} receiveShadow>
-        <sphereGeometry args={[1, 32, 20, 0, Math.PI * 2, 0, Math.PI / 2]} />
-        <meshStandardMaterial color="#D4B06A" roughness={1} metalness={0} />
-      </mesh>
-      {/* Wet sand */}
-      <mesh position={[0, -0.1, 0]} scale={[7.8, 0.5, 6.6]} receiveShadow>
-        <sphereGeometry args={[1, 24, 14, 0, Math.PI * 2, 0, Math.PI / 2]} />
-        <meshStandardMaterial color="#B8944A" roughness={0.5} metalness={0.05} />
-      </mesh>
-      {/* Foam */}
-      <mesh position={[0, -0.2, 0]} scale={[8.5, 0.2, 7.2]}>
-        <sphereGeometry args={[1, 20, 10, 0, Math.PI * 2, 0, Math.PI / 2]} />
-        <meshStandardMaterial color="#3A9B8F" transparent opacity={0.25} roughness={0.2} />
-      </mesh>
+      <IslandBase scale={[7, 1.8, 6]} />
 
       {/* GLB Palm trees using different variants */}
       <PalmTreeModel position={[0, 1.6, 0]} scale={0.018} rotation={0} treeIndex={0} />
@@ -205,6 +376,15 @@ export function Island() {
 
       {/* Bench press */}
       <BenchPress position={[-1.2, 1.55, -0.5]} />
+
+      {/* Matcha next to benchpress */}
+      <MatchaCup position={[-0.5, 1.65, -0.8]} />
+
+      {/* Basketball near bench */}
+      <Basketball position={[1.0, 1.7, -1.2]} />
+
+      {/* Football */}
+      <Football position={[2.0, 1.65, 0.5]} />
 
       {/* Rocks */}
       <Rock position={[4.5, 0.3, 2.2]} scale={1.1} />
@@ -224,6 +404,47 @@ export function Island() {
         <boxGeometry args={[0.6, 0.01, 0.35]} />
         <meshStandardMaterial color="#FF6B8A" roughness={0.9} />
       </mesh>
+    </group>
+  );
+}
+
+/* ─── Small Island (with lighthouse) ─── */
+export function SmallIsland() {
+  const position: [number, number, number] = [-15, -0.5, -25];
+
+  return (
+    <group position={position}>
+      <IslandBase scale={[4, 1.2, 3.5]} />
+
+      {/* Palm tree */}
+      <PalmTreeModel position={[-1.2, 1.0, 0.5]} scale={0.012} rotation={2.0} treeIndex={2} />
+
+      {/* Lighthouse */}
+      <Lighthouse position={[0.5, 1.0, -0.3]} />
+
+      {/* Rocks */}
+      <Rock position={[2.5, 0.2, 1.0]} scale={0.7} />
+      <Rock position={[-2.2, 0.15, -1.0]} scale={0.9} />
+    </group>
+  );
+}
+
+/* ─── Tiny Island (with beach ball) ─── */
+export function TinyIsland() {
+  const position: [number, number, number] = [25, -0.5, -12];
+
+  return (
+    <group position={position}>
+      <IslandBase scale={[2.5, 0.9, 2]} sandColor="#D9BD7A" />
+
+      {/* Palm tree */}
+      <PalmTreeModel position={[0, 0.8, 0]} scale={0.010} rotation={1.0} treeIndex={4} />
+
+      {/* Beach ball */}
+      <BeachBall position={[-0.8, 0.9, 0.4]} />
+
+      {/* Rock */}
+      <Rock position={[1.2, 0.1, -0.5]} scale={0.6} />
     </group>
   );
 }
