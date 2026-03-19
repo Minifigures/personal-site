@@ -79,7 +79,7 @@ export function LoadingScreen() {
           className="fixed inset-0 z-[100] flex overflow-hidden"
           style={{
             background:
-              "linear-gradient(160deg, #0D1117 0%, #161B22 50%, #1A2E1A 100%)",
+              "linear-gradient(160deg, #1A1A2E 0%, #2D1B3D 40%, #4A1942 70%, #E8735A 100%)",
           }}
           exit={{ opacity: 0, scale: 1.02 }}
           transition={{ duration: 0.6, ease: "easeInOut" }}
@@ -90,16 +90,16 @@ export function LoadingScreen() {
             className="pointer-events-none absolute inset-0 opacity-[0.03]"
             style={{
               backgroundImage:
-                "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,255,100,0.03) 2px, rgba(0,255,100,0.03) 4px)",
+                "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(232,115,90,0.03) 2px, rgba(232,115,90,0.03) 4px)",
             }}
           />
 
           {/* Left: Code terminal */}
           <div className="hidden flex-1 overflow-hidden p-8 font-mono text-[11px] leading-relaxed md:block">
             <div className="mb-3 flex items-center gap-2">
-              <div className="h-2.5 w-2.5 rounded-full bg-red-500/60" />
-              <div className="h-2.5 w-2.5 rounded-full bg-yellow-500/60" />
-              <div className="h-2.5 w-2.5 rounded-full bg-green-500/60" />
+              <div className="h-2.5 w-2.5 rounded-full bg-coral/60" />
+              <div className="h-2.5 w-2.5 rounded-full bg-amber/60" />
+              <div className="h-2.5 w-2.5 rounded-full bg-teal/60" />
               <span className="ml-2 text-[10px] text-sand/20">
                 marco@portfolio ~ build
               </span>
@@ -107,7 +107,7 @@ export function LoadingScreen() {
             {visibleLines.map((line, i) => (
               <motion.div
                 key={i}
-                className="text-green-400/40"
+                className="text-coral/40"
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.2, delay: i * 0.05 }}
@@ -119,7 +119,7 @@ export function LoadingScreen() {
               </motion.div>
             ))}
             <motion.span
-              className="inline-block text-green-400/60"
+              className="inline-block text-coral/60"
               animate={{ opacity: [1, 0] }}
               transition={{ duration: 0.8, repeat: Infinity }}
             >
@@ -134,7 +134,7 @@ export function LoadingScreen() {
               className="absolute top-0 left-0 h-[2px]"
               style={{
                 background:
-                  "linear-gradient(90deg, #22C55E, #A8B98F, #F4A942, #E8735A)",
+                  "linear-gradient(90deg, #E8735A, #F4A942, #FF8C69, #2A9D8F)",
               }}
               initial={{ width: "0%" }}
               animate={{ width: `${progress}%` }}
@@ -152,33 +152,33 @@ export function LoadingScreen() {
                 className="font-display text-7xl font-bold tracking-tighter sm:text-9xl"
                 style={{
                   background:
-                    "linear-gradient(135deg, #22C55E 0%, #A8B98F 30%, #F4A942 70%, #E8735A 100%)",
+                    "linear-gradient(135deg, #E8735A 0%, #F4A942 30%, #FF8C69 70%, #2A9D8F 100%)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   backgroundClip: "text",
                 }}
               >
-                MA
+                Marco A
               </span>
               {/* Glitch shadow */}
               <span
                 className="pointer-events-none absolute inset-0 font-display text-7xl font-bold tracking-tighter opacity-10 sm:text-9xl"
                 style={{
-                  color: "#22C55E",
+                  color: "#E8735A",
                   transform: "translate(2px, -2px)",
                   filter: "blur(1px)",
                 }}
               >
-                MA
+                Marco A
               </span>
             </motion.div>
 
             {/* Progress */}
             <div className="flex items-baseline gap-1 font-mono text-sm tracking-widest text-sand/30">
-              <motion.span className="text-3xl tabular-nums text-green-400/60">
+              <motion.span className="text-3xl tabular-nums text-amber/60">
                 {String(displayProgress).padStart(3, "0")}
               </motion.span>
-              <span className="text-green-400/30">%</span>
+              <span className="text-amber/30">%</span>
             </div>
 
             {/* Loading bar */}
@@ -187,7 +187,7 @@ export function LoadingScreen() {
                 className="h-full"
                 style={{
                   background:
-                    "linear-gradient(90deg, #22C55E, #A8B98F, #F4A942)",
+                    "linear-gradient(90deg, #E8735A, #F4A942, #FF8C69)",
                 }}
                 initial={{ width: "0%" }}
                 animate={{ width: `${progress}%` }}
@@ -216,7 +216,7 @@ export function LoadingScreen() {
             <AnimatePresence>
               {progress >= 100 && (
                 <motion.p
-                  className="mt-8 cursor-pointer font-mono text-xs uppercase tracking-[0.3em] text-green-400/40"
+                  className="mt-8 cursor-pointer font-mono text-xs uppercase tracking-[0.3em] text-coral/40"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: [0, 1, 0.5, 1] }}
                   transition={{ duration: 2, repeat: Infinity }}
@@ -229,7 +229,7 @@ export function LoadingScreen() {
           </div>
 
           {/* Corner decorations */}
-          <div className="absolute top-4 right-4 font-mono text-[9px] text-green-400/15">
+          <div className="absolute top-4 right-4 font-mono text-[9px] text-coral/15">
             v0.1.0
           </div>
           <div className="absolute bottom-4 left-4 font-mono text-[9px] text-sand/10">

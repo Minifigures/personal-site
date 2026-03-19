@@ -21,7 +21,13 @@ export function ExperienceSection() {
           <span className="font-mono text-xs uppercase tracking-[0.3em] text-coral/70">
             02 / Experience
           </span>
-          <h2 className="mt-2 font-display text-3xl font-bold text-sand sm:text-5xl">
+          <h2
+            className="mt-2 font-display text-3xl font-bold text-sand sm:text-5xl"
+            style={{
+              WebkitTextStroke: "1px #312E81",
+              paintOrder: "stroke fill",
+            }}
+          >
             Where I Have Worked
           </h2>
         </motion.div>
@@ -69,7 +75,13 @@ export function ExperienceSection() {
                       </span>
                     </div>
                     <div>
-                      <h3 className="font-display text-lg font-semibold text-sand">
+                      <h3
+                        className="font-display text-lg font-semibold text-sand"
+                        style={{
+                          WebkitTextStroke: "0.5px #312E81",
+                          paintOrder: "stroke fill",
+                        }}
+                      >
                         {exp.role}
                       </h3>
                       <p className="font-mono text-xs text-teal">
