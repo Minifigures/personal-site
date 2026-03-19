@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { GlassCard } from "@/components/ui/glass-card";
+import { SectionHeader } from "@/components/ui/section-header";
 import { experiences } from "@/data/experience";
 
 export function ExperienceSection() {
@@ -11,26 +12,7 @@ export function ExperienceSection() {
       className="flex min-h-screen items-center px-4 py-24 sm:px-8"
     >
       <div className="mx-auto w-full max-w-4xl">
-        <motion.div
-          className="mb-12"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <span className="font-mono text-xs uppercase tracking-[0.3em] text-coral/70">
-            02 / Experience
-          </span>
-          <h2
-            className="mt-2 font-display text-3xl font-bold text-sand sm:text-5xl"
-            style={{
-              WebkitTextStroke: "1px #312E81",
-              paintOrder: "stroke fill",
-            }}
-          >
-            Where I Have Worked
-          </h2>
-        </motion.div>
+        <SectionHeader number="02" label="Experience" title="Where I Have Worked" />
 
         {/* Timeline */}
         <div className="relative">

@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { GlassCard } from "@/components/ui/glass-card";
+import { SectionHeader } from "@/components/ui/section-header";
 import { skills } from "@/data/skills";
 
 const SKILL_COLORS: Record<string, string> = {
@@ -18,20 +19,7 @@ export function About() {
       className="flex min-h-screen items-center px-4 py-24 sm:px-8"
     >
       <div className="mx-auto max-w-5xl">
-        <motion.div
-          className="mb-12"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <span className="font-mono text-xs uppercase tracking-[0.3em] text-coral/70">
-            01 / About
-          </span>
-          <h2 className="mt-2 font-display text-3xl font-bold text-sand sm:text-5xl">
-            Who I Am
-          </h2>
-        </motion.div>
+        <SectionHeader number="01" label="About" title="Who I Am" />
 
         <div className="grid gap-8 md:grid-cols-2">
           <GlassCard>

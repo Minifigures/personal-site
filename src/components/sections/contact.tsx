@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { GlassCard } from "@/components/ui/glass-card";
+import { SectionHeader } from "@/components/ui/section-header";
 import { useState, useCallback, type FormEvent } from "react";
 import emailjs from "@emailjs/browser";
 
@@ -110,24 +111,11 @@ export function Contact() {
       className="flex min-h-screen items-center px-4 py-24 sm:px-8"
     >
       <div className="mx-auto w-full max-w-4xl">
-        <motion.div
-          className="mb-12 text-center"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <span className="font-mono text-xs uppercase tracking-[0.3em] text-coral/70">
-            04 / Contact
-          </span>
-          <h2 className="mt-2 font-display text-3xl font-bold text-sand sm:text-5xl">
-            Get in Touch
-          </h2>
-          <p className="mx-auto mt-4 max-w-md text-base text-sand/50">
-            Have a project in mind, a question, or just want to connect?
-            I would love to hear from you.
-          </p>
-        </motion.div>
+        <SectionHeader number="04" label="Contact" title="Get in Touch" center />
+        <p className="-mt-8 mb-12 mx-auto max-w-md text-center text-base text-sand/50">
+          Have a project in mind, a question, or just want to connect?
+          I would love to hear from you.
+        </p>
 
         <div className="grid gap-8 md:grid-cols-2">
           {/* Contact form */}
