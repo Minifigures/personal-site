@@ -207,7 +207,7 @@ function Football({ position }: { position: [number, number, number] }) {
 }
 
 /* ─── Lighthouse ─── */
-function Lighthouse({ position }: { position: [number, number, number] }) {
+function Lighthouse({ position, scale = 1 }: { position: [number, number, number]; scale?: number }) {
   const lightRef = useRef<Mesh>(null);
 
   useFrame(({ clock }) => {
@@ -217,49 +217,54 @@ function Lighthouse({ position }: { position: [number, number, number] }) {
   });
 
   return (
-    <group position={position}>
+    <group position={position} scale={scale}>
       {/* Base */}
       <mesh castShadow>
-        <cylinderGeometry args={[0.25, 0.35, 0.3, 12]} />
+        <cylinderGeometry args={[0.35, 0.5, 0.5, 12]} />
         <meshStandardMaterial color="#8B8B8B" roughness={0.7} />
       </mesh>
       {/* Tower body - white with red stripe */}
-      <mesh position={[0, 0.8, 0]} castShadow>
-        <cylinderGeometry args={[0.18, 0.25, 1.3, 12]} />
+      <mesh position={[0, 2.0, 0]} castShadow>
+        <cylinderGeometry args={[0.3, 0.4, 3.2, 12]} />
         <meshStandardMaterial color="#F5F0E6" roughness={0.5} />
       </mesh>
-      {/* Red stripe */}
-      <mesh position={[0, 0.6, 0]} castShadow>
-        <cylinderGeometry args={[0.21, 0.22, 0.25, 12]} />
+      {/* Red stripe lower */}
+      <mesh position={[0, 1.2, 0]} castShadow>
+        <cylinderGeometry args={[0.36, 0.38, 0.5, 12]} />
+        <meshStandardMaterial color="#E8735A" roughness={0.5} />
+      </mesh>
+      {/* Red stripe upper */}
+      <mesh position={[0, 2.8, 0]} castShadow>
+        <cylinderGeometry args={[0.32, 0.34, 0.4, 12]} />
         <meshStandardMaterial color="#E8735A" roughness={0.5} />
       </mesh>
       {/* Gallery/balcony */}
-      <mesh position={[0, 1.5, 0]} castShadow>
-        <cylinderGeometry args={[0.25, 0.2, 0.08, 12]} />
+      <mesh position={[0, 3.7, 0]} castShadow>
+        <cylinderGeometry args={[0.45, 0.35, 0.12, 12]} />
         <meshStandardMaterial color="#333" metalness={0.6} roughness={0.3} />
       </mesh>
       {/* Railing */}
-      <mesh position={[0, 1.56, 0]}>
-        <cylinderGeometry args={[0.26, 0.26, 0.06, 12, 1, true]} />
+      <mesh position={[0, 3.82, 0]}>
+        <cylinderGeometry args={[0.46, 0.46, 0.12, 12, 1, true]} />
         <meshStandardMaterial color="#333" metalness={0.6} roughness={0.3} />
       </mesh>
       {/* Lantern room */}
-      <mesh position={[0, 1.7, 0]} castShadow>
-        <cylinderGeometry args={[0.14, 0.18, 0.3, 8]} />
+      <mesh position={[0, 4.15, 0]} castShadow>
+        <cylinderGeometry args={[0.25, 0.32, 0.6, 8]} />
         <meshStandardMaterial color="#F5F0E6" roughness={0.4} transparent opacity={0.9} />
       </mesh>
       {/* Light beacon */}
-      <mesh ref={lightRef} position={[0, 1.7, 0]}>
-        <boxGeometry args={[0.06, 0.12, 0.06]} />
-        <meshStandardMaterial color="#FFDD44" emissive="#FFDD44" emissiveIntensity={2} />
+      <mesh ref={lightRef} position={[0, 4.15, 0]}>
+        <boxGeometry args={[0.1, 0.25, 0.1]} />
+        <meshStandardMaterial color="#FFDD44" emissive="#FFDD44" emissiveIntensity={3} />
       </mesh>
       {/* Roof */}
-      <mesh position={[0, 1.95, 0]} castShadow>
-        <coneGeometry args={[0.16, 0.2, 8]} />
+      <mesh position={[0, 4.65, 0]} castShadow>
+        <coneGeometry args={[0.28, 0.4, 8]} />
         <meshStandardMaterial color="#E8735A" roughness={0.5} />
       </mesh>
       {/* Point light for glow effect */}
-      <pointLight position={[0, 1.7, 0]} color="#FFDD44" intensity={0.5} distance={5} />
+      <pointLight position={[0, 4.15, 0]} color="#FFDD44" intensity={1.5} distance={15} />
     </group>
   );
 }
@@ -352,7 +357,7 @@ function IslandBase({
 
 /* ─── Main Island ─── */
 export function Island() {
-  const islandPosition: [number, number, number] = [12, -0.5, -18];
+  const islandPosition: [number, number, number] = [10, -0.5, -15];
 
   const grassTufts = useMemo(
     () => Array.from({ length: 15 }).map((_, i) => {
@@ -365,43 +370,43 @@ export function Island() {
 
   return (
     <group position={islandPosition}>
-      <IslandBase scale={[7, 1.8, 6]} />
+      <IslandBase scale={[9, 2.2, 8]} />
 
       {/* GLB Palm trees using different variants */}
-      <PalmTreeModel position={[0, 1.6, 0]} scale={0.018} rotation={0} treeIndex={0} />
-      <PalmTreeModel position={[-2.5, 1.45, 1.2]} scale={0.014} rotation={1.2} treeIndex={1} />
-      <PalmTreeModel position={[2.8, 1.4, -1.0]} scale={0.016} rotation={2.5} treeIndex={2} />
-      <PalmTreeModel position={[-1.0, 1.5, -1.8]} scale={0.012} rotation={4.0} treeIndex={3} />
-      <PalmTreeModel position={[1.5, 1.5, 2.0]} scale={0.013} rotation={5.5} treeIndex={4} />
+      <PalmTreeModel position={[0, 2.0, 0]} scale={0.06} rotation={0} treeIndex={0} />
+      <PalmTreeModel position={[-3.0, 1.8, 1.5]} scale={0.05} rotation={1.2} treeIndex={1} />
+      <PalmTreeModel position={[3.5, 1.8, -1.2]} scale={0.055} rotation={2.5} treeIndex={2} />
+      <PalmTreeModel position={[-1.2, 1.9, -2.2]} scale={0.045} rotation={4.0} treeIndex={3} />
+      <PalmTreeModel position={[1.8, 1.9, 2.5]} scale={0.048} rotation={5.5} treeIndex={4} />
 
       {/* Bench press */}
-      <BenchPress position={[-1.2, 1.55, -0.5]} />
+      <BenchPress position={[-1.2, 1.85, -0.5]} />
 
       {/* Matcha next to benchpress */}
-      <MatchaCup position={[-0.5, 1.65, -0.8]} />
+      <MatchaCup position={[-0.5, 1.95, -0.8]} />
 
       {/* Basketball near bench */}
-      <Basketball position={[1.0, 1.7, -1.2]} />
+      <Basketball position={[1.0, 2.0, -1.2]} />
 
       {/* Football */}
-      <Football position={[2.0, 1.65, 0.5]} />
+      <Football position={[2.0, 1.95, 0.5]} />
 
       {/* Rocks */}
-      <Rock position={[4.5, 0.3, 2.2]} scale={1.1} />
-      <Rock position={[-4.8, 0.25, -1.2]} scale={1.5} />
-      <Rock position={[3.5, 0.2, -2.8]} scale={0.8} />
+      <Rock position={[5.5, 0.3, 2.8]} scale={1.5} />
+      <Rock position={[-6.0, 0.25, -1.5]} scale={2.0} />
+      <Rock position={[4.5, 0.2, -3.5]} scale={1.2} />
 
       {/* Grass */}
       {grassTufts.map((t, i) => (
         <mesh key={i} position={[t.x, t.y, t.z]} rotation={[0, t.rot, 0]}>
-          <coneGeometry args={[0.05, 0.4, 4]} />
+          <coneGeometry args={[0.07, 0.5, 4]} />
           <meshStandardMaterial color="#5A7E23" roughness={0.9} />
         </mesh>
       ))}
 
       {/* Beach towel */}
-      <mesh position={[-0.5, 1.5, 0.5]} rotation={[-0.1, 0.5, 0]}>
-        <boxGeometry args={[0.6, 0.01, 0.35]} />
+      <mesh position={[-0.5, 1.8, 0.5]} rotation={[-0.1, 0.5, 0]}>
+        <boxGeometry args={[0.8, 0.01, 0.45]} />
         <meshStandardMaterial color="#FF6B8A" roughness={0.9} />
       </mesh>
     </group>
@@ -410,41 +415,43 @@ export function Island() {
 
 /* ─── Small Island (with lighthouse) ─── */
 export function SmallIsland() {
-  const position: [number, number, number] = [-15, -0.5, -25];
+  const position: [number, number, number] = [-10, -0.5, -18];
 
   return (
     <group position={position}>
-      <IslandBase scale={[4, 1.2, 3.5]} />
+      <IslandBase scale={[6, 1.6, 5]} />
 
       {/* Palm tree */}
-      <PalmTreeModel position={[-1.2, 1.0, 0.5]} scale={0.012} rotation={2.0} treeIndex={2} />
+      <PalmTreeModel position={[-2.0, 1.4, 1.0]} scale={0.045} rotation={2.0} treeIndex={2} />
+      <PalmTreeModel position={[2.5, 1.3, 1.5]} scale={0.035} rotation={0.8} treeIndex={4} />
 
-      {/* Lighthouse */}
-      <Lighthouse position={[0.5, 1.0, -0.3]} />
+      {/* Lighthouse - big and prominent */}
+      <Lighthouse position={[0.5, 1.3, -0.5]} scale={1.8} />
 
       {/* Rocks */}
-      <Rock position={[2.5, 0.2, 1.0]} scale={0.7} />
-      <Rock position={[-2.2, 0.15, -1.0]} scale={0.9} />
+      <Rock position={[3.5, 0.2, 1.5]} scale={1.2} />
+      <Rock position={[-3.5, 0.15, -1.5]} scale={1.5} />
     </group>
   );
 }
 
 /* ─── Tiny Island (with beach ball) ─── */
 export function TinyIsland() {
-  const position: [number, number, number] = [25, -0.5, -12];
+  const position: [number, number, number] = [20, -0.5, -10];
 
   return (
     <group position={position}>
-      <IslandBase scale={[2.5, 0.9, 2]} sandColor="#D9BD7A" />
+      <IslandBase scale={[4, 1.2, 3.5]} sandColor="#D9BD7A" />
 
       {/* Palm tree */}
-      <PalmTreeModel position={[0, 0.8, 0]} scale={0.010} rotation={1.0} treeIndex={4} />
+      <PalmTreeModel position={[0, 1.0, 0]} scale={0.04} rotation={1.0} treeIndex={4} />
+      <PalmTreeModel position={[-1.5, 0.9, -0.5]} scale={0.03} rotation={3.2} treeIndex={1} />
 
       {/* Beach ball */}
-      <BeachBall position={[-0.8, 0.9, 0.4]} />
+      <BeachBall position={[-1.2, 1.1, 0.8]} />
 
       {/* Rock */}
-      <Rock position={[1.2, 0.1, -0.5]} scale={0.6} />
+      <Rock position={[2.0, 0.1, -0.8]} scale={1.0} />
     </group>
   );
 }
