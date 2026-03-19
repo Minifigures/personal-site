@@ -21,7 +21,7 @@ import { Seagulls } from "./seagulls";
 export function Scene() {
   return (
     <Canvas
-      className="!fixed !inset-0 !h-full !w-full"
+      className="!fixed !inset-0 !h-screen !w-screen"
       camera={{ position: [0, 3, 10], fov: 55, near: 0.1, far: 1000 }}
       gl={{
         antialias: true,

@@ -12,7 +12,7 @@ import { UiToggle } from "@/components/ui/ui-toggle";
 
 export default function Home() {
   return (
-    <main className="relative overflow-x-hidden">
+    <main className="relative">
       <LoadingScreen />
       <CustomCursor />
       <Scene />

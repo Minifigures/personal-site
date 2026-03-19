@@ -19,12 +19,21 @@
 
 html {
   scroll-behavior: smooth;
+  scrollbar-gutter: stable;
 }
 
 body {
   background-color: var(--color-navy);
   color: var(--color-sand);
   overflow-x: hidden;
+}
+
+/* Make scrollbar overlay content so it doesn't steal page width */
+@supports (overflow: overlay) {
+  html {
+    overflow-y: overlay;
+    scrollbar-gutter: auto;
+  }
 }
 
 /* Glass-morphism utility - high contrast for readability */
