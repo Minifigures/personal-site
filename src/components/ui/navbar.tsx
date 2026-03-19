@@ -27,7 +27,7 @@ export function NavBar() {
     <motion.nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "glass-thin rounded-none py-3"
+          ? "glass-thin py-3"
           : "bg-transparent py-5"
       }`}
       initial={{ y: -80, opacity: 0 }}
@@ -38,10 +38,10 @@ export function NavBar() {
         {/* Logo */}
         <a
           href="#hero"
-          className="interactive font-display text-xl font-bold tracking-tight text-sand"
+          className="interactive text-outlined font-display text-xl font-bold tracking-tight"
         >
           MA
-          <span className="text-coral">.</span>
+          <span className="text-coral" style={{ WebkitTextStroke: "none" }}>.</span>
         </a>
 
         {/* Desktop nav */}
@@ -50,8 +50,7 @@ export function NavBar() {
             <li key={item.href}>
               <a
                 href={item.href}
-                className="interactive font-mono text-xs uppercase tracking-widest text-navy/70 transition-colors hover:text-coral"
-                style={{ textShadow: "0 0 10px rgba(255,255,255,0.4)" }}
+                className="interactive text-outlined font-mono text-xs uppercase tracking-widest transition-colors hover:text-coral"
               >
                 {item.label}
               </a>
@@ -62,7 +61,7 @@ export function NavBar() {
               href="/resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="interactive rounded-full border border-coral/40 bg-coral/10 px-4 py-1.5 font-mono text-xs uppercase tracking-widest text-coral transition-all hover:bg-coral/20"
+              className="interactive glass-thin rounded-full px-4 py-1.5 font-mono text-xs uppercase tracking-widest text-coral transition-all hover:border-coral/40"
             >
               Resume
             </a>
@@ -76,15 +75,18 @@ export function NavBar() {
           aria-label="Toggle menu"
         >
           <motion.span
-            className="block h-[2px] w-6 bg-sand"
+            className="block h-[2px] w-6 bg-white"
+            style={{ filter: "drop-shadow(0 1px 2px rgba(0,0,0,0.8))" }}
             animate={mobileOpen ? { rotate: 45, y: 5.5 } : { rotate: 0, y: 0 }}
           />
           <motion.span
-            className="block h-[2px] w-6 bg-sand"
+            className="block h-[2px] w-6 bg-white"
+            style={{ filter: "drop-shadow(0 1px 2px rgba(0,0,0,0.8))" }}
             animate={mobileOpen ? { opacity: 0 } : { opacity: 1 }}
           />
           <motion.span
-            className="block h-[2px] w-6 bg-sand"
+            className="block h-[2px] w-6 bg-white"
+            style={{ filter: "drop-shadow(0 1px 2px rgba(0,0,0,0.8))" }}
             animate={mobileOpen ? { rotate: -45, y: -5.5 } : { rotate: 0, y: 0 }}
           />
         </button>
@@ -94,7 +96,7 @@ export function NavBar() {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            className="glass absolute top-full left-0 right-0 border-b border-sand/5 md:hidden"
+            className="glass absolute top-full left-0 right-0 md:hidden"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
@@ -105,7 +107,7 @@ export function NavBar() {
                 <li key={item.href}>
                   <a
                     href={item.href}
-                    className="interactive font-mono text-sm uppercase tracking-widest text-sand/60 transition-colors hover:text-coral"
+                    className="interactive text-outlined font-mono text-sm uppercase tracking-widest transition-colors hover:text-coral"
                     onClick={() => setMobileOpen(false)}
                   >
                     {item.label}

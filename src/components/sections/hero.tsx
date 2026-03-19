@@ -10,8 +10,7 @@ export function Hero() {
       className="flex h-screen flex-col items-center justify-center px-4 text-center"
     >
       <motion.div
-        className="font-mono text-xs uppercase tracking-[0.3em]"
-        style={{ color: "#1A1A2E", textShadow: "0 0 20px rgba(255,255,255,0.5)" }}
+        className="text-outlined font-mono text-xs uppercase tracking-[0.3em]"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 1.2 }}
@@ -20,11 +19,7 @@ export function Hero() {
       </motion.div>
 
       <motion.h1
-        className="mt-4 font-display text-5xl font-bold tracking-tight sm:text-7xl lg:text-8xl"
-        style={{
-          color: "#1A1A2E",
-          textShadow: "0 2px 30px rgba(255,255,255,0.6), 0 0 60px rgba(255,255,255,0.3)",
-        }}
+        className="text-outlined-heavy mt-4 font-display text-5xl font-bold tracking-tight sm:text-7xl lg:text-8xl"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.2, delay: 1.4, ease: "easeOut" }}
@@ -33,11 +28,12 @@ export function Hero() {
         <br />
         <span
           style={{
-            background: "linear-gradient(135deg, #B8441A 0%, #D4651E 50%, #E8735A 100%)",
+            background: "linear-gradient(135deg, #E8735A 0%, #FF6B35 50%, #F4A942 100%)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
+            WebkitTextStroke: "0",
             backgroundClip: "text",
-            filter: "drop-shadow(0 2px 10px rgba(232,115,90,0.4))",
+            filter: "drop-shadow(0 2px 10px rgba(232,115,90,0.5))",
           }}
         >
           Ayuste
@@ -45,11 +41,7 @@ export function Hero() {
       </motion.h1>
 
       <motion.p
-        className="mt-6 max-w-lg text-base font-medium sm:text-lg"
-        style={{
-          color: "#2A2A3E",
-          textShadow: "0 1px 15px rgba(255,255,255,0.5)",
-        }}
+        className="text-outlined mt-6 max-w-lg text-base font-medium sm:text-lg"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.2, delay: 1.8, ease: "easeOut" }}
@@ -66,13 +58,13 @@ export function Hero() {
       >
         <a
           href="#projects"
-          className="interactive rounded-full border-2 border-coral bg-coral/90 px-6 py-2.5 font-mono text-xs font-bold uppercase tracking-widest text-white shadow-lg shadow-coral/30 transition-all hover:bg-coral hover:shadow-xl"
+          className="interactive glass-thin rounded-full px-6 py-2.5 font-mono text-xs font-bold uppercase tracking-widest text-coral shadow-lg shadow-coral/20 transition-all hover:border-coral/40"
         >
           View Work
         </a>
         <a
           href="#contact"
-          className="interactive rounded-full border-2 border-navy/60 bg-navy/70 px-6 py-2.5 font-mono text-xs font-bold uppercase tracking-widest text-sand shadow-lg backdrop-blur-sm transition-all hover:bg-navy/90"
+          className="interactive glass-thin rounded-full px-6 py-2.5 font-mono text-xs font-bold uppercase tracking-widest text-white shadow-lg transition-all hover:border-white/30"
         >
           Contact
         </a>
