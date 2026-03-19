@@ -8,6 +8,7 @@ import { Footer } from "@/components/layout/footer";
 import { LoadingScreen } from "@/components/ui/loading-screen";
 import { CustomCursor } from "@/components/ui/custom-cursor";
 import { NavBar } from "@/components/ui/navbar";
+import { UiToggle } from "@/components/ui/ui-toggle";
 
 export default function Home() {
   return (
@@ -15,7 +16,7 @@ export default function Home() {
       <LoadingScreen />
       <CustomCursor />
       <Scene />
-      <div className="relative z-10">
+      <UiToggle>
         <NavBar />
         <Hero />
         <About />
@@ -23,7 +24,7 @@ export default function Home() {
         <ProjectsSection />
         <Contact />
         <Footer />
-      </div>
+      </UiToggle>
     </main>
   );
 }
