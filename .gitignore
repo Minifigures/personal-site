@@ -81,3 +81,6 @@ CLAUDE.md
 *.plan.md
 *.audit.md
 *.strategy.md
+
+# Claude Code scratch files
+.commit-msg*.txt

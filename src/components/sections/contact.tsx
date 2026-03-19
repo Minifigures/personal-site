@@ -172,9 +172,6 @@ export function Contact() {
                 />
               </div>
 
-              {/* Hidden field: recipient email for the template */}
-              <input type="hidden" name="to_email" value="minifiguresgt@gmail.com" />
-
               <button
                 type="submit"
                 disabled={formState === "sending" || formState === "rate_limited"}
