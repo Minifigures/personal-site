@@ -38,12 +38,21 @@ export const metadata: Metadata = {
     siteName: "Marco Ayuste",
     type: "website",
     locale: "en_US",
+    images: [
+      {
+        url: "/projects/personal-site.png",
+        width: 1440,
+        height: 900,
+        alt: "Marco Anthony Ayuste portfolio preview",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Marco Anthony Ayuste | Portfolio",
     description:
       "Full-stack developer, AI/ML engineer, and hackathon champion.",
+    images: ["/projects/personal-site.png"],
   },
   metadataBase: new URL("https://marcoayuste.com"),
   robots: {
