@@ -4,15 +4,15 @@ export const projects: Project[] = [
   {
     id: "locatr",
     title: "LOCATR",
-    role: "Full-stack / AI engineer, top contributor (team of 4)",
+    role: "Full-stack / AI engineer, top GitHub contributor (team of 4)",
     description:
-      "Agentic venue-discovery platform built in 36 hours at DeerHacks V. Five specialised LangGraph agents (Commander, Scout, Vibe Matcher, Cost Analyst, Critic) collaborate over a Snowflake venue corpus to plan nights out end-to-end.",
+      "Agentic spatial intelligence platform built in 36 hours at DeerHacks V. Six LangGraph agents (Commander, Scout, Vibe Matcher, Cost Analyst, Critic, Synthesiser) turn natural-language requests into a live Mapbox shortlist, streaming agent state to the client over WebSockets.",
     outcomes:
-      "Won Best Use of Auth0 at DeerHacks V 2026. Shipped 40,000+ lines across Python, Next.js, and infra; demo ran a full agent loop live on stage.",
-    techStack: ["LangGraph", "FastAPI", "Next.js", "Snowflake", "Gemini 2.5", "Auth0", "Docker"],
-    award: "DeerHacks V - Best Use of Auth0",
+      "DeerHacks V 2026 Winner (1 of 9 prizes across 164 participants). Asyncio fan-out across the Analyst agents dropped pipeline latency from ~9s to under 3s (~70% reduction); 45,000+ lines shipped; Auth0 CIBA gates real Gmail bookings behind a secure mobile push.",
+    techStack: ["LangGraph", "FastAPI", "Next.js 14", "Snowflake", "Gemini 2.5", "Mapbox", "Auth0"],
+    award: "DeerHacks V 2026 Winner",
     featured: true,
-    image: "/projects/locatr.jpg",
+    image: "/projects/locatr.png",
     github: "https://github.com/Lushenwar/LOCATR",
     devpost: "https://devpost.com/software/pathfinder-6h8y1v",
   },
@@ -23,7 +23,7 @@ export const projects: Project[] = [
     description:
       "Continuous remote-care platform for elderly patients. Three linked surfaces: a 'garden' patient check-in with voice AI, a family dashboard, and a clinical dashboard with 0-100 risk stratification. A LangGraph pipeline turns daily signals into early-warning alerts.",
     outcomes:
-      "Health & Humanity Track Finalist (one of two teams) at Hack the Globe 2026. 117 commits in 36 hours; judges flagged the triple-interface design as the strongest clinical workflow of the track.",
+      "Health & Humanity Track Finalist (1 of 2 teams) at Hack the Globe 2026, Global Spark's international social impact hackathon run with BCG across Toronto, London, and virtual. 117 commits in 36 hours; judges flagged the triple-interface design as the strongest clinical workflow of the track.",
     techStack: ["LangGraph", "FastAPI", "Groq", "Gemini", "Supabase", "Three.js", "Next.js 15", "Docker"],
     award: "Hack the Globe 2026 - Health & Humanity Finalist",
     featured: true,
@@ -46,6 +46,20 @@ export const projects: Project[] = [
     image: "/projects/vigil.png",
     github: "https://github.com/Minifigures/genaihack",
     devpost: "https://devpost.com/software/vigil-mj3y0x",
+  },
+  {
+    id: "paideia-mundi",
+    title: "Paideia Mundi Neural Research Platform",
+    role: "Engineering lead, AI/ML Systems Engineer Intern",
+    description:
+      "Multimodal AI research platform I am leading for the NeuroSystems Intelligence and Research Unit at Paideia Mundi NeuroSystems Institute. Ships the ML data pipeline, model training loop, and privacy-compliant full-stack architecture supporting neurodevelopmental research.",
+    outcomes:
+      "Deploying May 2026. Leading a small engineering team through architecture, data preprocessing, feature extraction, and secure infrastructure sign-off ahead of the public launch.",
+    techStack: ["Python", "PyTorch", "FastAPI", "Next.js", "PostgreSQL", "Docker"],
+    award: "Deploying May 2026",
+    featured: true,
+    image: "/projects/paideia-mundi.svg",
+    liveUrl: "https://www.paideiamundi.org",
   },
   {
     id: "utm-billiards-site",

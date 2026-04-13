@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 810" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <radialGradient id="bg" cx="30%" cy="40%" r="85%">
+      <stop offset="0%" stop-color="#2A9D8F" stop-opacity="0.35"/>
+      <stop offset="50%" stop-color="#1A1A2E" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#0F0F1C" stop-opacity="1"/>
+    </radialGradient>
+    <radialGradient id="glow" cx="75%" cy="65%" r="45%">
+      <stop offset="0%" stop-color="#E8735A" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#E8735A" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="blur"><feGaussianBlur stdDeviation="1.2"/></filter>
+  </defs>
+  <rect width="1440" height="810" fill="url(#bg)"/>
+  <rect width="1440" height="810" fill="url(#glow)"/>
+  <g stroke="#FDF6EC" stroke-width="1" fill="none" opacity="0.18" filter="url(#blur)">
+    <path d="M 120 420 Q 360 200, 620 380 T 1120 360"/>
+    <path d="M 80 520 Q 340 700, 660 540 T 1200 560"/>
+    <path d="M 200 640 Q 480 520, 740 680 T 1260 620"/>
+    <path d="M 260 280 Q 520 460, 820 300 T 1320 260"/>
+  </g>
+  <g fill="#2A9D8F" opacity="0.75">
+    <circle cx="220" cy="340" r="4"/><circle cx="480" cy="460" r="3"/><circle cx="720" cy="380" r="5"/>
+    <circle cx="940" cy="520" r="3"/><circle cx="1160" cy="320" r="4"/><circle cx="1080" cy="580" r="3"/>
+    <circle cx="380" cy="620" r="4"/><circle cx="600" cy="240" r="3"/><circle cx="860" cy="680" r="4"/>
+  </g>
+  <g fill="#E8735A" opacity="0.9">
+    <circle cx="540" cy="380" r="6"/><circle cx="900" cy="440" r="5"/>
+  </g>
+  <g font-family="ui-monospace, Menlo, monospace" fill="#FDF6EC">
+    <text x="72" y="698" font-size="13" opacity="0.55" letter-spacing="3">PAIDEIA MUNDI / NEUROSYSTEMS</text>
+    <text x="72" y="740" font-size="42" font-weight="700" letter-spacing="-1">Neural Research Platform</text>
+  </g>
+</svg>

@@ -37,8 +37,9 @@ export function About() {
               I am the type of builder who takes an idea from rough concept to
               live and working, then keeps iterating until it feels clean, fast,
               and polished. From winning{" "}
-              <span className="text-coral">DeerHacks V</span> to competing at
-              GenAI Genesis and Hack the Globe, I love pushing boundaries at
+              <span className="text-coral">DeerHacks V 2026</span> to competing
+              at GenAI Genesis and Hack the Globe (Global Spark x BCG, Toronto /
+              London / virtual), I love pushing boundaries at
               hackathons and turning ambitious ideas into working products under
               pressure.
             </p>
@@ -100,6 +101,8 @@ export function About() {
               {[
                 { label: "Hackathon Wins", value: "2" },
                 { label: "Hackathons", value: "3" },
+                { label: "Internships", value: "2" },
+                { label: "Experiences", value: "10" },
                 { label: "Languages", value: "3" },
                 { label: "Coffees", value: "Infinite" },
               ].map((stat, i) => (
