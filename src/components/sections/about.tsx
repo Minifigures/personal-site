@@ -101,7 +101,7 @@ export function About() {
               {[
                 { label: "Hackathon Wins", value: "2" },
                 { label: "Hackathons", value: "3" },
-                { label: "Internships", value: "3" },
+                { label: "Internships/Coops", value: "4" },
                 { label: "Experiences", value: "10" },
                 { label: "Languages", value: "3" },
                 { label: "Coffees", value: "Infinite" },
