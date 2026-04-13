@@ -1,7 +1,9 @@
 export interface Project {
   id: string;
   title: string;
+  role?: string;
   description: string;
+  outcomes?: string;
   techStack: string[];
   github?: string;
   liveUrl?: string;

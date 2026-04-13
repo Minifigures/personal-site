@@ -65,10 +65,10 @@ credentials.json
 service-account.json
 secrets/
 
-# Claude Code local config (may contain project-specific secrets)
-# CLAUDE.md is fine (it's project instructions, no secrets)
-# But .claude/ local session data should not be committed
+# Claude Code local config (never commit)
 .claude/
+CLAUDE.md
+**/CLAUDE.md
 
 .vercel
 
@@ -76,7 +76,6 @@ secrets/
 MASTER_PROMPT.md
 MASTER_PROMPT_v2.md
 MASTER_PROMPT*.md
-CLAUDE.md
 *.prompt.md
 *.plan.md
 *.audit.md
@@ -84,3 +83,9 @@ CLAUDE.md
 
 # Claude Code scratch files
 .commit-msg*.txt
+
+# Job application / personal docs (never commit)
+FuturePath*.pdf
+*Application*.pdf
+*Resume*.pdf
+*CV*.pdf
