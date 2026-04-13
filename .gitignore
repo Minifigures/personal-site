@@ -1,8 +1,8 @@
 # ============================================================
 # Dependencies
 # ============================================================
-/node_modules
-/.pnp
+node_modules/
+.pnp
 .pnp.*
 .yarn/install-state.gz
 
@@ -20,10 +20,10 @@ env/
 # ============================================================
 # Build output / caches
 # ============================================================
-/.next/
-/out/
-/build
-/dist
+.next/
+out/
+build/
+dist/
 .turbo/
 *.tsbuildinfo
 next-env.d.ts
@@ -40,7 +40,7 @@ htmlcov/
 # ============================================================
 # Testing
 # ============================================================
-/coverage
+coverage/
 test-results/
 playwright-report/
 playwright/.cache/

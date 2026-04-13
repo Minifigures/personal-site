@@ -1,5 +1,0 @@
-backend/
-docs/
-*.pdf
-*.png
-!public/**/*.png

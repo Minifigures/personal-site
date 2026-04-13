@@ -16,71 +16,86 @@ A single-page, scroll-driven portfolio that renders a live 3D scene beneath HTML
                      │
           ┌──────────▼─────────┐
           │   Next.js 15 app   │   marcoayuste.com
-          │   (App Router)     │
+          │   (App Router)     │   (deployed from ./frontend)
           └─┬──────────┬──────┘
             │          │
      EmailJS│          │POST /chat (planned)
     (client │          │
      side)  ▼          ▼
     inbox        ┌──────────────────┐
-                 │  FastAPI service │  backend/, not yet wired
+                 │  FastAPI service │  ./backend (scaffolded, not yet wired)
                  │  + Claude agent  │
                  └──────────────────┘
+```
+
+## Repo layout
+
+```
+personal-site/
+├── frontend/               # Next.js 15 app, deploys to Vercel
+├── backend/                # FastAPI service, scaffolded
+├── docs/                   # This doc + ENGINEERING.md
+└── README.md
 ```
 
 ## Frontend layout
 
 ```
-src/
-├── app/
-│   ├── layout.tsx        # Fonts, metadata, viewport, global styles
-│   ├── page.tsx          # Composes Scene + every HTML section
-│   ├── globals.css       # Theme tokens, cursor, scrollbar, keyframes
-│   └── sitemap.ts        # /sitemap.xml
-├── components/
-│   ├── canvas/           # Three.js scene
-│   │   ├── scene.tsx         # R3F Canvas, adaptive perf wrappers, tone mapping
-│   │   ├── camera-rig.tsx    # Scroll-driven camera, 6 keyframes, lerp + easing
-│   │   ├── island.tsx        # Main island, boat, small islands
-│   │   ├── ocean.tsx         # Procedural waves
-│   │   ├── sunset-sky.tsx    # Gradient sky and sun
-│   │   ├── clouds.tsx        # Animated clouds
-│   │   ├── particles.tsx     # Floating particles
-│   │   ├── seagulls.tsx      # Flying seagulls
-│   │   └── post-processing.tsx
-│   ├── sections/         # HTML sections rendered over the canvas
-│   │   ├── hero.tsx
-│   │   ├── about.tsx
-│   │   ├── experience-section.tsx
-│   │   ├── projects-section.tsx
-│   │   └── contact.tsx
-│   ├── ui/               # Reusable UI primitives
-│   │   ├── navbar.tsx
-│   │   ├── loading-screen.tsx
-│   │   ├── custom-cursor.tsx
-│   │   ├── glass-card.tsx
-│   │   ├── scroll-indicator.tsx
-│   │   ├── section-header.tsx
-│   │   └── ui-toggle.tsx
-│   └── layout/
-│       └── footer.tsx
-├── data/                 # Typed content (single source of truth)
-│   ├── projects.ts
-│   ├── experience.ts
-│   └── skills.ts
-├── hooks/
-│   ├── use-scroll-progress.ts
-│   └── use-media-query.ts
-├── stores/
-│   └── use-app-store.ts  # Zustand: currentSection, scrollProgress, isLoaded, reducedMotion
-├── types/
-│   └── index.ts          # Project, Experience, Skill
-└── lib/                  # Small utilities
+frontend/
+├── src/
+│   ├── app/
+│   │   ├── layout.tsx        # Fonts, metadata, viewport, global styles
+│   │   ├── page.tsx          # Composes Scene + every HTML section
+│   │   ├── globals.css       # Theme tokens, cursor, scrollbar, keyframes
+│   │   └── sitemap.ts        # /sitemap.xml
+│   ├── components/
+│   │   ├── canvas/           # Three.js scene
+│   │   │   ├── scene.tsx         # R3F Canvas, adaptive perf wrappers, tone mapping
+│   │   │   ├── camera-rig.tsx    # Scroll-driven camera, 6 keyframes, lerp + easing
+│   │   │   ├── island.tsx        # Main island, boat, small islands
+│   │   │   ├── ocean.tsx         # Procedural waves
+│   │   │   ├── sunset-sky.tsx    # Gradient sky and sun
+│   │   │   ├── clouds.tsx        # Animated clouds
+│   │   │   ├── particles.tsx     # Floating particles
+│   │   │   ├── seagulls.tsx      # Flying seagulls
+│   │   │   └── post-processing.tsx
+│   │   ├── sections/         # HTML sections rendered over the canvas
+│   │   │   ├── hero.tsx
+│   │   │   ├── about.tsx
+│   │   │   ├── experience-section.tsx
+│   │   │   ├── projects-section.tsx
+│   │   │   └── contact.tsx
+│   │   ├── ui/               # Reusable UI primitives
+│   │   │   ├── navbar.tsx
+│   │   │   ├── loading-screen.tsx
+│   │   │   ├── custom-cursor.tsx
+│   │   │   ├── glass-card.tsx
+│   │   │   ├── scroll-indicator.tsx
+│   │   │   ├── section-header.tsx
+│   │   │   └── ui-toggle.tsx
+│   │   └── layout/
+│   │       └── footer.tsx
+│   ├── data/                 # Typed content (single source of truth)
+│   │   ├── projects.ts
+│   │   ├── experience.ts
+│   │   └── skills.ts
+│   ├── hooks/
+│   │   ├── use-scroll-progress.ts
+│   │   └── use-media-query.ts
+│   ├── stores/
+│   │   └── use-app-store.ts  # Zustand: currentSection, scrollProgress, isLoaded, reducedMotion
+│   ├── types/
+│   │   └── index.ts          # Project, Experience, Skill
+│   └── lib/                  # Small utilities
+├── public/                   # 3D models, textures, project images
+├── next.config.ts            # Security headers, Turbopack transpile list
+├── tsconfig.json             # strict: true, @/* path alias
+└── package.json
 ```
 
 ## Scroll orchestration
 
-Implemented in `src/components/canvas/camera-rig.tsx`.
+Implemented in `frontend/src/components/canvas/camera-rig.tsx`.
 
 1. A passive `scroll` listener reads `window.scrollY` and computes a normalised progress value in `[0, 1]` as `scrollTop / (scrollHeight - innerHeight)`.
 2. Six keyframes describe camera `position` and `lookAt` at each scroll milestone (hero, about, experience, projects, contact, footer).
@@ -92,12 +107,12 @@ The camera rig never touches the DOM directly. It reads scroll position, writes 
 
 ## HTML over Canvas
 
-`src/app/page.tsx` mounts the `Scene` first (fixed, full-viewport, `z-index: 0`) and the HTML sections above it (`z-index: 10+`). Sections use `pointer-events: auto` locally so links and forms work, while the rest of the page stays transparent to clicks that should land on the canvas (cursor effects, future 3D interactions).
+`frontend/src/app/page.tsx` mounts the `Scene` first (fixed, full-viewport, `z-index: 0`) and the HTML sections above it (`z-index: 10+`). Sections use `pointer-events: auto` locally so links and forms work, while the rest of the page stays transparent to clicks that should land on the canvas (cursor effects, future 3D interactions).
 
 ## State management
 
 ```ts
-// src/stores/use-app-store.ts (shape)
+// frontend/src/stores/use-app-store.ts (shape)
 interface AppState {
   currentSection: number;
   scrollProgress: number;   // 0..1
@@ -111,7 +126,7 @@ Zustand was chosen over Redux or Context because (a) the store has four values, 
 
 ## Performance
 
-Wired up in `src/components/canvas/scene.tsx`:
+Wired up in `frontend/src/components/canvas/scene.tsx`:
 
 - `<PerformanceMonitor>` wraps the scene and exposes fps health.
 - `<AdaptiveDpr pixelated />` drops device pixel ratio when fps dips.
@@ -123,15 +138,15 @@ Targets: 60fps on a mid-range laptop, 30fps on mobile, Lighthouse 90+ across all
 
 ## Data layer
 
-Projects, experience, and skills live as typed arrays in `src/data/`. `src/types/index.ts` exports the `Project`, `Experience`, and `Skill` interfaces. The sections import the typed arrays and render them. This keeps content edits a one-file change and makes the backend chatbot's grounding trivial (same data, same shape).
+Projects, experience, and skills live as typed arrays in `frontend/src/data/`. `frontend/src/types/index.ts` exports the `Project`, `Experience`, and `Skill` interfaces. The sections import the typed arrays and render them. This keeps content edits a one-file change and makes the backend chatbot's grounding trivial (same data, same shape).
 
 ## Deploy
 
+- Vercel builds from the `frontend/` subdirectory. Root Directory is set to `frontend` in the Vercel project settings, so Vercel reads `frontend/package.json` and `frontend/next.config.ts` directly.
 - GitHub push to `main` triggers a Vercel production build.
 - Domain: `marcoayuste.com` on project `personal-site`.
-- Security headers set in `next.config.ts` (X-Content-Type-Options, X-Frame-Options, Referrer-Policy, Permissions-Policy).
-- `.vercelignore` excludes `backend/` and `docs/` from the frontend build.
+- Security headers set in `frontend/next.config.ts` (X-Content-Type-Options, X-Frame-Options, Referrer-Policy, Permissions-Policy).
 
 ## Planned: backend
 
-See [`../backend/README.md`](../backend/README.md). FastAPI service, Claude agent grounded on `src/data/`, deployed to Fly.io or Railway, integrated behind a chat widget in the frontend.
+See [`../backend/README.md`](../backend/README.md). FastAPI service, Claude agent grounded on `frontend/src/data/`, deployed to Fly.io or Railway, integrated behind a chat widget in the frontend.
