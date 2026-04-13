@@ -55,7 +55,7 @@ export const experiences: Experience[] = [
   {
     id: "stealth",
     company: "Stealth Startup",
-    role: "SEO Specialist",
+    role: "SEO Specialist Intern",
     startDate: "Sep 2025",
     endDate: "Feb 2026",
     workMode: "Remote",
