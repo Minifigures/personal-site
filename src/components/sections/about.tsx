@@ -44,7 +44,7 @@ export function About() {
               pressure.
             </p>
             <p className="mt-4 text-base leading-relaxed text-sand/70">
-              Currently an AI/ML Systems Engineer Intern at{" "}
+              Currently an AI/ML Engineer Intern at{" "}
               <span className="text-teal">
                 Paideia Mundi NeuroSystems Institute
               </span>

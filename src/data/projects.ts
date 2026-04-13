@@ -50,7 +50,7 @@ export const projects: Project[] = [
   {
     id: "paideia-mundi",
     title: "Paideia Mundi Neural Research Platform",
-    role: "Engineering lead, AI/ML Systems Engineer Intern",
+    role: "Engineering lead, AI/ML Engineer Intern",
     description:
       "Multimodal AI research platform I am leading for the NeuroSystems Intelligence and Research Unit at Paideia Mundi NeuroSystems Institute. Ships the ML data pipeline, model training loop, and privacy-compliant full-stack architecture supporting neurodevelopmental research.",
     outcomes:

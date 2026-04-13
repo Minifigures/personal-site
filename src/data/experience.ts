@@ -4,14 +4,15 @@ export const experiences: Experience[] = [
   {
     id: "paideia-mundi",
     company: "Paideia Mundi NeuroSystems Institute",
-    role: "AI/ML Systems Engineer Intern",
+    role: "AI/ML Engineer Intern",
     startDate: "Mar 2026",
     endDate: "Present",
     workMode: "Remote",
     bullets: [
-      "Architecting core components of a multimodal AI research prototype within the NeuroSystems Intelligence and Research Unit",
-      "Building ML data pipeline engineering, model training, data preprocessing and feature extraction",
-      "Designing full-stack system architecture with privacy-compliant infrastructure for neurodevelopmental research",
+      "Leading a 3-person engineering team building a multimodal AI research prototype for early-stage neurodevelopmental healthcare inside the NeuroSystems Intelligence and Research Unit",
+      "Engineering scikit-learn regression pipelines on open-source neuroimaging datasets, covering preprocessing, feature extraction, model training, and evaluation",
+      "Shipping a Streamlit + Plotly dashboard to surface predictions, feature importance, and metrics for clinician-oriented workflows",
+      "Architecting GitHub org, CI/CD, and Sphinx documentation so intellectual property stays traceable across an 8-week sprint",
     ],
   },
   {
@@ -30,7 +31,7 @@ export const experiences: Experience[] = [
   {
     id: "utm-billiards",
     company: "UTM Billiards Club",
-    role: "Lead Full-Stack Software Developer",
+    role: "Lead Founding Software Developer",
     startDate: "May 2025",
     endDate: "Present",
     workMode: "Remote",
@@ -45,7 +46,7 @@ export const experiences: Experience[] = [
     company: "University of Toronto Mississauga (CSE)",
     role: "Indigenous Programming Assistant & Peer Mentor",
     startDate: "Aug 2025",
-    endDate: "Present",
+    endDate: "Apr 2026",
     workMode: "Hybrid",
     bullets: [
       "Planning, budgeting, and delivering Indigenous programming including Access Days, transition events, and trips",
@@ -65,17 +66,6 @@ export const experiences: Experience[] = [
     ],
   },
   {
-    id: "google",
-    company: "Google",
-    role: "Job Shadowing",
-    startDate: "Nov 2025",
-    endDate: "Nov 2025",
-    workMode: "On-site",
-    bullets: [
-      "Gained industry exposure through on-site job shadowing at Google Toronto",
-    ],
-  },
-  {
     id: "hallite",
     company: "Hallite Seals",
     role: "Inventory Control Clerk",
@@ -85,6 +75,17 @@ export const experiences: Experience[] = [
     bullets: [
       "Worked in multiple seasonal, part-time, and full-time roles across multiple periods",
       "Managed inbound/outbound shipments, scanning, packaging, and logistics",
+    ],
+  },
+  {
+    id: "google",
+    company: "Google",
+    role: "Job Shadowing",
+    startDate: "Nov 2025",
+    endDate: "Nov 2025",
+    workMode: "On-site",
+    bullets: [
+      "Gained industry exposure through on-site job shadowing at Google Toronto",
     ],
   },
   {
