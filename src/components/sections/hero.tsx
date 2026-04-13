@@ -50,7 +50,7 @@ export function Hero() {
         transition={{ duration: 1.2, delay: 1.8, ease: "easeOut" }}
       >
         Student graduating 2027 at the University of Toronto.
-        AI/ML Software Engineer.
+        AI/ML Engineer.
       </motion.p>
 
       <motion.div
