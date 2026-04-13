@@ -1,78 +1,192 @@
-# dependencies
+# ============================================================
+# Dependencies
+# ============================================================
 /node_modules
 /.pnp
 .pnp.*
 .yarn/install-state.gz
 
-# testing
-/coverage
+# Python (backend/)
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+.Python
+*.egg-info/
+.eggs/
 
-# next.js
+# ============================================================
+# Build output / caches
+# ============================================================
 /.next/
 /out/
-
-# production
 /build
+/dist
+.turbo/
+*.tsbuildinfo
+next-env.d.ts
 
-# misc
-*.pem
+# Python caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+htmlcov/
+.coverage
+.coverage.*
 
-# debug
+# ============================================================
+# Testing
+# ============================================================
+/coverage
+test-results/
+playwright-report/
+playwright/.cache/
+cypress/videos/
+cypress/screenshots/
+
+# ============================================================
+# Logs
+# ============================================================
+*.log
+logs/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
+firebase-debug.log
+firebase-debug.*.log
 
-# env files (NEVER commit these)
+# ============================================================
+# SECRETS: never commit any of these
+# ============================================================
+
+# Environment files
 .env
-.env*.local
+.env.*
 .env.local
+.env.*.local
 .env.development.local
 .env.test.local
 .env.production.local
+!.env.example
 
-# vercel
-.vercel
+# Generic secrets
+.secrets
+secrets/
+*.secret
+*.secrets
 
-# typescript
-*.tsbuildinfo
-next-env.d.ts
+# API keys / credential files
+credentials.json
+service-account.json
+google-services.json
+auth.json
+.auth
 
-# IDE
-.vscode/
-.idea/
+# Package manager auth (can contain tokens)
+.npmrc
+.yarnrc
+.yarnrc.yml
+.pnpmrc
+
+# Netrc
+.netrc
+
+# ============================================================
+# Keys / certificates
+# ============================================================
+*.pem
+*.key
+*.cert
+*.crt
+*.csr
+*.p12
+*.pfx
+*.keystore
+*.jks
+
+# SSH private keys (public .pub files are safe)
+id_rsa
+id_rsa.*
+!id_rsa.pub
+id_dsa
+id_dsa.*
+!id_dsa.pub
+id_ecdsa
+id_ecdsa.*
+!id_ecdsa.pub
+id_ed25519
+id_ed25519.*
+!id_ed25519.pub
+*.ppk
+
+# ============================================================
+# Cloud credentials
+# ============================================================
+.aws/
+.gcloud/
+.azure/
+.terraform/
+*.tfstate
+*.tfstate.*
+
+# ============================================================
+# Databases / dumps
+# ============================================================
+*.sqlite
+*.sqlite3
+*.db
+*.dump
+*.sql.gz
+
+# ============================================================
+# Backup / swap files
+# ============================================================
+*.bak
+*.backup
+*.orig
 *.swp
 *.swo
 *~
 
+# ============================================================
+# IDE
+# ============================================================
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+.history/
+
+# ============================================================
 # OS
+# ============================================================
 .DS_Store
+.AppleDouble
+.LSOverride
 Thumbs.db
 ehthumbs.db
 Desktop.ini
+desktop.ini
 
-# === SECURITY: Never commit these ===
-# Prompt files / AI instructions that contain personal strategy
+# ============================================================
+# Deploy
+# ============================================================
+.vercel
+.netlify
+.firebase/
+
+# ============================================================
+# Personal / planning docs (do not remove these lines)
+# ============================================================
+
+# Prompt files / AI instructions with personal strategy
 **/ultimate-portfolio-prompt*
 **/prompt*.md
 **/PROMPT*.md
-
-# API keys, secrets, credentials
-*.key
-*.pem
-*.cert
-credentials.json
-service-account.json
-secrets/
-
-# Claude Code local config (never commit)
-.claude/
-CLAUDE.md
-**/CLAUDE.md
-
-.vercel
-
-# Private planning docs — DO NOT REMOVE THESE LINES
 MASTER_PROMPT.md
 MASTER_PROMPT_v2.md
 MASTER_PROMPT*.md
@@ -81,11 +195,14 @@ MASTER_PROMPT*.md
 *.audit.md
 *.strategy.md
 
-# Claude Code scratch files
-.commit-msg*.txt
-
-# Job application / personal docs (never commit)
+# Job application / personal docs
 FuturePath*.pdf
 *Application*.pdf
 *Resume*.pdf
 *CV*.pdf
+
+# Claude Code local config and scratch
+.claude/
+CLAUDE.md
+**/CLAUDE.md
+.commit-msg*.txt
