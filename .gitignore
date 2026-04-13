@@ -201,6 +201,9 @@ FuturePath*.pdf
 *Resume*.pdf
 *CV*.pdf
 
+# Local-only sensitive scratch folder (PDFs, personal screenshots, private notes)
+sensitive/
+
 # Claude Code local config and scratch
 .claude/
 CLAUDE.md
