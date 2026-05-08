@@ -4,15 +4,18 @@ export const experiences: Experience[] = [
   {
     id: "paideia-mundi",
     company: "Paideia Mundi NeuroSystems Institute",
-    role: "AI/ML Engineer Intern",
+    role: "AI/ML Engineer Intern, Team Lead",
     startDate: "Mar 2026",
-    endDate: "Present",
+    endDate: "May 2026",
     workMode: "Remote",
     bullets: [
-      "Leading a 3-person engineering team building a multimodal AI research prototype for early-stage neurodevelopmental healthcare inside the NeuroSystems Intelligence and Research Unit",
-      "Engineering scikit-learn regression pipelines on open-source neuroimaging datasets, covering preprocessing, feature extraction, model training, and evaluation",
-      "Shipping a Streamlit + Plotly dashboard to surface predictions, feature importance, and metrics for clinician-oriented workflows",
-      "Architecting GitHub org, CI/CD, and Sphinx documentation so intellectual property stays traceable across an 8-week sprint",
+      "Appointed Team Lead of a 3-person cross-university engineering team building a multimodal AI prototype for early-stage neurodevelopmental healthcare; owned scope, standups, supervisor comms, and end-to-end delivery across a 10-week sprint",
+      "Built the EEG preprocessing pipeline on Colab Pro (bandpass/notch filtering, RANSAC bad-channel detection, ICA with ICLabel artifact rejection, fixed-length epoching, autoreject epoch QC), passing contract validation with zero deadline slip",
+      "Engineered scikit-learn regression pipelines across 5 model families (Random Forest, Gradient Boosting, SVM, Gaussian Process, Stacking) with subject-grouped cross-validation, conformal prediction intervals, and label-permutation significance testing",
+      "Shipped an Auth0-gated Streamlit + Plotly dashboard surfacing predictions, feature importance, and metrics in a layout tested against a non-engineering executive reader",
+      "Architected the end-to-end system (raw signal to model artifact to dashboard) with clean process boundaries between pipeline, FastAPI inference service, and UI, plus seams for additional research data modalities",
+      "Built infrastructure: GitHub org, 3 green CI/CD workflows (lint, test, docs), 124-test pytest suite, Sphinx documentation site, MLflow experiment tracking, Next.js landing page, and a one-command pipeline runner",
+      "Authored a 24-page technical report, 9-page plain-language user guide, and 8-slide demo deck; co-presented the live demo and Q&A",
     ],
   },
   {
@@ -61,8 +64,9 @@ export const experiences: Experience[] = [
     endDate: "Feb 2026",
     workMode: "Remote",
     bullets: [
-      "Collaborated with supervisor, social media lead, and 3D designer to generate sales",
-      "Executed SEO duties individually and as part of a cross-functional team",
+      "6-month contract working both individually and on a cross-functional team to drive sales through SEO improvements",
+      "Collaborated weekly with the supervisor, social media marketing lead, and 3D designer on keyword strategy, on-page SEO, and conversion-focused copy",
+      "Owned SEO duties end-to-end (audits, on-page optimization, and reporting) while contributing to broader marketing decisions",
     ],
   },
   {
