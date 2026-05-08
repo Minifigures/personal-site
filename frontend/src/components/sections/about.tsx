@@ -3,14 +3,8 @@
 import { motion } from "framer-motion";
 import { GlassCard } from "@/components/ui/glass-card";
 import { SectionHeader } from "@/components/ui/section-header";
+import { SkillTag } from "@/components/ui/skill-tag";
 import { skills } from "@/data/skills";
-
-const SKILL_COLORS: Record<string, string> = {
-  language: "border-coral/40 text-coral",
-  framework: "border-teal/40 text-teal",
-  tool: "border-amber/40 text-amber",
-  platform: "border-sand/40 text-sand/70",
-};
 
 export function About() {
   return (
@@ -79,21 +73,9 @@ export function About() {
             <h3 className="mb-4 font-display text-lg font-semibold text-sand">
               Tech Stack
             </h3>
-            <div className="flex flex-wrap gap-2">
+            <div role="list" className="flex flex-wrap gap-2">
               {skills.map((skill, i) => (
-                <motion.span
-                  key={skill.name}
-                  className={`rounded-full border px-3 py-1 font-mono text-xs ${
-                    SKILL_COLORS[skill.category] ??
-                    "border-sand/20 text-sand/50"
-                  }`}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.3, delay: 0.02 * i }}
-                >
-                  {skill.name}
-                </motion.span>
+                <SkillTag key={skill.name} skill={skill} index={i} />
               ))}
             </div>
 
