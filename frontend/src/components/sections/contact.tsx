@@ -3,8 +3,7 @@
 import { motion } from "framer-motion";
 import { GlassCard } from "@/components/ui/glass-card";
 import { SectionHeader } from "@/components/ui/section-header";
-import { useState, useCallback, type FormEvent } from "react";
-import emailjs from "@emailjs/browser";
+import { useState, useCallback, useEffect, type FormEvent } from "react";
 
 const SOCIAL_LINKS = [
   {
@@ -29,71 +28,64 @@ const SOCIAL_LINKS = [
   },
 ];
 
-const RATE_LIMIT_KEY = "portfolio_email_count";
-const RATE_LIMIT_RESET_KEY = "portfolio_email_reset";
 const MAX_EMAILS = 5;
-const RESET_INTERVAL_MS = 24 * 60 * 60 * 1000; // 24 hours
 
-function checkRateLimit(): { allowed: boolean; remaining: number } {
-  if (typeof window === "undefined") return { allowed: true, remaining: MAX_EMAILS };
-
-  const now = Date.now();
-  const resetTime = Number(localStorage.getItem(RATE_LIMIT_RESET_KEY) ?? "0");
-
-  // Reset counter if 24 hours have passed
-  if (now > resetTime) {
-    localStorage.setItem(RATE_LIMIT_KEY, "0");
-    localStorage.setItem(RATE_LIMIT_RESET_KEY, String(now + RESET_INTERVAL_MS));
-  }
-
-  const count = Number(localStorage.getItem(RATE_LIMIT_KEY) ?? "0");
-  return {
-    allowed: count < MAX_EMAILS,
-    remaining: MAX_EMAILS - count,
-  };
-}
-
-function incrementRateLimit(): void {
-  if (typeof window === "undefined") return;
-  const count = Number(localStorage.getItem(RATE_LIMIT_KEY) ?? "0");
-  localStorage.setItem(RATE_LIMIT_KEY, String(count + 1));
-
-  // Set reset time if first email
-  if (!localStorage.getItem(RATE_LIMIT_RESET_KEY)) {
-    localStorage.setItem(
-      RATE_LIMIT_RESET_KEY,
-      String(Date.now() + RESET_INTERVAL_MS)
-    );
-  }
-}
+type FormStatus = "idle" | "sending" | "sent" | "error" | "rate_limited";
 
 export function Contact() {
-  const [formState, setFormState] = useState<
-    "idle" | "sending" | "sent" | "error" | "rate_limited"
-  >("idle");
+  const [formState, setFormState] = useState<FormStatus>("idle");
+  const [remaining, setRemaining] = useState<number>(MAX_EMAILS);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/api/contact")
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data: { remaining?: number } | null) => {
+        if (cancelled || !data || typeof data.remaining !== "number") return;
+        setRemaining(data.remaining);
+        if (data.remaining <= 0) setFormState("rate_limited");
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const handleSubmit = useCallback(async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    // Check rate limit
-    const { allowed } = checkRateLimit();
-    if (!allowed) {
-      setFormState("rate_limited");
-      return;
-    }
+    const form = e.currentTarget;
+    const fd = new FormData(form);
+    const payload = {
+      from_name: String(fd.get("from_name") ?? ""),
+      reply_to: String(fd.get("reply_to") ?? ""),
+      message: String(fd.get("message") ?? ""),
+    };
 
     setFormState("sending");
-    const form = e.target as HTMLFormElement;
 
     try {
-      await emailjs.sendForm(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID ?? "",
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID ?? "",
-        form,
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY ?? ""
-      );
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const data: { remaining?: number; error?: string } = await res
+        .json()
+        .catch(() => ({}));
 
-      incrementRateLimit();
+      if (res.status === 429) {
+        setRemaining(0);
+        setFormState("rate_limited");
+        return;
+      }
+
+      if (!res.ok) {
+        setFormState("error");
+        setTimeout(() => setFormState("idle"), 3000);
+        return;
+      }
+
+      if (typeof data.remaining === "number") setRemaining(data.remaining);
       setFormState("sent");
       form.reset();
       setTimeout(() => setFormState("idle"), 3000);
@@ -102,8 +94,6 @@ export function Contact() {
       setTimeout(() => setFormState("idle"), 3000);
     }
   }, []);
-
-  const { remaining } = checkRateLimit();
 
   return (
     <section
@@ -133,6 +123,7 @@ export function Contact() {
                   name="from_name"
                   type="text"
                   required
+                  maxLength={200}
                   className="interactive w-full rounded-lg border border-sand/10 bg-sand/5 px-4 py-2.5 text-sm text-sand placeholder:text-sand/20 focus:border-coral/40 focus:outline-none"
                   placeholder="Your name"
                 />
@@ -150,6 +141,7 @@ export function Contact() {
                   name="reply_to"
                   type="email"
                   required
+                  maxLength={200}
                   className="interactive w-full rounded-lg border border-sand/10 bg-sand/5 px-4 py-2.5 text-sm text-sand placeholder:text-sand/20 focus:border-coral/40 focus:outline-none"
                   placeholder="you@example.com"
                 />
@@ -167,6 +159,7 @@ export function Contact() {
                   name="message"
                   required
                   rows={4}
+                  maxLength={5000}
                   className="interactive w-full resize-none rounded-lg border border-sand/10 bg-sand/5 px-4 py-2.5 text-sm text-sand placeholder:text-sand/20 focus:border-coral/40 focus:outline-none"
                   placeholder="Tell me about your project..."
                 />
