@@ -11,7 +11,7 @@ export function ExperienceSection() {
       id="experience"
       className="flex min-h-screen items-center px-4 py-24 sm:px-8"
     >
-      <div className="mx-auto w-full max-w-6xl">
+      <div className="mx-auto w-full max-w-7xl">
         <SectionHeader number="02" label="Experience" title="Where I Have Worked" />
 
         {/* Timeline */}
@@ -43,7 +43,7 @@ export function ExperienceSection() {
                   i % 2 === 0 ? "md:pr-8" : "md:pl-8"
                 }`}
               >
-                <GlassCard delay={0.1 * i}>
+                <GlassCard delay={0.1 * i} className="!p-8 sm:!p-10">
                   <div className="mb-2 flex items-center gap-3">
                     <div
                       className="flex h-10 w-10 items-center justify-center rounded-lg"
