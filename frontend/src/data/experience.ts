@@ -26,9 +26,10 @@ export const experiences: Experience[] = [
     endDate: "Present",
     workMode: "Remote",
     bullets: [
-      "Managing storefront frontend and backend, handling website updates, theme changes, and SEO improvements",
+      "Managing the storefront across both frontend and backend (product updates, collections, navigation, theme changes, and customer-facing pages)",
+      "Supporting SEO improvements, desktop and mobile UX cleanup, and conversion-focused page enhancements",
+      "Optimizing the B2B Collaboration area by reviewing competitor sites and improving navigation and structure",
       "Automated customer service by integrating an AI chatbot into the site",
-      "Optimizing B2B collaboration area, improving navigation and structure",
     ],
   },
   {
@@ -39,9 +40,13 @@ export const experiences: Experience[] = [
     endDate: "Present",
     workMode: "Remote",
     bullets: [
-      "Architected platform using React, TypeScript, Tailwind, Node.js, and Python, serving 310+ members across 10+ pages",
-      "Reduced manual admin work from 1-2 hours to under 3 minutes with AI/ML image-to-data extraction pipeline",
-      "Engineered tournament tools including 2v2 bracket generator with randomization, BYE handling, and state persistence",
+      "Architected and delivered the UTM Billiards Club platform using React, TypeScript, Tailwind, Node.js, and Python, shipping responsive tools for rankings, tournaments, scheduling, and club operations serving a 310+ member community across 10+ pages",
+      "Built a rankings data pipeline pulling from Google Sheets via CSV exports that parses and sorts standings by Elo tier, validates inputs, masks player names for privacy, and caches results in localStorage with a 10-minute TTL",
+      "Developed a live Elo rankings dashboard with search, multi-tier filtering, refresh controls, privacy masking, and fully optimized mobile and desktop layouts",
+      "Reduced manual admin work from 1-2 hours to under 3 minutes by building automated Python and Google Sheets ranking workflows, plus a Google OAuth-based 1v1 tracker with an AI/ML image-to-data extraction pipeline that parses match results from sheet photos into structured entries",
+      "Engineered tournament tools including a 2v2 bracket generator supporting team and player modes, randomization, BYE handling, save/load state persistence, and regenerate controls",
+      "Implemented scalable data-driven site architecture using shared JSON as a single source of truth, with date-based rendering logic that auto-splits upcoming vs past events",
+      "Added an optional AI chatbot with persistent floating UI, deployment-safe API fallback behavior, and a simple enable/disable flag",
     ],
   },
   {
@@ -52,8 +57,10 @@ export const experiences: Experience[] = [
     endDate: "Apr 2026",
     workMode: "Hybrid",
     bullets: [
-      "Planning, budgeting, and delivering Indigenous programming including Access Days, transition events, and trips",
-      "Building community through mentorship and supporting outreach and partnerships",
+      "Planning, budgeting, and delivering Indigenous programming at UTM's Centre for Student Engagement (Access Days, transition events, and trips)",
+      "Developing PowerPoint materials and supporting the broader portfolio",
+      "Building community through mentorship to strengthen Indigenous student belonging and wellness",
+      "Supporting outreach and partnerships across events, projects, and ongoing programming",
     ],
   },
   {
