@@ -11,7 +11,7 @@ export function ExperienceSection() {
       id="experience"
       className="flex min-h-screen items-center px-4 py-24 sm:px-8"
     >
-      <div className="mx-auto w-full max-w-4xl">
+      <div className="mx-auto w-full max-w-6xl">
         <SectionHeader number="02" label="Experience" title="Where I Have Worked" />
 
         {/* Timeline */}
