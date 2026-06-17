@@ -60,7 +60,7 @@ export const projects: Project[] = [
     techStack: ["Python", "PyTorch", "FastAPI", "Next.js", "PostgreSQL", "Docker"],
     award: "Deploying May 2026",
     featured: true,
-    image: "/projects/paideia-mundi.svg",
+    image: "/projects/paideia-mundi.png",
     liveUrl: "https://www.paideiamundi.org",
   },
   {
