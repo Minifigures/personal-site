@@ -40,11 +40,11 @@ export function SectionHeader({
       onClick={handleClick}
       animate={controls}
     >
-      <span className="font-mono text-xs uppercase tracking-[0.3em] text-coral/70">
+      <span className="font-mono text-sm font-semibold uppercase tracking-[0.3em] text-coral">
         {number} / {label}
       </span>
       <motion.h2
-        className="mt-2 font-display text-3xl font-bold text-sand sm:text-5xl"
+        className="mt-2 text-balance font-display text-2xl font-bold text-sand sm:text-3xl md:text-6xl lg:text-7xl"
         whileTap={{ scale: 0.96 }}
       >
         {title}

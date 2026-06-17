@@ -1,9 +1,16 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { ScrollIndicator } from "@/components/ui/scroll-indicator";
 
 export function Hero() {
+  const prefersReduced = useReducedMotion();
+
+  const hidden = { opacity: 0, y: 30 } as const;
+  const visible = { opacity: 1, y: 0 } as const;
+  const noMotion = { opacity: 1, y: 0 } as const;
+  const instantTransition = { duration: 0 } as const;
+
   return (
     <section
       id="hero"
@@ -11,18 +18,18 @@ export function Hero() {
     >
       <motion.div
         className="text-outlined font-mono text-xs uppercase tracking-[0.3em]"
-        initial={{ opacity: 0 }}
+        initial={prefersReduced ? noMotion : { opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1.2 }}
+        transition={prefersReduced ? instantTransition : { duration: 1, delay: 1.2 }}
       >
         Portfolio 2026
       </motion.div>
 
       <motion.h1
         className="mt-4 font-display text-5xl font-bold tracking-tight sm:text-7xl lg:text-8xl"
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.2, delay: 1.4, ease: "easeOut" }}
+        initial={prefersReduced ? noMotion : hidden}
+        animate={visible}
+        transition={prefersReduced ? instantTransition : { duration: 1.2, delay: 1.4, ease: "easeOut" }}
       >
         <span className="text-bubble-wrap" data-text="Marco Anthony">
           <span className="text-bubble">Marco Anthony</span>
@@ -45,9 +52,9 @@ export function Hero() {
 
       <motion.p
         className="text-outlined mt-6 max-w-lg text-base font-medium sm:text-lg"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.2, delay: 1.8, ease: "easeOut" }}
+        initial={prefersReduced ? noMotion : { opacity: 0, y: 20 }}
+        animate={visible}
+        transition={prefersReduced ? instantTransition : { duration: 1.2, delay: 1.8, ease: "easeOut" }}
       >
         Student graduating 2027 at the University of Toronto.
         AI/ML Engineer.
@@ -55,28 +62,28 @@ export function Hero() {
 
       <motion.div
         className="mt-8 flex gap-4"
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 2.2 }}
+        initial={prefersReduced ? noMotion : { opacity: 0, y: 10 }}
+        animate={visible}
+        transition={prefersReduced ? instantTransition : { duration: 0.8, delay: 2.2 }}
       >
         <a
           href="#projects"
-          className="interactive glass-thin rounded-full px-6 py-2.5 font-mono text-xs font-bold uppercase tracking-widest text-coral shadow-lg shadow-coral/20 transition-all hover:border-coral/40"
+          className="interactive glass-thin min-h-[44px] rounded-full px-6 py-3 font-mono text-xs font-bold uppercase tracking-widest text-coral shadow-lg shadow-coral/20 transition-all hover:border-coral/40"
         >
           View Work
         </a>
         <a
           href="#contact"
-          className="interactive glass-thin rounded-full px-6 py-2.5 font-mono text-xs font-bold uppercase tracking-widest text-white shadow-lg transition-all hover:border-white/30"
+          className="interactive glass-thin min-h-[44px] rounded-full px-6 py-3 font-mono text-xs font-bold uppercase tracking-widest text-white shadow-lg transition-all hover:border-white/30"
         >
           Contact
         </a>
       </motion.div>
 
       <motion.div
-        initial={{ opacity: 0 }}
+        initial={prefersReduced ? noMotion : { opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 2.8, duration: 1 }}
+        transition={prefersReduced ? instantTransition : { delay: 2.8, duration: 1 }}
         className="mt-20"
       >
         <ScrollIndicator />

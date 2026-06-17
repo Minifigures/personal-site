@@ -16,7 +16,7 @@ export function About() {
         <SectionHeader number="01" label="About" title="Who I Am" />
 
         <div className="grid gap-8 md:grid-cols-2">
-          <GlassCard>
+          <GlassCard className="glass-coral">
             <p className="text-base leading-relaxed text-sand/70">
               I am Marco, a{" "}
               <span className="text-sand">University of Toronto</span> student
@@ -68,7 +68,7 @@ export function About() {
             </div>
           </GlassCard>
 
-          <GlassCard delay={0.15}>
+          <GlassCard delay={0.15} className="glass-coral">
             <h3 className="mb-4 font-display text-lg font-semibold text-sand">
               Tech Stack
             </h3>

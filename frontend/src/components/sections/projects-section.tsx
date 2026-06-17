@@ -20,9 +20,9 @@ export function ProjectsSection() {
             <GlassCard
               key={project.id}
               delay={0.08 * i}
-              className="group interactive relative flex flex-col overflow-hidden !p-0 transition-all duration-300 hover:border-coral/30"
+              className="glass-amber group interactive relative flex flex-col overflow-hidden !p-0 transition-all duration-300 hover:border-coral/30"
             >
-              {project.image && (
+              {project.image ? (
                 <div className="relative aspect-[16/9] w-full overflow-hidden bg-navy/40">
                   <Image
                     src={project.image}
@@ -39,18 +39,27 @@ export function ProjectsSection() {
                     </span>
                   )}
                 </div>
-              )}
-
-              <div className="flex flex-1 flex-col p-6 sm:p-7">
-                <div className="flex items-start justify-between gap-3">
-                  <h3 className="font-display text-xl font-bold text-sand">
-                    {project.title}
-                  </h3>
-                  {!project.image && project.featured && (
-                    <span className="rounded-full bg-coral/10 px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-coral">
+              ) : (
+                <div className="relative flex aspect-[16/9] w-full items-center justify-center overflow-hidden rounded-t-2xl bg-gradient-to-br from-coral/20 via-navy/30 to-teal/20">
+                  <span
+                    className="select-none font-display text-7xl font-bold text-sand/20 transition-opacity duration-300 group-hover:text-sand/30"
+                    aria-hidden="true"
+                  >
+                    {project.title.charAt(0)}
+                  </span>
+                  {project.featured && (
+                    <span className="absolute top-3 right-3 rounded-full bg-coral/90 px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-sand backdrop-blur">
                       Featured
                     </span>
                   )}
+                </div>
+              )}
+
+              <div className="flex flex-1 flex-col p-6 sm:p-7">
+                <div className="flex items-start gap-3">
+                  <h3 className="font-display text-xl font-bold text-sand">
+                    {project.title}
+                  </h3>
                 </div>
 
                 {project.award && (

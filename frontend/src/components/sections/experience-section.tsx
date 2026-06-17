@@ -44,7 +44,7 @@ export function ExperienceSection() {
                   i % 2 === 0 ? "md:pr-8" : "md:pl-8"
                 }`}
               >
-                <GlassCard delay={0.1 * i} className="!p-8 sm:!p-10">
+                <GlassCard delay={0.1 * i} className="glass-teal !p-8 sm:!p-10">
                   <div className="mb-2 flex items-center gap-3">
                     <div
                       className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg"
