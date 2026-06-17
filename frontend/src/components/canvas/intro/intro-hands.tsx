@@ -35,13 +35,13 @@ export function IntroHands() {
   const robot = useGLTF("/models/robot-arm.glb");
   const human = useGLTF("/models/right-hand.glb");
 
-  const robotN = useNormalized(robot.scene, 3.1);
-  const humanN = useNormalized(human.scene, 2.8);
+  const robotN = useNormalized(robot.scene, 5.2);
+  const humanN = useNormalized(human.scene, 3.4);
 
   useFrame((state) => {
     const t = state.clock.elapsedTime;
-    if (robotRef.current) robotRef.current.position.y = -0.35 + Math.sin(t * 0.6) * 0.04;
-    if (humanRef.current) humanRef.current.position.y = -0.35 + Math.cos(t * 0.5) * 0.04;
+    if (robotRef.current) robotRef.current.position.y = -0.7 + Math.sin(t * 0.6) * 0.04;
+    if (humanRef.current) humanRef.current.position.y = -0.3 + Math.cos(t * 0.5) * 0.04;
   });
 
   return (
@@ -50,13 +50,13 @@ export function IntroHands() {
       <pointLight position={[-3, 1.5, 3]} color="#00e5ff" intensity={7} distance={14} />
       <pointLight position={[3, 1.5, 3]} color="#ff9a7a" intensity={7} distance={14} />
 
-      {/* Robot arm reaching in from the left */}
-      <group ref={robotRef} position={[-1.7, -0.35, 0.5]} rotation={[0, 0, 0]} scale={robotN.scale}>
+      {/* Robot arm reaching in from off the left edge */}
+      <group ref={robotRef} position={[-3.4, -0.7, 0.3]} rotation={[0, 0, 0]} scale={robotN.scale}>
         <primitive object={robotN.obj} />
       </group>
 
       {/* Human hand reaching in from the right, fingers toward the spark */}
-      <group ref={humanRef} position={[1.55, -0.1, 0.4]} rotation={[0, Math.PI, Math.PI / 2]} scale={humanN.scale}>
+      <group ref={humanRef} position={[3.0, -0.3, 0.3]} rotation={[0, Math.PI, Math.PI / 2]} scale={humanN.scale}>
         <primitive object={humanN.obj} />
       </group>
     </group>
