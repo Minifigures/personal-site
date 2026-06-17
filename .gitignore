@@ -213,3 +213,6 @@ sensitive/
 CLAUDE.md
 **/CLAUDE.md
 .commit-msg*.txt
+
+# AI tooling handoff folder
+.cowork/
