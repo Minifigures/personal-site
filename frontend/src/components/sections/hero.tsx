@@ -1,7 +1,38 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
+import { FaGithub, FaLinkedinIn } from "react-icons/fa6";
+import { SiDevpost } from "react-icons/si";
+import { MdEmail } from "react-icons/md";
 import { ScrollIndicator } from "@/components/ui/scroll-indicator";
+import { ProfilePhoto } from "@/components/ui/profile-photo";
+
+const SOCIAL_LINKS = [
+  {
+    href: "https://github.com/Minifigures",
+    label: "GitHub",
+    icon: FaGithub,
+    external: true,
+  },
+  {
+    href: "https://linkedin.com/in/marco-anthony-ayuste",
+    label: "LinkedIn",
+    icon: FaLinkedinIn,
+    external: true,
+  },
+  {
+    href: "https://devpost.com/minifiguresgt",
+    label: "Devpost",
+    icon: SiDevpost,
+    external: true,
+  },
+  {
+    href: "mailto:marco.ayuste@mail.utoronto.ca",
+    label: "Email",
+    icon: MdEmail,
+    external: false,
+  },
+] as const;
 
 export function Hero() {
   const prefersReduced = useReducedMotion();
@@ -23,6 +54,16 @@ export function Hero() {
         transition={prefersReduced ? instantTransition : { duration: 1, delay: 1.2 }}
       >
         Portfolio 2026
+      </motion.div>
+
+      {/* Profile photo */}
+      <motion.div
+        className="mt-4"
+        initial={prefersReduced ? noMotion : { opacity: 0, scale: 0.85 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={prefersReduced ? instantTransition : { duration: 0.9, delay: 1.3, ease: "easeOut" }}
+      >
+        <ProfilePhoto />
       </motion.div>
 
       <motion.h1
@@ -56,8 +97,7 @@ export function Hero() {
         animate={visible}
         transition={prefersReduced ? instantTransition : { duration: 1.2, delay: 1.8, ease: "easeOut" }}
       >
-        Student graduating 2027 at the University of Toronto.
-        AI/ML Engineer.
+        I build AI-powered tools that solve real problems for real people.
       </motion.p>
 
       <motion.div
@@ -78,6 +118,26 @@ export function Hero() {
         >
           Contact
         </a>
+      </motion.div>
+
+      {/* Social links */}
+      <motion.div
+        className="mt-6 flex items-center gap-5"
+        initial={prefersReduced ? noMotion : { opacity: 0, y: 8 }}
+        animate={visible}
+        transition={prefersReduced ? instantTransition : { duration: 0.8, delay: 2.45 }}
+      >
+        {SOCIAL_LINKS.map(({ href, label, icon: Icon, external }) => (
+          <a
+            key={label}
+            href={href}
+            aria-label={label}
+            {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+            className="interactive flex h-9 w-9 items-center justify-center rounded-full text-white/70 transition-all hover:scale-110 hover:text-coral focus-visible:outline focus-visible:outline-2 focus-visible:outline-coral"
+          >
+            <Icon size={20} aria-hidden="true" />
+          </a>
+        ))}
       </motion.div>
 
       <motion.div
