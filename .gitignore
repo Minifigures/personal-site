@@ -201,6 +201,10 @@ FuturePath*.pdf
 *Resume*.pdf
 *CV*.pdf
 
+# Local-only reference images / mood boards (never commit)
+peak_human_ai.png
+*_cool.png
+
 # Local-only sensitive scratch folder (PDFs, personal screenshots, private notes)
 sensitive/
 
