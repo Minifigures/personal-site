@@ -16,10 +16,14 @@ export interface Project {
 export interface Experience {
   id: string;
   company: string;
+  /** Optional sub-organization shown under the company (e.g. a branch or unit). */
+  division?: string;
   role: string;
   startDate: string;
   endDate: string;
   workMode: "Remote" | "On-site" | "Hybrid";
+  /** Optional plain-text line shown above the bullet list (e.g. a team name). */
+  team?: string;
   bullets: string[];
 }
 

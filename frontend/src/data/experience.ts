@@ -2,6 +2,29 @@ import type { Experience } from "@/types";
 
 export const experiences: Experience[] = [
   {
+    id: "dnd",
+    company: "Department of National Defence / Ministère de la défense nationale",
+    division: "Canadian Armed Forces | Forces armées canadiennes",
+    role: "Student (Co-op)",
+    startDate: "Jun 2026",
+    endDate: "Present",
+    workMode: "Hybrid",
+    team: "AI and Autonomous Systems Team",
+    bullets: [],
+  },
+  {
+    id: "yadag",
+    company: "Yadag",
+    role: "Software Engineer Intern",
+    startDate: "Apr 2026",
+    endDate: "Jun 2026",
+    workMode: "Remote",
+    bullets: [
+      "Core Platform Engineering Team, contributing across the full stack as a student engineer",
+      "Shipped platform features end-to-end (frontend, backend, and supporting services) on a remote, cross-functional team",
+    ],
+  },
+  {
     id: "paideia-mundi",
     company: "Paideia Mundi NeuroSystems Institute",
     role: "AI/ML Engineer Intern, Team Lead",

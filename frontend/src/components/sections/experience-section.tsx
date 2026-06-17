@@ -69,6 +69,11 @@ export function ExperienceSection() {
                       <p className="font-mono text-xs text-teal">
                         {exp.company}
                       </p>
+                      {exp.division && (
+                        <p className="mt-0.5 font-mono text-[11px] text-sand/40">
+                          {exp.division}
+                        </p>
+                      )}
                     </div>
                   </div>
 
@@ -79,17 +84,23 @@ export function ExperienceSection() {
                     </span>
                   </p>
 
-                  <ul className="space-y-2">
-                    {exp.bullets.map((bullet, j) => (
-                      <li
-                        key={j}
-                        className="flex gap-2 text-sm text-sand/60"
-                      >
-                        <span className="mt-1.5 h-1 w-1 flex-shrink-0 rounded-full bg-coral/50" />
-                        {bullet}
-                      </li>
-                    ))}
-                  </ul>
+                  {exp.team && (
+                    <p className="mb-3 text-sm text-sand/70">{exp.team}</p>
+                  )}
+
+                  {exp.bullets.length > 0 && (
+                    <ul className="space-y-2">
+                      {exp.bullets.map((bullet, j) => (
+                        <li
+                          key={j}
+                          className="flex gap-2 text-sm text-sand/60"
+                        >
+                          <span className="mt-1.5 h-1 w-1 flex-shrink-0 rounded-full bg-coral/50" />
+                          {bullet}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </GlassCard>
               </div>
             </div>
