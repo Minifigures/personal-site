@@ -37,7 +37,7 @@ export const projects: Project[] = [
     title: "UTM Billiards Platform",
     role: "Lead developer, club tech lead",
     description:
-      "Official site for the UTM Billiards Club (310+ members). Built Elo rankings, a tournament bracket generator, a TF-IDF FAQ chatbot, an in-browser 8-ball game with physics, and a Google-Sheets-backed data pipeline so execs can update rankings without touching code.",
+      "Official site for the UTM Billiards Club (320+ members). Built Elo rankings, a tournament bracket generator, a TF-IDF FAQ chatbot, an in-browser 8-ball game with physics, and a Google-Sheets-backed data pipeline so execs can update rankings without touching code.",
     outcomes:
       "Replaced a static Linktree with a production platform the club runs on week-to-week. Handles live leaderboard updates and tournament sign-ups each term.",
     techStack: ["Next.js 16", "TypeScript", "Tailwind v4", "React Three Fiber", "p5.js", "Google Sheets API"],

@@ -63,7 +63,7 @@ export const experiences: Experience[] = [
     endDate: "Present",
     workMode: "Remote",
     bullets: [
-      "Architected and delivered the UTM Billiards Club platform using React, TypeScript, Tailwind, Node.js, and Python, shipping responsive tools for rankings, tournaments, scheduling, and club operations serving a 310+ member community across 10+ pages",
+      "Architected and delivered the UTM Billiards Club platform using React, TypeScript, Tailwind, Node.js, and Python, shipping responsive tools for rankings, tournaments, scheduling, and club operations serving a 320+ member community across 10+ pages",
       "Built a rankings data pipeline pulling from Google Sheets via CSV exports that parses and sorts standings by Elo tier, validates inputs, masks player names for privacy, and caches results in localStorage with a 10-minute TTL",
       "Developed a live Elo rankings dashboard with search, multi-tier filtering, refresh controls, privacy masking, and fully optimized mobile and desktop layouts",
       "Reduced manual admin work from 1-2 hours to under 3 minutes by building automated Python and Google Sheets ranking workflows, plus a Google OAuth-based 1v1 tracker with an AI/ML image-to-data extraction pipeline that parses match results from sheet photos into structured entries",

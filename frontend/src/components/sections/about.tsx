@@ -18,37 +18,36 @@ export function About() {
         <div className="grid gap-8 md:grid-cols-2">
           <GlassCard>
             <p className="text-base leading-relaxed text-sand/70">
-              I am a{" "}
-              Honours Bachelor of Arts in{" "}
-              <span className="text-sand">
-                Communication, Culture, Information and Technology (CCIT) and
-                Sociology
-              </span>{" "}
-              student at the University of Toronto Mississauga. I build modern
-              web experiences, ship fast, and learn new tools obsessively.
+              I am Marco, a{" "}
+              <span className="text-sand">University of Toronto</span> student
+              graduating in 2027 (CCIT and Sociology at UTM). Concrete proof I
+              ship: I built an AI pipeline that reads photos of paper tournament
+              sheets and drops the data cleanly into Google Sheets, cutting my
+              club president&apos;s weekly admin from{" "}
+              <span className="text-coral">1 to 2 hours down to under 3 minutes</span>.
             </p>
             <p className="mt-4 text-base leading-relaxed text-sand/70">
-              I am the type of builder who takes an idea from rough concept to
-              live and working, then keeps iterating until it feels clean, fast,
-              and polished. From winning{" "}
-              <span className="text-coral">DeerHacks V 2026</span> to competing
-              at GenAI Genesis and Hack the Globe (Global Spark x BCG, Toronto /
-              London / virtual), I love pushing boundaries at
-              hackathons and turning ambitious ideas into working products under
-              pressure.
+              That is the work I am drawn to: turning tedious, error-prone,
+              real-world workflows into boring-to-run, easy-to-audit software.
             </p>
             <p className="mt-4 text-base leading-relaxed text-sand/70">
-              Currently an AI/ML Engineer Intern at{" "}
+              Right now I am a Full-Stack{" "}
+              <span className="text-teal">Software Engineer Intern at Yadag</span>
+              , Team Lead at{" "}
               <span className="text-teal">
                 Paideia Mundi NeuroSystems Institute
               </span>
-              , Lead Full-Stack Developer for the{" "}
-              <span className="text-teal">UTM Billiards Club</span>, and
-              Webmaster Intern at <span className="text-teal">MINOA</span>.
+              , and founding developer of the{" "}
+              <span className="text-teal">UTM Billiards Club</span> platform
+              (320+ members).
             </p>
             <p className="mt-4 text-base leading-relaxed text-sand/70">
-              When I am not building, I am usually at the gym, playing
-              billiards, catching sunsets, or listening to music while I work.
+              I love hackathons: winner at{" "}
+              <span className="text-coral">DeerHacks V</span> and{" "}
+              <span className="text-coral">IBM Z x UNSA 2026</span>, finalist at
+              Hack the Globe (Global Spark x BCG) and IMC Prosperity 4.
+              Trilingual (English, French, Tagalog), born in Canada, based in
+              Toronto / Mississauga.
             </p>
 
             {/* Languages */}
@@ -82,9 +81,9 @@ export function About() {
             <div className="mt-6 grid grid-cols-2 gap-4">
               {[
                 { label: "Hackathon Wins", value: "2" },
-                { label: "Hackathons", value: "3" },
-                { label: "Internships/Coops", value: "4" },
-                { label: "Experiences", value: "10" },
+                { label: "Competitions", value: "6" },
+                { label: "Internships/Co-ops", value: "5" },
+                { label: "Experiences", value: "11" },
                 { label: "Languages", value: "3" },
                 { label: "Coffees", value: "Infinite" },
               ].map((stat, i) => (

@@ -23,7 +23,7 @@ const SOCIAL_LINKS = [
   },
   {
     label: "Email",
-    href: "mailto:minifiguresgt@gmail.com",
+    href: "mailto:marco.ayuste@mail.utoronto.ca",
     icon: "EM",
   },
 ];
