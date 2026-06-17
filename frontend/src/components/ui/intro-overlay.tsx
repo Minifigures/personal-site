@@ -58,6 +58,7 @@ export function IntroOverlay({ onEnter }: { onEnter: () => void }) {
             <motion.div
               key="center"
               className="flex flex-col items-center text-center"
+              style={{ textShadow: "0 2px 24px rgba(0,0,0,0.72), 0 0 10px rgba(0,0,0,0.5)" }}
               exit={{ opacity: 0, y: -12 }}
               transition={{ duration: 0.3 }}
             >

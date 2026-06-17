@@ -1,7 +1,9 @@
-# 3D model credits
+# Media credits
 
-The intro gate arms (robot arm + human arm) are built procedurally from Three.js
-primitives, so there are no external model credits for them.
+Intro gate:
+
+- The "Human + AI" reaching-hands clip (`public/intro/intro.mp4`) is a generated
+  motion piece used as the landing backdrop.
 
 Beach scene:
 

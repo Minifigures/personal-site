@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useAppStore } from "@/stores/use-app-store";
 import { IntroFallback } from "./intro-fallback";
 import { IntroOverlay } from "@/components/ui/intro-overlay";
-import { IntroCanvas } from "@/components/canvas/intro-canvas";
+import { IntroVideo } from "./intro-video";
 
 /** Time from clicking Enter to the hard hand-off into the beach (ms). */
 const ENTER_DURATION = 1150;
@@ -52,7 +52,7 @@ export function IntroGate() {
 
   return (
     <>
-      <IntroCanvas />
+      <IntroVideo />
       <IntroOverlay onEnter={() => setPhase("entering")} />
     </>
   );
