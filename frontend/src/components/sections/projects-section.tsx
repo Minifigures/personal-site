@@ -2,11 +2,15 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { motion, useReducedMotion } from "framer-motion";
 import { GlassCard } from "@/components/ui/glass-card";
 import { SectionHeader } from "@/components/ui/section-header";
 import { projects } from "@/data/projects";
+import { getTechIcon } from "@/lib/tech-icons";
 
 export function ProjectsSection() {
+  const reducedMotion = useReducedMotion();
+
   return (
     <section
       id="projects"
@@ -89,15 +93,30 @@ export function ProjectsSection() {
                   </div>
                 )}
 
-                <div className="mt-4 flex flex-wrap gap-1.5">
-                  {project.techStack.map((tech) => (
-                    <span
-                      key={tech}
-                      className="rounded-md bg-sand/5 px-2 py-0.5 font-mono text-[10px] text-sand/50"
-                    >
-                      {tech}
-                    </span>
-                  ))}
+                <div
+                  role="list"
+                  aria-label="Tech stack"
+                  className="mt-4 flex flex-wrap gap-1.5"
+                >
+                  {project.techStack.map((tech, techIdx) => {
+                    const Icon = getTechIcon(tech);
+                    return (
+                      <motion.span
+                        key={tech}
+                        role="listitem"
+                        aria-label={tech}
+                        title={tech}
+                        className="inline-flex items-center gap-1 rounded-full border border-teal/30 bg-teal/5 px-2.5 py-0.5 font-mono text-[10px] text-teal/80 transition-colors duration-200 hover:border-teal/60 hover:bg-teal/10 hover:text-teal"
+                        initial={reducedMotion ? false : { opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.25, delay: 0.02 * techIdx }}
+                      >
+                        <Icon aria-hidden="true" className="h-3 w-3 shrink-0" />
+                        <span>{tech}</span>
+                      </motion.span>
+                    );
+                  })}
                 </div>
 
                 <div className="mt-auto flex flex-wrap items-center gap-4 border-t border-sand/5 pt-4">
