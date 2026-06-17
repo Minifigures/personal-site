@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { GlassCard } from "@/components/ui/glass-card";
 import { SectionHeader } from "@/components/ui/section-header";
 import { projects } from "@/data/projects";
@@ -90,7 +91,15 @@ export function ProjectsSection() {
                   ))}
                 </div>
 
-                <div className="mt-auto flex gap-4 border-t border-sand/5 pt-4">
+                <div className="mt-auto flex flex-wrap items-center gap-4 border-t border-sand/5 pt-4">
+                  {project.caseStudy && (
+                    <Link
+                      href={`/projects/${project.caseStudy}`}
+                      className="interactive font-mono text-xs font-bold text-coral transition-colors hover:text-amber"
+                    >
+                      Case study →
+                    </Link>
+                  )}
                   {project.github && (
                     <a
                       href={project.github}

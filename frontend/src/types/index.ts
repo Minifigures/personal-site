@@ -11,6 +11,29 @@ export interface Project {
   image?: string;
   award?: string;
   featured: boolean;
+  /** Slug of the linked interview-proof case study, if one exists. */
+  caseStudy?: string;
+}
+
+export interface CaseStudyLinks {
+  github?: string;
+  liveUrl?: string;
+  devpost?: string;
+}
+
+export interface CaseStudy {
+  slug: string;
+  title: string;
+  oneLiner: string;
+  problem: string;
+  role: string;
+  approach: string[];
+  keyDecisions: string[];
+  impact: string[];
+  learned: string[];
+  stack: string[];
+  links: CaseStudyLinks;
+  award?: string;
 }
 
 export interface Experience {
