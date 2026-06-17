@@ -14,14 +14,15 @@ export const experiences: Experience[] = [
   },
   {
     id: "yadag",
-    company: "Yadag",
+    company: "Yadag Technologies Inc.",
     role: "Software Engineer Intern",
     startDate: "Apr 2026",
     endDate: "Jun 2026",
     workMode: "Remote",
     bullets: [
-      "Core Platform Engineering Team, contributing across the full stack as a student engineer",
-      "Shipped platform features end-to-end (frontend, backend, and supporting services) on a remote, cross-functional team",
+      "Built and owned 8 REST API endpoints (auth, matchmaking, tenant config) and 12 schema migrations across Laravel/MySQL and PostgreSQL for a multi-tenant agricultural-staffing SaaS, including a fault-tolerant matchmaking loop on AWS (Lambda, S3) that cut p95 latency from 2.1s to 0.7s and request timeouts from around 8% to under 0.5% via idempotent retries and dead-letter queues",
+      "Shipped 24 PRs (around 3,200 lines) over 6 weeks at a 1-week sprint cadence, including the Python backend integration (webhook handling and APIs) for an LLM-powered multilingual WhatsApp onboarding assistant (English, French, Tagalog) that cut onboarding time from around 15 minutes to under 3 minutes",
+      "Wrote PHPUnit unit and feature tests across the Laravel backend to catch regressions and keep releases stable, working directly with the founding team to translate product and operations requirements into shipped software at startup speed",
     ],
   },
   {
