@@ -55,8 +55,8 @@ export function IntroHands() {
         <primitive object={robotN.obj} />
       </group>
 
-      {/* Human pointing hand reaching in from the right */}
-      <group ref={humanRef} position={[1.7, -0.35, 0.5]} rotation={[0, Math.PI, 0]} scale={humanN.scale}>
+      {/* Human hand reaching in from the right, fingers toward the spark */}
+      <group ref={humanRef} position={[1.55, -0.1, 0.4]} rotation={[0, Math.PI, Math.PI / 2]} scale={humanN.scale}>
         <primitive object={humanN.obj} />
       </group>
     </group>
