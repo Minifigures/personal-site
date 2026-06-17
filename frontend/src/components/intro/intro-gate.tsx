@@ -2,7 +2,6 @@
 
 import { useEffect } from "react";
 import { useAppStore } from "@/stores/use-app-store";
-import { DataField } from "./data-field";
 import { IntroFallback } from "./intro-fallback";
 import { IntroOverlay } from "@/components/ui/intro-overlay";
 import { IntroCanvas } from "@/components/canvas/intro-canvas";
@@ -53,7 +52,6 @@ export function IntroGate() {
 
   return (
     <>
-      <DataField />
       <IntroCanvas />
       <IntroOverlay onEnter={() => setPhase("entering")} />
     </>

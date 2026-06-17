@@ -5,6 +5,8 @@ import { Suspense } from "react";
 import { AdaptiveDpr, PerformanceMonitor } from "@react-three/drei";
 import { ACESFilmicToneMapping } from "three";
 import { NeuralSpark } from "./intro/neural-spark";
+import { IntroHands } from "./intro/intro-hands";
+import { DataTiles } from "./intro/data-tiles";
 import { ConvergingStreams } from "./intro/converging-streams";
 import { AmbientNebula } from "./intro/ambient-nebula";
 import { IntroCameraRig } from "./intro/intro-camera-rig";
@@ -19,14 +21,17 @@ export function IntroCanvas() {
     <Canvas
       className="!fixed !inset-0 !h-screen !w-screen"
       style={{ zIndex: 30 }}
-      gl={{ antialias: false, alpha: true, toneMapping: ACESFilmicToneMapping }}
+      gl={{ antialias: false, alpha: false, toneMapping: ACESFilmicToneMapping }}
       dpr={[0.75, 1.5]}
       camera={{ position: [0, 0, 5], fov: 60, near: 0.01, far: 50 }}
     >
+      <color attach="background" args={["#05060a"]} />
       <PerformanceMonitor onDecline={() => setIntroDegraded(true)}>
         <Suspense fallback={null}>
           <IntroCameraRig />
+          <DataTiles />
           <NeuralSpark />
+          <IntroHands />
           <ConvergingStreams />
           <AmbientNebula />
           <IntroPostProcessing />
