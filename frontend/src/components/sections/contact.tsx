@@ -118,7 +118,7 @@ export function Contact() {
               <div>
                 <label
                   htmlFor="from_name"
-                  className="mb-1 block font-mono text-xs uppercase tracking-wider text-sand/40"
+                  className="mb-1 block font-mono text-xs uppercase tracking-wider text-sand/75"
                 >
                   Name
                 </label>
@@ -128,7 +128,7 @@ export function Contact() {
                   type="text"
                   required
                   maxLength={200}
-                  className="interactive w-full rounded-lg border border-sand/10 bg-sand/5 px-4 py-2.5 text-sm text-sand placeholder:text-sand/20 focus:border-coral/40 focus:outline-none"
+                  className="interactive w-full rounded-lg border border-sand/10 bg-sand/5 px-4 py-2.5 text-sm text-sand placeholder:text-sand/40 focus:border-coral/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-coral/60"
                   placeholder="Your name"
                 />
               </div>
@@ -136,7 +136,7 @@ export function Contact() {
               <div>
                 <label
                   htmlFor="reply_to"
-                  className="mb-1 block font-mono text-xs uppercase tracking-wider text-sand/40"
+                  className="mb-1 block font-mono text-xs uppercase tracking-wider text-sand/75"
                 >
                   Email
                 </label>
@@ -146,7 +146,7 @@ export function Contact() {
                   type="email"
                   required
                   maxLength={200}
-                  className="interactive w-full rounded-lg border border-sand/10 bg-sand/5 px-4 py-2.5 text-sm text-sand placeholder:text-sand/20 focus:border-coral/40 focus:outline-none"
+                  className="interactive w-full rounded-lg border border-sand/10 bg-sand/5 px-4 py-2.5 text-sm text-sand placeholder:text-sand/40 focus:border-coral/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-coral/60"
                   placeholder="you@example.com"
                 />
               </div>
@@ -154,7 +154,7 @@ export function Contact() {
               <div>
                 <label
                   htmlFor="message"
-                  className="mb-1 block font-mono text-xs uppercase tracking-wider text-sand/40"
+                  className="mb-1 block font-mono text-xs uppercase tracking-wider text-sand/75"
                 >
                   Message
                 </label>
@@ -164,7 +164,7 @@ export function Contact() {
                   required
                   rows={4}
                   maxLength={5000}
-                  className="interactive w-full resize-none rounded-lg border border-sand/10 bg-sand/5 px-4 py-2.5 text-sm text-sand placeholder:text-sand/20 focus:border-coral/40 focus:outline-none"
+                  className="interactive w-full resize-none rounded-lg border border-sand/10 bg-sand/5 px-4 py-2.5 text-sm text-sand placeholder:text-sand/40 focus:border-coral/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-coral/60"
                   placeholder="Tell me about your project..."
                 />
               </div>

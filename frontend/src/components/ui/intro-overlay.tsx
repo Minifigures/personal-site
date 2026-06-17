@@ -87,15 +87,13 @@ export function IntroOverlay({ onEnter }: { onEnter: () => void }) {
               </motion.p>
               <motion.button
                 onClick={onEnter}
-                className="interactive group text-sand pointer-events-auto mt-12 font-mono text-[0.8rem] uppercase tracking-[0.45em]"
+                className="interactive text-sand border-teal/45 bg-teal/10 hover:border-teal/80 hover:bg-teal/20 pointer-events-auto mt-12 flex items-center gap-2 rounded-full border px-8 py-3 font-mono text-xs uppercase tracking-[0.4em] transition-all"
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 1.1 }}
               >
-                <span className="relative inline-block">
-                  Enter Experience
-                  <span className="bg-teal absolute -bottom-2 left-0 h-px w-0 transition-all duration-300 group-hover:w-full" />
-                </span>
+                Enter Experience
+                <span aria-hidden className="text-teal">&#8594;</span>
               </motion.button>
               <motion.p
                 className="text-sand/25 mt-5 font-mono text-[9px] uppercase tracking-[0.3em]"

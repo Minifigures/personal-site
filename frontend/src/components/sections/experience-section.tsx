@@ -92,7 +92,7 @@ export function ExperienceSection() {
                     </div>
                   </div>
 
-                  <p className="mb-3 font-mono text-xs text-sand/40">
+                  <p className="mb-3 font-mono text-xs text-sand/55">
                     {exp.startDate} - {exp.endDate}
                     <span className="ml-2 rounded-full bg-sand/5 px-2 py-0.5 text-sand/30">
                       {exp.workMode}
@@ -108,7 +108,7 @@ export function ExperienceSection() {
                       {exp.bullets.map((bullet, j) => (
                         <li
                           key={j}
-                          className="flex gap-2 text-sm text-sand/60"
+                          className="flex gap-2 text-sm text-sand/75"
                         >
                           <span className="mt-1.5 h-1 w-1 flex-shrink-0 rounded-full bg-coral/50" />
                           {bullet}
