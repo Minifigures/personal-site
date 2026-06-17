@@ -11,7 +11,7 @@ export const experiences: Experience[] = [
     workMode: "Hybrid",
     team: "AI and Autonomous Systems Team",
     bullets: [],
-    logo: "/logos/caf.png",
+    logo: "/logos/drdc.png",
   },
   {
     id: "yadag",
