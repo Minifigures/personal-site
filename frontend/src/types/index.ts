@@ -25,6 +25,8 @@ export interface Experience {
   /** Optional plain-text line shown above the bullet list (e.g. a team name). */
   team?: string;
   bullets: string[];
+  /** Optional logo path (e.g. /logos/company.svg) or inline SVG data URI. Falls back to letter monogram when absent. */
+  logo?: string;
 }
 
 export interface Skill {

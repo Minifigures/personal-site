@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { GlassCard } from "@/components/ui/glass-card";
 import { SectionHeader } from "@/components/ui/section-header";
@@ -46,15 +47,29 @@ export function ExperienceSection() {
                 <GlassCard delay={0.1 * i} className="!p-8 sm:!p-10">
                   <div className="mb-2 flex items-center gap-3">
                     <div
-                      className="flex h-10 w-10 items-center justify-center rounded-lg"
+                      className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg"
                       style={{
                         background:
                           "linear-gradient(135deg, rgba(232,115,90,0.2), rgba(42,157,143,0.2))",
                       }}
                     >
-                      <span className="font-display text-sm font-bold text-coral">
-                        {exp.company.charAt(0)}
-                      </span>
+                      {exp.logo ? (
+                        <Image
+                          src={exp.logo}
+                          alt={exp.company}
+                          width={28}
+                          height={28}
+                          className="rounded object-contain"
+                          style={{
+                            background: "rgba(255,255,255,0.08)",
+                            backdropFilter: "blur(4px)",
+                          }}
+                        />
+                      ) : (
+                        <span className="font-display text-sm font-bold text-coral">
+                          {exp.company.charAt(0)}
+                        </span>
+                      )}
                     </div>
                     <div>
                       <h3

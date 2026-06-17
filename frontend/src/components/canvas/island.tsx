@@ -3,6 +3,7 @@
 import { useRef, useMemo } from "react";
 import { useFrame } from "@react-three/fiber";
 import type { Group, Mesh } from "three";
+import { PalmTreeModel } from "./palm-tree-model";
 
 /** Procedural palm tree: curved trunk + leaf fronds */
 function PalmTree({
@@ -600,15 +601,15 @@ export function Island() {
     <group position={islandPosition}>
       <IslandBase scale={[9, 2.2, 8]} />
 
-      {/* Palm trees */}
-      <PalmTree position={[0, 2.0, 0]} height={3.5} rotation={0} />
-      <PalmTree position={[-3.0, 1.8, 1.5]} height={3} rotation={1.2} lean={0.2} />
-      <PalmTree position={[3.5, 1.8, -1.2]} height={3.2} rotation={2.5} />
-      <PalmTree position={[-1.2, 1.9, -2.5]} height={2.5} rotation={4.0} lean={0.1} />
-      <PalmTree position={[1.8, 1.9, 2.5]} height={2.8} rotation={5.5} lean={0.18} />
+      {/* Palm trees grounded to dome surface (y = sqrt(1-x^2/81-z^2/64)*2.2 - 0.15) */}
+      <PalmTreeModel position={[0, 2.05, 0]} targetHeight={3.5} rotation={0} treeIndex={0} />
+      <PalmTreeModel position={[-3.0, 1.88, 1.5]} targetHeight={3.0} rotation={1.2} lean={0.2} treeIndex={1} />
+      <PalmTreeModel position={[3.5, 1.85, -1.2]} targetHeight={3.2} rotation={2.5} treeIndex={2} />
+      <PalmTreeModel position={[-1.2, 1.92, -2.5]} targetHeight={2.5} rotation={4.0} lean={0.1} treeIndex={3} />
+      <PalmTreeModel position={[1.8, 1.89, 2.5]} targetHeight={2.8} rotation={5.5} lean={0.18} treeIndex={4} />
       {/* Smaller background trees */}
-      <PalmTree position={[5.0, 1.2, 0.5]} height={2} rotation={0.8} />
-      <PalmTree position={[-4.5, 1.3, -1.0]} height={2.2} rotation={3.5} lean={0.12} />
+      <PalmTreeModel position={[5.0, 1.67, 0.5]} targetHeight={2.0} rotation={0.8} treeIndex={0} />
+      <PalmTreeModel position={[-4.5, 1.73, -1.0]} targetHeight={2.2} rotation={3.5} lean={0.12} treeIndex={2} />
 
       {/* Bench press */}
       <BenchPress position={[-1.2, 1.85, -0.5]} />
@@ -664,10 +665,10 @@ export function SmallIsland() {
     <group position={position}>
       <IslandBase scale={[6, 1.8, 5]} />
 
-      {/* Palm trees */}
-      <PalmTree position={[-2.5, 1.5, 1.2]} height={2.8} rotation={2.0} />
-      <PalmTree position={[3.0, 1.3, 1.8]} height={2.2} rotation={0.8} lean={0.2} />
-      <PalmTree position={[-1.5, 1.4, -2.0]} height={2} rotation={4.5} />
+      {/* Palm trees grounded to dome surface (scale [6, 1.8, 5]) */}
+      <PalmTreeModel position={[-2.5, 1.43, 1.2]} targetHeight={2.8} rotation={2.0} treeIndex={1} />
+      <PalmTreeModel position={[3.0, 1.27, 1.8]} targetHeight={2.2} rotation={0.8} lean={0.2} treeIndex={3} />
+      <PalmTreeModel position={[-1.5, 1.44, -2.0]} targetHeight={2.0} rotation={4.5} treeIndex={4} />
 
       {/* Lighthouse — centered and prominent */}
       <Lighthouse position={[0.5, 1.4, -0.3]} scale={1.8} />
@@ -707,9 +708,9 @@ export function TinyIsland() {
     <group position={position}>
       <IslandBase scale={[4, 1.2, 3.5]} sandColor="#D9BD7A" />
 
-      {/* Palm trees */}
-      <PalmTree position={[0, 1.0, 0]} height={2.5} rotation={1.0} />
-      <PalmTree position={[-1.5, 0.9, -0.5]} height={1.8} rotation={3.2} lean={0.15} />
+      {/* Palm trees grounded to dome surface (scale [4, 1.2, 3.5]) */}
+      <PalmTreeModel position={[0, 1.05, 0]} targetHeight={2.5} rotation={1.0} treeIndex={0} />
+      <PalmTreeModel position={[-1.5, 0.95, -0.5]} targetHeight={1.8} rotation={3.2} lean={0.15} treeIndex={2} />
 
       {/* Beach ball */}
       <BeachBall position={[-1.2, 1.1, 0.8]} />
