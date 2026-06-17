@@ -1,9 +1,7 @@
 # 3D model credits
 
-Arms in the neural intro gate (loaded from this folder):
-
-- Human hand (`right-hand.glb`): "Low Poly Hand" by Raziq Brown, via poly.pizza. License: CC-BY 3.0.
-- Robotic arm (`robot-arm.glb`): "Robot Arm" by m m, via poly.pizza. License: CC-BY 3.0.
+The intro gate arms (robot arm + human arm) are built procedurally from Three.js
+primitives, so there are no external model credits for them.
 
 Beach scene:
 
