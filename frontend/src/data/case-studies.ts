@@ -249,7 +249,7 @@ export const caseStudies: CaseStudy[] = [
       "Reported uncertainty bands explicitly in the UI instead of surfacing a single point forecast, accepting that wider bands look less confident in exchange for being honest about model limits. That trade-off is the same one that matters in financial or risk-modelling contexts where overconfidence has a real cost."
     ],
     "impact": [
-      "Won two tracks as project lead against 600+ teams from a 10,000+ applicant pool at IBM x UNSA.",
+      "Won two tracks as project lead against 600+ participants from a 10,000+ applicant pool at IBM x UNSA.",
       "104 automated tests (73 backend + 31 frontend) on CI/CD gave the team a regression net across the simulation math and LLM fallback chain throughout the build."
     ],
     "learned": [
@@ -273,9 +273,57 @@ export const caseStudies: CaseStudy[] = [
     "links": {
       "github": "",
       "liveUrl": "",
+      "devpost": "https://devpost.com/software/disease-outflow-forecaster"
+    },
+    "award": "IBM x UNSA Two-Track Winner (1 of 5, vs 600+ participants)"
+  },
+  {
+    "slug": "personal-site",
+    "title": "This Portfolio",
+    "oneLiner": "A single-page WebGL portfolio that gates visitors through a cinematic 'Human + AI' intro before handing off into a scroll-driven 3D beach at sunset, built to be the strongest project on the site rather than just the frame around it.",
+    "problem": "A resume lists what you have done; it does not show how you think or build. I wanted a portfolio that a recruiter remembers, that holds 60fps, and that proves I can ship a polished, performant, interactive experience end to end, not only CRUD apps and notebooks.",
+    "role": "Designer and developer, solo. Owned the concept, the 3D scene, interaction design, the performance budget, the content architecture, and deployment.",
+    "approach": [
+      "Built the experience as two distinct acts: a dark, gated 'Human + AI' intro (a robotic hand and a human hand reaching toward a glowing spark) and, once the visitor clicks Enter, a scroll-driven 3D beach at sunset rendered with React Three Fiber.",
+      "Drove the camera and the section reveals from scroll position with GSAP ScrollTrigger, with the R3F Canvas fixed full-screen behind HTML sections layered by z-index, so the 3D scene and the content scroll as one composition.",
+      "Kept all content (projects, experience, skills, and these case studies) in typed data files, so the site is data-driven and every card, including this case-study system, is generated from one source of truth and statically rendered at build time.",
+      "Designed an Apple-style 'liquid glass' UI layer, translucent panels with specular highlights, tuned for readability over the bright beach, and ran the whole thing on a single live WebGL context so only one act renders at a time."
+    ],
+    "keyDecisions": [
+      "Modelling the intro and the beach as two phases that never run at once (a small Zustand state machine: idle, entering, entered) kept exactly one WebGL context alive, which protected the frame budget on mid-range and mobile GPUs. Running both scenes at once was the obvious shortcut and the wrong one.",
+      "Rendering the intro backdrop as a video layer instead of a second live 3D scene removed an entire GPU context during gating and made the intro deterministic across devices, after an earlier all-procedural 3D version proved fragile to render reliably.",
+      "Driving the liquid-glass tokens dark instead of light was the fix for readability: an early version inherited a light glass treatment that washed out over the bright sunset, so I made the glass fill dark navy and added specular pseudo-elements for the gloss, which held contrast without losing the effect.",
+      "Budgeting for performance up front (AdaptiveDpr, AdaptiveEvents, a PerformanceMonitor that degrades gracefully, and Draco-compressed GLTF) rather than optimizing after the fact kept the build at 60fps on a mid-range laptop and Lighthouse 90+ across categories."
+    ],
+    "impact": [
+      "Holds 60fps on a mid-range laptop and degrades gracefully on mobile via AdaptiveDpr, AdaptiveEvents, and a PerformanceMonitor.",
+      "Lighthouse 90+ across performance, accessibility, best practices, and SEO, with reduced-motion visitors served a static, no-canvas path.",
+      "Every project case study, including this one, is statically generated from typed data at build time, keeping the content layer a single source of truth.",
+      "Live at marcoayuste.com on Vercel."
+    ],
+    "learned": [
+      "The concept came from gated 'enter the experience' sites like messenger.abeto.co and from the Creation of Adam as a metaphor for a human and an AI reaching toward each other, which became the intro. Committing to one strong central metaphor early made every later design call easier to judge.",
+      "Compositing is a feature, not an afterthought: a bright bloom on a transparent canvas blanks out, so the canvas has to be opaque with the scene drawing its own background. That bug taught me to read the renderer's compositing model rather than fight it.",
+      "Performance is a design constraint, not a cleanup step. Setting the frame budget and the single-context rule before building meant I never had to tear the architecture apart to claw frames back later."
+    ],
+    "stack": [
+      "Next.js 15",
+      "React Three Fiber",
+      "Three.js",
+      "@react-three/postprocessing",
+      "Tailwind CSS v4",
+      "Framer Motion",
+      "GSAP ScrollTrigger",
+      "Zustand",
+      "TypeScript",
+      "Vercel"
+    ],
+    "links": {
+      "github": "https://github.com/Minifigures/personal-site",
+      "liveUrl": "https://marcoayuste.com",
       "devpost": ""
     },
-    "award": "IBM x UNSA Two-Track Winner (1 of 5, vs 600+ teams)"
+    "award": "Live at marcoayuste.com"
   }
 ];
 

@@ -78,11 +78,11 @@ export function About() {
             </p>
             <p className="mt-4 text-base leading-relaxed text-sand/70">
               I love hackathons: winner at{" "}
-              <span className="text-coral">DeerHacks V</span> and{" "}
-              <span className="text-coral">IBM Z x UNSA 2026</span>, finalist at
-              Hack the Globe (Global Spark x BCG) and IMC Prosperity 4.
-              Trilingual (English, French, Tagalog), born in Canada, based in
-              Toronto / Mississauga.
+              <span className="text-coral">DeerHacks V</span>,{" "}
+              <span className="text-coral">IBM Z x UNSA 2026</span>, and{" "}
+              <span className="text-coral">Hack the Globe</span> (Global Spark x
+              BCG), top finalist at IMC Prosperity 4. Trilingual (English,
+              French, Tagalog), born in Canada, based in Toronto / Mississauga.
             </p>
 
             {/* Languages spoken */}
@@ -151,11 +151,11 @@ export function About() {
             {/* Stats */}
             <div className="mt-6 grid grid-cols-2 gap-4">
               {[
-                { label: "Hackathon Wins", value: "2" },
+                { label: "Hackathon Wins", value: "3" },
                 { label: "Competitions", value: "6" },
                 { label: "Internships/Co-ops", value: "5" },
-                { label: "Experiences", value: "11" },
-                { label: "Languages", value: "3" },
+                { label: "Experiences", value: "12" },
+                { label: "Languages", value: "8" },
                 { label: "Coffees", value: "Infinite" },
               ].map((stat, i) => (
                 <motion.div

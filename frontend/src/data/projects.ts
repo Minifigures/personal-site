@@ -24,9 +24,9 @@ export const projects: Project[] = [
     description:
       "Continuous remote-care platform for elderly patients. Three linked surfaces: a 'garden' patient check-in with voice AI, a family dashboard, and a clinical dashboard with 0-100 risk stratification. A LangGraph pipeline turns daily signals into early-warning alerts.",
     outcomes:
-      "Health & Humanity Track Finalist (1 of 2 teams) at Hack the Globe 2026, Global Spark's international social impact hackathon run with BCG across Toronto, London, and virtual. 117 commits in 36 hours; judges flagged the triple-interface design as the strongest clinical workflow of the track.",
+      "Won the Health & Humanity Track at Hack the Globe 2026, Global Spark's international social impact hackathon run with BCG across Toronto, London, and virtual. 117 commits in 36 hours; judges flagged the triple-interface design as the strongest clinical workflow of the track.",
     techStack: ["LangGraph", "FastAPI", "Groq", "Gemini", "Supabase", "Three.js", "Next.js 15", "Docker"],
-    award: "Hack the Globe 2026 - Health & Humanity Finalist",
+    award: "Hack the Globe 2026 - Health & Humanity Winner",
     featured: true,
     caseStudy: "canopy",
     image: "/projects/canopy.png",
@@ -95,15 +95,17 @@ export const projects: Project[] = [
   {
     id: "pandexis",
     title: "Pandexis",
-    role: "Project lead (team of 5)",
+    role: "Full-stack / AI Engineer (team of 5)",
     description:
       "IBM x UNSA two-track winning epidemic simulator pairing a vectorized SEIR plus Monte Carlo engine with a fault-tolerant RAG LLM explainer (IBM Granite, Claude, deterministic template fallback) on IBM Cloud.",
     outcomes:
-      "Won two tracks as project lead (1 of 5) against 600+ teams from a 10,000+ applicant pool, backed by 104 automated tests on CI/CD.",
+      "Won two tracks (1 of 5 on the team) against 600+ participants from a 10,000+ applicant pool, backed by 104 automated tests on CI/CD.",
     techStack: ["Python", "FastAPI", "IBM watsonx Granite", "RAG", "Next.js", "MapLibre"],
     award: "IBM x UNSA Two-Track Winner",
     featured: true,
     caseStudy: "pandexis",
+    image: "/projects/pandexis.png",
+    devpost: "https://devpost.com/software/disease-outflow-forecaster",
   },
   {
     id: "personal-site",
@@ -115,6 +117,7 @@ export const projects: Project[] = [
       "60fps on mid-range laptops via AdaptiveDpr, AdaptiveEvents, and Draco-compressed GLTF. Lighthouse 90+ across categories.",
     techStack: ["Next.js 15", "React Three Fiber", "Three.js", "Tailwind v4", "Framer Motion", "GSAP"],
     featured: false,
+    caseStudy: "personal-site",
     image: "/projects/personal-site.png",
     github: "https://github.com/Minifigures/personal-site",
     liveUrl: "https://marcoayuste.com",

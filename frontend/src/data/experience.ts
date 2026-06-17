@@ -50,7 +50,7 @@ export const experiences: Experience[] = [
     company: "MINOA",
     role: "Webmaster Intern",
     startDate: "Dec 2025",
-    endDate: "Present",
+    endDate: "Apr 2026",
     workMode: "Remote",
     logo: "/logos/minoa.png",
     bullets: [
@@ -67,7 +67,7 @@ export const experiences: Experience[] = [
     startDate: "May 2025",
     endDate: "Present",
     workMode: "Remote",
-    logo: "/logos/uoft.svg",
+    logo: "/logos/utmbc.png",
     bullets: [
       "Architected and delivered the UTM Billiards Club platform using React, TypeScript, Tailwind, Node.js, and Python, shipping responsive tools for rankings, tournaments, scheduling, and club operations serving a 320+ member community across 10+ pages",
       "Built a rankings data pipeline pulling from Google Sheets via CSV exports that parses and sorts standings by Elo tier, validates inputs, masks player names for privacy, and caches results in localStorage with a 10-minute TTL",

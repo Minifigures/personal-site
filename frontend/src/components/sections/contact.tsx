@@ -229,8 +229,9 @@ export function Contact() {
                 Interested In
               </h3>
               <p className="text-sm text-sand/50">
-                2026/2027 internship roles in research, front-end, full-stack,
-                UI/UX, product, software engineering, or data/automation.
+                2026/2027 co-op and internship roles in research, AI/ML,
+                front-end, back-end, full-stack, UI/UX, product, software
+                engineering, or data/automation.
               </p>
             </GlassCard>
           </div>
