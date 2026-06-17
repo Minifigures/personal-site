@@ -11,6 +11,7 @@ export const experiences: Experience[] = [
     workMode: "Hybrid",
     team: "AI and Autonomous Systems Team",
     bullets: [],
+    logo: "/logos/caf.png",
   },
   {
     id: "yadag",
@@ -19,6 +20,7 @@ export const experiences: Experience[] = [
     startDate: "Apr 2026",
     endDate: "Jun 2026",
     workMode: "Remote",
+    logo: "/logos/yadag.png",
     bullets: [
       "Built and owned 8 REST API endpoints (auth, matchmaking, tenant config) and 12 schema migrations across Laravel/MySQL and PostgreSQL for a multi-tenant agricultural-staffing SaaS, including a fault-tolerant matchmaking loop on AWS (Lambda, S3) that cut p95 latency from 2.1s to 0.7s and request timeouts from around 8% to under 0.5% via idempotent retries and dead-letter queues",
       "Shipped 24 PRs (around 3,200 lines) over 6 weeks at a 1-week sprint cadence, including the Python backend integration (webhook handling and APIs) for an LLM-powered multilingual WhatsApp onboarding assistant (English, French, Tagalog) that cut onboarding time from around 15 minutes to under 3 minutes",
@@ -32,6 +34,7 @@ export const experiences: Experience[] = [
     startDate: "Mar 2026",
     endDate: "May 2026",
     workMode: "Remote",
+    logo: "/logos/paideia-mundi.png",
     bullets: [
       "Appointed Team Lead of a 3-person cross-university engineering team building a multimodal AI prototype for early-stage neurodevelopmental healthcare; owned scope, standups, supervisor comms, and end-to-end delivery across a 10-week sprint",
       "Built the EEG preprocessing pipeline on Colab Pro (bandpass/notch filtering, RANSAC bad-channel detection, ICA with ICLabel artifact rejection, fixed-length epoching, autoreject epoch QC), passing contract validation with zero deadline slip",
@@ -49,6 +52,7 @@ export const experiences: Experience[] = [
     startDate: "Dec 2025",
     endDate: "Present",
     workMode: "Remote",
+    logo: "/logos/minoa.png",
     bullets: [
       "Managing the storefront across both frontend and backend (product updates, collections, navigation, theme changes, and customer-facing pages)",
       "Supporting SEO improvements, desktop and mobile UX cleanup, and conversion-focused page enhancements",
@@ -63,6 +67,7 @@ export const experiences: Experience[] = [
     startDate: "May 2025",
     endDate: "Present",
     workMode: "Remote",
+    logo: "/logos/uoft.svg",
     bullets: [
       "Architected and delivered the UTM Billiards Club platform using React, TypeScript, Tailwind, Node.js, and Python, shipping responsive tools for rankings, tournaments, scheduling, and club operations serving a 320+ member community across 10+ pages",
       "Built a rankings data pipeline pulling from Google Sheets via CSV exports that parses and sorts standings by Elo tier, validates inputs, masks player names for privacy, and caches results in localStorage with a 10-minute TTL",
@@ -80,6 +85,7 @@ export const experiences: Experience[] = [
     startDate: "Aug 2025",
     endDate: "Apr 2026",
     workMode: "Hybrid",
+    logo: "/logos/uoft.svg",
     bullets: [
       "Planning, budgeting, and delivering Indigenous programming at UTM's Centre for Student Engagement (Access Days, transition events, and trips)",
       "Developing PowerPoint materials and supporting the broader portfolio",
@@ -107,6 +113,7 @@ export const experiences: Experience[] = [
     startDate: "Nov 2023",
     endDate: "Dec 2025",
     workMode: "On-site",
+    logo: "/logos/hallite.png",
     bullets: [
       "Worked in multiple seasonal, part-time, and full-time roles across multiple periods",
       "Managed inbound/outbound shipments, scanning, packaging, and logistics",
@@ -119,6 +126,7 @@ export const experiences: Experience[] = [
     startDate: "Nov 2025",
     endDate: "Nov 2025",
     workMode: "On-site",
+    logo: "/logos/google.png",
     bullets: [
       "Gained industry exposure through on-site job shadowing at Google Toronto",
     ],
@@ -130,6 +138,7 @@ export const experiences: Experience[] = [
     startDate: "Mar 2023",
     endDate: "Mar 2025",
     workMode: "On-site",
+    logo: "/logos/utmsu.png",
     bullets: [
       "Facilitated voting procedures during key election periods across 6 election cycles",
       "Verified student identification, ensured fair and impartial voting, and counted ballots",
@@ -142,6 +151,7 @@ export const experiences: Experience[] = [
     startDate: "Jul 2024",
     endDate: "Aug 2024",
     workMode: "Hybrid",
+    logo: "/logos/embark.svg",
     bullets: [
       "Provided financial guidance to 200+ parents on RESP fund withdrawals",
       "Increased customer satisfaction to 90% and reduced average handling time by 25%",
@@ -154,6 +164,7 @@ export const experiences: Experience[] = [
     startDate: "May 2023",
     endDate: "Aug 2023",
     workMode: "Remote",
+    logo: "/logos/peroptyx.png",
     bullets: [
       "Reviewed and evaluated mapping data to improve accuracy of digital maps and navigation apps",
       "Validated navigation routes, verified business information through systematic online research",

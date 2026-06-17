@@ -14,6 +14,10 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   outputFileTracingRoot: __dirname,
   transpilePackages: ["three"],
+  images: {
+    dangerouslyAllowSVG: true,
+    contentDispositionType: "inline",
+  },
   async headers() {
     return [
       {
