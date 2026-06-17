@@ -85,7 +85,7 @@ export function ExperienceSection() {
                         {exp.company}
                       </p>
                       {exp.division && (
-                        <p className="mt-0.5 font-mono text-[11px] text-sand/40">
+                        <p className="mt-0.5 font-mono text-[11px] text-teal">
                           {exp.division}
                         </p>
                       )}

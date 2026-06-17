@@ -24,15 +24,15 @@
    these variables; no per-class duplication.
    ============================================ */
 :root {
-  --glass-blur: 22px;
-  --glass-sat: 180%;
-  --glass-bright: 1.06;
-  /* Light, faintly warm fill -- beach light passes through */
-  --glass-tint-l: 98%;
-  --glass-tint-c: 0.012;
-  --glass-tint-h: 70;
-  --glass-tint-a: 0.14;
-  --glass-tint-a-thin: 0.10;
+  --glass-blur: 20px;
+  --glass-sat: 150%;
+  --glass-bright: 1.0;
+  /* Dark translucent navy fill so light text stays readable over the bright beach */
+  --glass-tint-l: 16%;
+  --glass-tint-c: 0.02;
+  --glass-tint-h: 265;
+  --glass-tint-a: 0.82;
+  --glass-tint-a-thin: 0.64;
   --glass-radius: 22px;
   --glass-edge: 0.55;
   /* Inline SVG grain (160px tile, no network request) */
