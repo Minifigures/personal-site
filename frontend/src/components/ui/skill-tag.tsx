@@ -3,10 +3,8 @@
 import { motion } from "framer-motion";
 import type { IconType } from "react-icons";
 import {
-  SiAnthropic,
   SiAuth0,
-  SiBootstrap,
-  SiClaude,
+  SiCplusplus,
   SiCss,
   SiDocker,
   SiFastapi,
@@ -14,28 +12,34 @@ import {
   SiFramer,
   SiGit,
   SiGithub,
+  SiGithubactions,
   SiGnubash,
+  SiGooglebigquery,
   SiGooglecloud,
   SiGooglecolab,
   SiGooglesheets,
   SiHtml5,
   SiJavascript,
   SiLangchain,
+  SiLaravel,
+  SiLinux,
   SiMlflow,
+  SiMongodb,
   SiMysql,
-  SiNetlify,
   SiNextdotjs,
   SiNodedotjs,
   SiNumpy,
   SiPandas,
   SiPostgresql,
+  SiPydantic,
+  SiPytest,
   SiPython,
   SiPytorch,
-  SiR,
   SiReact,
   SiScikitlearn,
-  SiSelenium,
+  SiScipy,
   SiSnowflake,
+  SiSqlalchemy,
   SiStreamlit,
   SiSupabase,
   SiTailwindcss,
@@ -44,49 +48,66 @@ import {
   SiTypescript,
   SiVercel,
 } from "react-icons/si";
+import { FaAws, FaJava } from "react-icons/fa6";
+import { TbBrain } from "react-icons/tb";
+import { VscCode } from "react-icons/vsc";
 import type { Skill } from "@/types";
 
+/** Brand icon per skill name. Anything not listed falls back to a generic code glyph. */
 const SKILL_ICONS: Record<string, IconType> = {
   TypeScript: SiTypescript,
   Python: SiPython,
   JavaScript: SiJavascript,
+  Java: FaJava,
+  "C++": SiCplusplus,
   HTML: SiHtml5,
   CSS: SiCss,
   Bash: SiGnubash,
-  R: SiR,
-  "Next.js": SiNextdotjs,
   React: SiReact,
-  FastAPI: SiFastapi,
+  "Next.js": SiNextdotjs,
   "Node.js": SiNodedotjs,
-  "Three.js / R3F": SiThreedotjs,
+  FastAPI: SiFastapi,
+  Laravel: SiLaravel,
   TailwindCSS: SiTailwindcss,
+  Pydantic: SiPydantic,
+  "Three.js / R3F": SiThreedotjs,
+  "Framer Motion": SiFramer,
   Streamlit: SiStreamlit,
   "scikit-learn": SiScikitlearn,
   PyTorch: SiPytorch,
   TensorFlow: SiTensorflow,
   LangChain: SiLangchain,
-  "Framer Motion": SiFramer,
-  Bootstrap: SiBootstrap,
+  LangGraph: TbBrain,
   Pandas: SiPandas,
   NumPy: SiNumpy,
+  SciPy: SiScipy,
   Git: SiGit,
   GitHub: SiGithub,
+  "GitHub Actions": SiGithubactions,
   Docker: SiDocker,
-  PostgreSQL: SiPostgresql,
-  MySQL: SiMysql,
+  "Linux/Unix": SiLinux,
   MLflow: SiMlflow,
   Auth0: SiAuth0,
   Figma: SiFigma,
-  Selenium: SiSelenium,
+  pytest: SiPytest,
+  "Prompt Engineering": TbBrain,
+  "Retrieval-Augmented Generation (RAG)": TbBrain,
+  "Model Context Protocol (MCP)": TbBrain,
+  "IBM watsonx": TbBrain,
   "Google Sheets API": SiGooglesheets,
   Vercel: SiVercel,
-  Netlify: SiNetlify,
   Supabase: SiSupabase,
   Snowflake: SiSnowflake,
+  PostgreSQL: SiPostgresql,
+  MySQL: SiMysql,
+  MongoDB: SiMongodb,
+  SQLAlchemy: SiSqlalchemy,
+  BigQuery: SiGooglebigquery,
+  AWS: FaAws,
   "Google Cloud Platform": SiGooglecloud,
+  "Vertex AI": SiGooglecloud,
+  Gemini: SiGooglecloud,
   "Google Colab": SiGooglecolab,
-  Claude: SiClaude,
-  Anthropic: SiAnthropic,
 };
 
 const COLOR_BY_CATEGORY: Record<Skill["category"], string> = {
@@ -102,7 +123,7 @@ interface SkillTagProps {
 }
 
 export function SkillTag({ skill, index }: SkillTagProps) {
-  const Icon = SKILL_ICONS[skill.name];
+  const Icon = SKILL_ICONS[skill.name] ?? VscCode;
   const colorClass = COLOR_BY_CATEGORY[skill.category];
 
   return (
@@ -110,22 +131,13 @@ export function SkillTag({ skill, index }: SkillTagProps) {
       role="listitem"
       aria-label={skill.name}
       title={skill.name}
-      className={`group inline-flex items-center gap-1.5 rounded-full border px-3 py-1 font-mono text-xs transition-colors duration-200 ${colorClass}`}
+      className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 font-mono text-xs transition-colors duration-200 ${colorClass}`}
       initial={{ opacity: 0, scale: 0.8 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.3, delay: 0.02 * index }}
     >
-      {Icon ? (
-        <Icon aria-hidden="true" className="h-3.5 w-3.5 shrink-0" />
-      ) : (
-        <span
-          aria-hidden="true"
-          className="font-display text-[0.65rem] font-bold uppercase tracking-widest opacity-70"
-        >
-          {skill.name.slice(0, 2)}
-        </span>
-      )}
+      <Icon aria-hidden="true" className="h-3.5 w-3.5 shrink-0" />
       <span>{skill.name}</span>
     </motion.span>
   );
