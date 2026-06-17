@@ -1,6 +1,6 @@
 "use client";
 
-// Drop your photo at public/marco.jpg to display it here.
+// Profile photo lives at public/profile.png.
 // If the file is absent or fails to load, a coral->teal gradient with "MA" initials is shown instead.
 
 import { useState } from "react";
@@ -43,7 +43,7 @@ export function ProfilePhoto() {
   return (
     // eslint-disable-next-line @next/next/no-img-element
     <img
-      src="/marco.jpg"
+      src="/profile.png"
       alt="Marco Anthony Ayuste"
       width={108}
       height={108}
