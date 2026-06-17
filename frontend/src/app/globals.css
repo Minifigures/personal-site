@@ -17,6 +17,28 @@
   --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
 }
 
+/* ============================================
+   Liquid Glass material tokens
+   Single source of truth for blur/tint/radius.
+   Adaptive and accessibility overrides flip
+   these variables; no per-class duplication.
+   ============================================ */
+:root {
+  --glass-blur: 22px;
+  --glass-sat: 180%;
+  --glass-bright: 1.06;
+  /* Light, faintly warm fill -- beach light passes through */
+  --glass-tint-l: 98%;
+  --glass-tint-c: 0.012;
+  --glass-tint-h: 70;
+  --glass-tint-a: 0.14;
+  --glass-tint-a-thin: 0.10;
+  --glass-radius: 22px;
+  --glass-edge: 0.55;
+  /* Inline SVG grain (160px tile, no network request) */
+  --glass-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
 html {
   scroll-behavior: smooth;
   scrollbar-width: thin !important;
@@ -118,58 +140,226 @@ input, textarea, button {
 }
 
 /* ============================================
-   iOS 26 Liquid Glass — Cards & Panels
+   Apple Liquid Glass -- Cards and Panels
+   Light, airy material. Beach/sunset light
+   passes through; navy lives only in shadows.
    ============================================ */
 .glass {
+  position: relative;
   isolation: isolate;
-  background: linear-gradient(
-    145deg,
-    rgba(15, 15, 35, 0.75) 0%,
-    rgba(20, 20, 45, 0.70) 50%,
-    rgba(15, 15, 35, 0.75) 100%
-  );
-  backdrop-filter: blur(30px) saturate(150%);
-  -webkit-backdrop-filter: blur(30px) saturate(150%);
-  border: 1.5px solid rgba(255, 255, 255, 0.18);
-  border-radius: 20px;
+  /* Grain overlay blended over the warm translucent fill */
+  background:
+    var(--glass-grain),
+    oklch(var(--glass-tint-l) var(--glass-tint-c) var(--glass-tint-h) / var(--glass-tint-a));
+  background-blend-mode: overlay, normal;
+  background-size: 160px 160px, auto;
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat)) brightness(var(--glass-bright));
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat)) brightness(var(--glass-bright));
+  /* Transparent border -- visual edge comes from ::after conic ring */
+  border: 1px solid transparent;
+  border-radius: var(--glass-radius);
+  background-clip: padding-box;
   box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.45),
-    0 4px 16px rgba(0, 0, 0, 0.25),
-    0 8px 40px rgba(31, 38, 135, 0.15),
-    inset 0 1.5px 0 rgba(255, 255, 255, 0.25),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.04),
-    inset 0 8px 24px rgba(255, 255, 255, 0.04),
-    inset 4px 0 16px rgba(255, 255, 255, 0.02),
-    inset -4px 0 16px rgba(255, 255, 255, 0.02);
-  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+    /* Outer depth shadow (navy, not black) */
+    0 18px 50px rgba(26, 26, 46, 0.28),
+    0 4px 14px rgba(26, 26, 46, 0.18),
+    /* Specular top highlight */
+    inset 0 1.5px 0 rgba(255, 255, 255, 0.55),
+    /* Faint bottom counter-light */
+    inset 0 -1px 0 rgba(26, 26, 46, 0.06),
+    /* Diffuse inner glow */
+    inset 0 6px 22px rgba(255, 255, 255, 0.10);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  will-change: transform;
 }
 
+/* Specular sheen: top-left bright falloff */
+.glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.35) 0%,
+    rgba(255, 255, 255, 0.08) 38%,
+    transparent 58%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Gradient edge-light ring (prismatic conic, masked to border width) */
+.glass::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(
+    from 135deg,
+    rgba(255, 255, 255, var(--glass-edge)) 0deg,
+    oklch(85% 0.10 270 / 0.30) 60deg,
+    oklch(88% 0.08 210 / 0.14) 120deg,
+    rgba(255, 255, 255, 0.40) 180deg,
+    rgba(26, 26, 46, 0.10) 270deg,
+    rgba(255, 255, 255, var(--glass-edge)) 360deg
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Hover: shadow deepens + top highlight brightens (floating element rises) */
 .glass:hover {
-  border-color: rgba(255, 255, 255, 0.25);
   box-shadow:
-    0 24px 72px rgba(0, 0, 0, 0.50),
-    0 6px 20px rgba(0, 0, 0, 0.30),
-    0 10px 48px rgba(31, 38, 135, 0.20),
-    inset 0 1.5px 0 rgba(255, 255, 255, 0.30),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.06),
-    inset 0 10px 32px rgba(255, 255, 255, 0.05),
-    inset 4px 0 20px rgba(255, 255, 255, 0.03),
-    inset -4px 0 20px rgba(255, 255, 255, 0.03);
+    0 26px 70px rgba(26, 26, 46, 0.34),
+    0 8px 22px rgba(26, 26, 46, 0.22),
+    inset 0 1.5px 0 rgba(255, 255, 255, 0.65),
+    inset 0 -1px 0 rgba(26, 26, 46, 0.08),
+    inset 0 8px 28px rgba(255, 255, 255, 0.14);
 }
 
 /* ============================================
-   Thin glass — Nav, pills, floating UI
+   Thin glass -- Nav, pills, floating UI
+   Lower blur, lower alpha, same token system.
    ============================================ */
 .glass-thin {
-  background: rgba(15, 15, 35, 0.60);
-  backdrop-filter: blur(24px) saturate(150%);
-  -webkit-backdrop-filter: blur(24px) saturate(150%);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  position: relative;
+  isolation: isolate;
+  background: oklch(var(--glass-tint-l) var(--glass-tint-c) var(--glass-tint-h) / var(--glass-tint-a-thin));
+  backdrop-filter: blur(calc(var(--glass-blur) * 0.8)) saturate(var(--glass-sat)) brightness(var(--glass-bright));
+  -webkit-backdrop-filter: blur(calc(var(--glass-blur) * 0.8)) saturate(var(--glass-sat)) brightness(var(--glass-bright));
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 9999px;
   box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.35),
-    0 2px 8px rgba(0, 0, 0, 0.20),
-    inset 0 1px 0 rgba(255, 255, 255, 0.20),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.03);
+    0 8px 26px rgba(26, 26, 46, 0.22),
+    0 2px 8px rgba(26, 26, 46, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.50),
+    inset 0 -1px 0 rgba(26, 26, 46, 0.05);
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+/* Specular sheen for the thin variant */
+.glass-thin::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    160deg,
+    rgba(255, 255, 255, 0.40) 0%,
+    rgba(255, 255, 255, 0.10) 30%,
+    transparent 55%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Full-width nav bar: override rounded pill to squared bottom */
+.glass-thin.glass-bar {
+  border-radius: 0 0 var(--glass-radius) var(--glass-radius);
+}
+
+/* ============================================
+   Glossy pill button -- hero CTAs and submit
+   Sheen sweep animates on hover; gel press
+   on :active. Brand-tintable via text color.
+   ============================================ */
+.glass-btn {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.30);
+  background: oklch(var(--glass-tint-l) var(--glass-tint-c) var(--glass-tint-h) / 0.12);
+  backdrop-filter: blur(16px) saturate(var(--glass-sat)) brightness(var(--glass-bright));
+  -webkit-backdrop-filter: blur(16px) saturate(var(--glass-sat)) brightness(var(--glass-bright));
+  box-shadow:
+    0 6px 20px rgba(26, 26, 46, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.55),
+    inset 0 -1px 0 rgba(26, 26, 46, 0.06);
+  transition: box-shadow 0.25s ease, transform 0.12s ease, border-color 0.25s ease;
+}
+
+/* Top-left specular sheen (static) */
+.glass-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.40), transparent 55%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Animated sheen sweep on hover */
+.glass-btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+  transform: skewX(-18deg);
+  pointer-events: none;
+  z-index: 2;
+  transition: left 0.6s ease;
+}
+
+.glass-btn:hover {
+  border-color: rgba(255, 255, 255, 0.45);
+  box-shadow:
+    0 10px 28px rgba(26, 26, 46, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.70),
+    inset 0 -1px 0 rgba(26, 26, 46, 0.08);
+}
+
+.glass-btn:hover::after {
+  left: 120%;
+}
+
+.glass-btn:active {
+  transform: translateY(1px) scale(0.985);
+}
+
+/* ============================================
+   Vibrancy fill -- for overlays INSIDE or
+   directly under a glass region, avoiding
+   the glass-on-glass anti-pattern.
+   ============================================ */
+.glass-vibrancy {
+  background: oklch(20% 0.02 70 / 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 0 0 var(--glass-radius) var(--glass-radius);
+  box-shadow: 0 18px 40px rgba(26, 26, 46, 0.30);
+}
+
+/* ============================================
+   Progressive enhancement: SVG refraction
+   Chromium-only (Chrome 76+, Edge 79+).
+   Gated by @supports so Safari and Firefox
+   keep their base .glass-thin blur silently.
+   Apply to nav + at most 2 hero CTAs only.
+   ============================================ */
+@supports (backdrop-filter: url(#liquid-glass-lens)) {
+  .glass-lens {
+    backdrop-filter:
+      url(#liquid-glass-lens)
+      blur(calc(var(--glass-blur) * 0.6))
+      saturate(var(--glass-sat))
+      brightness(var(--glass-bright));
+    -webkit-backdrop-filter:
+      url(#liquid-glass-lens)
+      blur(calc(var(--glass-blur) * 0.6))
+      saturate(var(--glass-sat))
+      brightness(var(--glass-bright));
+  }
 }
 
 /* Selection colors */
@@ -208,6 +398,70 @@ input, textarea, button {
   background: transparent !important;
 }
 
+/* ============================================
+   Adaptive overrides
+   ============================================ */
+
+/* Dark-context: nudge tint slightly cooler for OLED viewers */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --glass-tint-l: 92%;
+    --glass-tint-a: 0.16;
+    --glass-tint-a-thin: 0.12;
+  }
+}
+
+/* Touch/coarse pointer: lower blur for mobile GPU budget */
+@media (pointer: coarse) {
+  :root { --glass-blur: 14px; }
+}
+
+/* Reduced Transparency: frostier, more opaque (Apple behavior) */
+@media (prefers-reduced-transparency: reduce) {
+  :root {
+    --glass-tint-a: 0.88;
+    --glass-tint-a-thin: 0.85;
+    --glass-blur: 6px;
+  }
+  .glass::after,
+  .glass-thin::before,
+  .glass-btn::after {
+    display: none;
+  }
+}
+
+/* High Contrast / Forced Colors */
+@media (forced-colors: active) {
+  .glass,
+  .glass-thin,
+  .glass-btn,
+  .glass-vibrancy {
+    background: Canvas;
+    border: 2px solid CanvasText;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    box-shadow: none;
+  }
+  .glass::before,
+  .glass::after,
+  .glass-thin::before,
+  .glass-btn::before,
+  .glass-btn::after {
+    display: none;
+  }
+}
+
+/* Hard fallback: no backdrop-filter at all (old Firefox, locked-down) */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass {
+    background: oklch(96% 0.012 70 / 0.85);
+  }
+  .glass-thin,
+  .glass-btn {
+    background: oklch(96% 0.012 70 / 0.82);
+  }
+}
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -220,5 +474,15 @@ input, textarea, button {
 
   body {
     background: linear-gradient(135deg, #1A1A2E 0%, #2D3A1E 100%);
+  }
+
+  /* Kill glass sheen sweep and hover transitions */
+  .glass-btn::after {
+    transition: none;
+  }
+  .glass,
+  .glass-thin,
+  .glass-btn {
+    transition: none;
   }
 }

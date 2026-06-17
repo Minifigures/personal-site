@@ -4,27 +4,31 @@ import { motion } from "framer-motion";
 import { GlassCard } from "@/components/ui/glass-card";
 import { SectionHeader } from "@/components/ui/section-header";
 import { useState, useCallback, useEffect, type FormEvent } from "react";
+import { FaGithub, FaLinkedinIn } from "react-icons/fa6";
+import { SiDevpost } from "react-icons/si";
+import { MdEmail } from "react-icons/md";
+import type { IconType } from "react-icons";
 
-const SOCIAL_LINKS = [
+const SOCIAL_LINKS: { label: string; href: string; icon: IconType }[] = [
   {
     label: "GitHub",
     href: "https://github.com/Minifigures",
-    icon: "GH",
+    icon: FaGithub,
   },
   {
     label: "LinkedIn",
     href: "https://linkedin.com/in/marco-anthony-ayuste",
-    icon: "LI",
+    icon: FaLinkedinIn,
   },
   {
     label: "Devpost",
     href: "https://devpost.com/minifiguresgt",
-    icon: "DP",
+    icon: SiDevpost,
   },
   {
     label: "Email",
     href: "mailto:marco.ayuste@mail.utoronto.ca",
-    icon: "EM",
+    icon: MdEmail,
   },
 ];
 
@@ -200,9 +204,7 @@ export function Contact() {
                     transition={{ duration: 0.3, delay: 0.05 * i }}
                   >
                     <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-coral/10">
-                      <span className="font-mono text-xs font-bold text-coral">
-                        {link.icon}
-                      </span>
+                      <link.icon size={16} className="text-coral" />
                     </div>
                     <span className="font-mono text-xs text-sand/60">
                       {link.label}
